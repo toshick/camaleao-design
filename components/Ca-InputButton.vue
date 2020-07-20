@@ -122,6 +122,9 @@ export default Vue.extend({
 .ca-input-button > button:active {
   filter: brightness(96%);
 }
+.ca-input-button > button > .label {
+  white-space: nowrap;
+}
 
 /* loading */
 .ca-input-button.-loading {

@@ -38,8 +38,8 @@
       <article>
         <p class="heading">CaInput</p>
         <div class="ca-inputline">
-          <CaInput name="mail1" title="ユーザのメールアドレス及び担当者のメールアドレス" rules="required|max:2" v-model="dummyVal" placeholder="メールアドレス"></CaInput>
-          <CaInput name="mail2" title="" rules="required|max:2" v-model="dummyVal" placeholder="メールアドレス"></CaInput>
+          <CaInput name="mail1" title="ユーザのメールアドレス及び担当者のメールアドレス" rules="required|max:2" v-model="dummyVal" placeholder="ユーザのメールアドレス"></CaInput>
+          <CaInput name="mail2" title="" rules="required|max:2" v-model="dummyVal" placeholder="担当者のメールアドレス"></CaInput>
           <CaInputButton withHeadingSpace>アドレスを送信</CaInputButton>
           <CaInputButton withHeadingSpace loading>アドレスを送信</CaInputButton>
         </div>
@@ -69,6 +69,15 @@
           <CaCheckBox name="check01" label="チェックボックス01" v-model="dummyCheck01"></CaCheckBox>
           <CaCheckBox name="check02" label="チェックボックス02" required v-model="dummyCheck02"></CaCheckBox>
         </CaCheckBoxList>
+        <p class="shell">チェックボックス check01（{{ dummyCheck01 }}） check02（{{ dummyCheck02 }}）</p>
+      </article>
+
+      <article>
+        <p class="heading">CaRadioList</p>
+
+        <CaRadioList title="ラジオのリスト" name="radio01" v-model="dummyRadio01" :items="radioItems"></CaRadioList>
+
+        <p class="shell">ラジオ {{ dummyRadio01 }}</p>
       </article>
     </section>
   </div>
@@ -85,11 +94,14 @@ import CaInputButton from '../components/Ca-InputButton.vue';
 import CaTag from '../components/Ca-Tag.vue';
 import CaCheckBox from '../components/Ca-CheckBox.vue';
 import CaCheckBoxList from '../components/Ca-CheckBoxList.vue';
+import CaRadioList, { CaRadio } from '../components/Ca-RadioList.vue';
 
 type State = {
   dummyVal: string;
   dummyCheck01: boolean;
   dummyCheck02: boolean;
+  dummyRadio01: string;
+  radioItems: CaRadio[];
 };
 
 export default {
@@ -104,12 +116,19 @@ export default {
     CaInputButton,
     CaCheckBox,
     CaCheckBoxList,
+    CaRadioList,
   },
   data(): State {
     return {
       dummyVal: '',
       dummyCheck01: false,
       dummyCheck02: false,
+      dummyRadio01: '',
+      radioItems: [
+        { label: 'アンドロイドは電気羊の夢を見るか', value: '001' },
+        { label: 'いいにおいのおならをうるおとこ', value: '002' },
+        { label: 'カモメに飛ぶことを教えた猫', value: '003' },
+      ],
     };
   },
   methods: {
@@ -121,7 +140,12 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
+ul {
+  padding: 0;
+  margin: 0;
+}
+
 section {
   /* padding: 10px 0 20px; */
 }
@@ -139,9 +163,16 @@ article > button {
   font-family: Arial, Helvetica, sans-serif;
 }
 .heading {
-  font-size: 22px;
+  font-size: 26px;
   color: #999;
   margin: 0;
   padding: 0 0 1em;
+}
+.shell {
+  padding: 10px;
+  background-color: #333;
+  color: #ddd;
+  border-radius: 3px;
+  font-size: 12px;
 }
 </style>

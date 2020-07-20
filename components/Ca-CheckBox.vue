@@ -103,8 +103,8 @@ export default Vue.extend({
 .ca-checkbox::before {
   display: inline-block;
   content: '';
-  width: 24px;
-  height: 24px;
+  width: var(--form-checkbox-size);
+  height: var(--form-checkbox-size);
   background-color: var(--white);
   border: solid 1px #ccc;
   border-radius: 6px;

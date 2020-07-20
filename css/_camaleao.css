@@ -26,6 +26,17 @@
   --form-button-height: 38px;
   --form-button-height-small: 28px;
   --form-button-height-large: 48px;
+
+  /* checkbox */
+  --form-checkbox-size: 24px;
+
+  /* radio */
+  --form-radio-size: 24px;
+
+  /* mixin */
+  --sample-mixin: {
+    border: solid 1px #FF0000;
+  }
 }
 
 * {

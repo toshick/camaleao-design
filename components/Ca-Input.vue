@@ -220,6 +220,7 @@ export default Vue.extend({
 .ca-input-errors {
   font-size: var(--fontsize-small);
   color: var(--danger);
+  margin: 1em 0 0;
 }
 
 /* ng */
