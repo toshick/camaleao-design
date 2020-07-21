@@ -36,7 +36,7 @@
   /* mixin */
   --sample-mixin: {
     border: solid 1px #FF0000;
-  }
+  };
 }
 
 * {
@@ -66,4 +66,16 @@
 .ca-inputline > .ca-input, .ca-input-button {
   margin-right: 14px;
   margin-bottom: 10px;
+}
+
+/* -------------------- 
+ transition
+ ---------------------*/
+.fade-enter-active, .fade-leave-active {
+  /* transition: opacity .5s; */
+  opacity: 1;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }

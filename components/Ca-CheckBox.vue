@@ -109,6 +109,7 @@ export default Vue.extend({
   border: solid 1px #ccc;
   border-radius: 6px;
   margin-right: 6px;
+  box-shadow: var(--form-shadow);
 }
 .ca-checkbox::after {
   --ok: #999;

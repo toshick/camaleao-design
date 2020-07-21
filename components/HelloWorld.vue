@@ -6,7 +6,7 @@
         <div class="btns">
           <CaButton size="S">送信する</CaButton>
           <CaButton>送信する</CaButton>
-          <CaButton size="L">送信する</CaButton>
+          <CaButton size="L" @click="visibleModal = true">送信する</CaButton>
           <CaButton size="S" loading>送信する送信する</CaButton>
         </div>
         <div class="btns">
@@ -80,6 +80,20 @@
         <p class="shell">ラジオ {{ dummyRadio01 }}</p>
       </article>
     </section>
+
+    <CaModal v-if="visibleModal" @close="visibleModal = false">
+      <CaModalBody class="modalcont">
+        <div class="modalcont-img">
+          <img src="https://storage.googleapis.com/toshickcom-a7f98.appspot.com/upload_images/Camera_2020-06-13_18.48.53-1592041744904.jpeg" alt="" />
+        </div>
+        <p>
+          1950年代に発生した核戦争を経て、1984年現在、世界はオセアニア、ユーラシア、イースタシアの3つの超大国によって分割統治されている。さらに、間にある紛争地域をめぐって絶えず戦争が繰り返されている。作品の舞台となるオセアニアでは、思想・言語・結婚などあらゆる市民生活に統制が加えられ、物資は欠乏し、市民は常に「テレスクリーン」と呼ばれる双方向テレビジョン、さらには町なかに仕掛けられたマイクによって屋内・屋外を問わず、ほぼすべての行動が当局によって監視されている。
+        </p>
+        <p>
+          オセアニアに内属しているロンドンに住む主人公ウィンストン・スミスは、真理省の役人として日々歴史記録の改竄作業を行っていた。物心ついたころに見た旧体制やオセアニア成立当時の記憶は、記録が絶えず改竄されるため、存在したかどうかすら定かではない。ウィンストンは、古道具屋で買ったノートに自分の考えを書いて整理するという、禁止された行為に手を染める。ある日の仕事中、抹殺されたはずの3人の人物が載った過去の新聞記事を偶然に見つけたことで、体制への疑いは確信へと変わる。「憎悪週間」の時間に遭遇した同僚の若い女性、ジューリアから手紙による告白を受け、出会いを重ねて愛し合うようになる。また、古い物の残るチャリントンという老人の店（ノートを買った古道具屋）を見つけ、隠れ家としてジューリアと共に過ごした。さらに、ウインストンが話をしたがっていた党内局の高級官僚の1人、オブライエンと出会い、現体制に疑問を持っていることを告白した。エマニュエル・ゴールドスタインが書いたとされる禁書をオブライエンより渡されて読み、体制の裏側を知るようになる。
+        </p>
+      </CaModalBody>
+    </CaModal>
   </div>
 </template>
 
@@ -95,6 +109,8 @@ import CaTag from '../components/Ca-Tag.vue';
 import CaCheckBox from '../components/Ca-CheckBox.vue';
 import CaCheckBoxList from '../components/Ca-CheckBoxList.vue';
 import CaRadioList, { CaRadio } from '../components/Ca-RadioList.vue';
+import CaModal from '../components/Ca-Modal.vue';
+import CaModalBody from '../components/Ca-ModalBody.vue';
 
 type State = {
   dummyVal: string;
@@ -102,6 +118,7 @@ type State = {
   dummyCheck02: boolean;
   dummyRadio01: string;
   radioItems: CaRadio[];
+  visibleModal: boolean;
 };
 
 export default {
@@ -117,6 +134,8 @@ export default {
     CaCheckBox,
     CaCheckBoxList,
     CaRadioList,
+    CaModal,
+    CaModalBody,
   },
   data(): State {
     return {
@@ -129,7 +148,13 @@ export default {
         { label: 'いいにおいのおならをうるおとこ', value: '002' },
         { label: 'カモメに飛ぶことを教えた猫', value: '003' },
       ],
+      visibleModal: false,
     };
+  },
+  mounted() {
+    // setTimeout(() => {
+    //   this.visibleModal = true;
+    // }, 1000);
   },
   methods: {
     dummyCall() {
@@ -174,5 +199,22 @@ article > button {
   color: #ddd;
   border-radius: 3px;
   font-size: 12px;
+}
+
+.modalcont-img {
+  overflow: hidden;
+  height: 200px;
+}
+.modalcont-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.modalcont p {
+  padding: 10px 20px;
+  margin: 0;
+  line-height: 1.6;
 }
 </style>

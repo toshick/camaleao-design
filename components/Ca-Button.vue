@@ -81,7 +81,7 @@ export default Vue.extend({
 <style scoped>
 .ca-button {
   position: relative;
-  padding: 0 20px;
+  padding: 0 14px;
   border: none;
   border-radius: 16px 4px 16px 4px;
   /* border-radius: 16px 16px 4px 4px; */
