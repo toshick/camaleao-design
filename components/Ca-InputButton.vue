@@ -1,6 +1,6 @@
 <template>
   <div :class="myClass">
-    <button @click="onClick">
+    <button @click.stop="onClick">
       <template v-if="loading">
         <CaSpinner :size="size" class="spin"></CaSpinner>
       </template>

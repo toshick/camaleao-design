@@ -1,5 +1,5 @@
 <template>
-  <button :class="buttonClass" @click="onClick">
+  <button :class="buttonClass" @click.stop="onClick">
     <template v-if="loading">
       <CaSpinner :size="size" class="spin"></CaSpinner>
     </template>

@@ -37,6 +37,20 @@ export default Vue.extend({
     onClickClose() {
       this.$emit('close');
     },
+    setWindowClick(flg: boolean) {
+      window.removeEventListener('click', this.windowClick);
+      if (flg) {
+        window.addEventListener('click', this.windowClick);
+      }
+    },
+    windowClick(e: MouseEvent) {
+      if (!this.$el.contains(e.target as Element)) {
+        this.onClickClose();
+      }
+    },
+  },
+  beforeDestroy() {
+    this.setWindowClick(false);
   },
 });
 </script>

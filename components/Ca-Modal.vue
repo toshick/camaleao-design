@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div v-if="visible" :class="myClass" @click.stop.prevent="onClose">
+    <div v-if="visible" :class="myClass">
       <div class="ca-modal-body">
         <slot></slot>
       </div>
@@ -19,7 +19,12 @@ type State = {
 
 export default Vue.extend({
   name: 'CaModal',
-  props: {},
+  props: {
+    easyClose: {
+      type: Boolean,
+      default: true,
+    },
+  },
   computed: {
     myClass(): any {
       const klass: any = { 'ca-modal': true };
@@ -36,18 +41,40 @@ export default Vue.extend({
     this.visible = true;
 
     this.$nextTick(() => {
-      this.$children.forEach((child) => {
+      this.$children.forEach((child: any) => {
         child.$once('close', this.onClose);
+        console.log('setWindowClickチェッック', child.setWindowClick);
+        if (this.easyClose && child.setWindowClick) {
+          child.setWindowClick(true);
+        }
       });
     });
+
+    if (this.easyClose) {
+      this.setCloseKeyListener(true);
+    }
   },
 
   methods: {
     onClose() {
       this.$emit('close');
     },
+    setCloseKeyListener(flg: boolean) {
+      window.removeEventListener('keydown', this.keydown);
+      if (flg) {
+        window.addEventListener('keydown', this.keydown);
+      }
+    },
+    keydown(e: KeyboardEvent) {
+      console.log('e.keyCode', e.keyCode);
+      if (e.isComposing || e.keyCode === 27) {
+        this.onClose();
+      }
+    },
   },
-  beforeDestroy() {},
+  beforeDestroy() {
+    this.setCloseKeyListener(false);
+  },
 });
 </script>
 <!------------------------------->
