@@ -52,11 +52,19 @@ export default Vue.extend({
       default: '',
       type: String,
     },
+    size: {
+      default: '',
+      type: String,
+    },
     label: {
       default: '',
       type: String,
     },
     required: {
+      default: false,
+      type: Boolean,
+    },
+    float: {
       default: false,
       type: Boolean,
     },
@@ -82,7 +90,16 @@ export default Vue.extend({
     },
     myClass(): any {
       const klass: any = { 'ca-radiolist': true };
-
+      if (this.float) {
+        klass['-float'] = true;
+      }
+      let size = '';
+      if (this.size && this.size === 'S') {
+        size = '-size-s';
+      } else if (this.size && this.size === 'L') {
+        size = '-size-l';
+      }
+      klass[size] = true;
       return klass;
     },
     e2eAttr(): string {
@@ -149,13 +166,13 @@ export default Vue.extend({
 
 .ca-radiolist-item > label {
   position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   cursor: pointer;
   line-height: 1;
 }
 .ca-radiolist-item > label:hover {
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 .ca-radiolist-item label::before {
@@ -172,20 +189,27 @@ export default Vue.extend({
   box-shadow: var(--form-shadow);
 }
 .ca-radiolist-item label::after {
-  --ok: #999;
-  --smallcircle-size: calc(var(--form-radio-size) - 14px);
+  --circle-color: #ddd;
+  --smallcircle-size: calc(var(--form-radio-size) - 15px);
   display: none;
   content: '';
   position: absolute;
-  top: 8px;
-  left: 8px;
-  background-color: #999;
+  top: 4px;
+  left: 4px;
+  background-color: #bbb;
 
-  width: var(--smallcircle-size);
-  height: var(--smallcircle-size);
+  width: 0px;
+  height: 0px;
 
-  border-radius: calc(var(--form-radio-size) - 8px * 0.5);
-  animation: radioanime 1.6s ease infinite;
+  border: var(--smallcircle-size) solid transparent;
+  border-top: var(--smallcircle-size) solid var(--circle-color);
+  border-right: var(--smallcircle-size) solid var(--circle-color);
+  /* border-bottom: var(--smallcircle-size) solid var(--circle-color); */
+
+  /* border-radius: calc(var(--form-radio-size) - 8px * 0.5); */
+  /* animation: radioanime 1.6s ease infinite; */
+  border-radius: 100%;
+  animation: ratate 2s linear infinite;
 }
 
 @keyframes radioanime {
@@ -198,8 +222,16 @@ export default Vue.extend({
     background-color: #bbb;
   }
 }
+@keyframes ratate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 /* checked */
+.ca-radiolist-item.-checked {
+  pointer-events: none;
+}
 .ca-radiolist-item.-checked::after {
   display: block;
 }
@@ -214,16 +246,29 @@ export default Vue.extend({
 
 .ca-input-heading {
   position: relative;
-  height: 35px;
+  height: 25px;
 }
 .ca-input-heading > p {
   position: absolute;
   top: 0;
   left: 0;
-  font-size: var(--fontsize-normal);
+  font-size: var(--fontsize-small);
   color: var(--dark);
   margin: 0;
   padding-bottom: 6px;
   white-space: nowrap;
+}
+
+/* size */
+.ca-radiolist.-size-s label {
+  font-size: var(--fontsize-small);
+}
+
+/* float */
+.ca-radiolist.-float ul {
+  display: flex;
+}
+.ca-radiolist.-float li {
+  margin-right: 1em;
 }
 </style>

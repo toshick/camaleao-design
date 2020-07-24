@@ -1,5 +1,5 @@
 <template>
-  <button :class="buttonClass" @click.stop="onClick">
+  <button :class="myClass" @click.stop="onClick">
     <template v-if="loading">
       <CaSpinner :size="size" class="spin"></CaSpinner>
     </template>
@@ -13,7 +13,7 @@
 <!------------------------------->
 <script lang="ts">
 import Vue, { PropType } from 'vue';
-type PropSize = 'S' | 'M' | 'L';
+type PropSize = 'S' | 'L';
 export default Vue.extend({
   name: 'CaButton',
   props: {
@@ -22,7 +22,7 @@ export default Vue.extend({
       type: String as PropType<PropSize>,
     },
     width: {
-      default: 'F',
+      default: '',
       type: String as PropType<PropSize>,
     },
 
@@ -38,9 +38,17 @@ export default Vue.extend({
       default: false,
       type: Boolean,
     },
+    text: {
+      default: false,
+      type: Boolean,
+    },
+    submit: {
+      default: false,
+      type: Boolean,
+    },
   },
   computed: {
-    buttonClass(): any {
+    myClass(): any {
       const klass: any = { 'ca-button': true };
       let size = '-size-m';
       if (this.size && this.size === 'S') {
@@ -64,6 +72,12 @@ export default Vue.extend({
       if (this.loading) {
         klass['-loading'] = true;
       }
+      if (this.text) {
+        klass['-text'] = true;
+      }
+      if (this.submit) {
+        klass['-submit'] = true;
+      }
 
       return klass;
     },
@@ -82,11 +96,11 @@ export default Vue.extend({
 .ca-button {
   position: relative;
   padding: 0 14px;
-  border: none;
+  border: solid 1px #ccc;
   border-radius: 16px 4px 16px 4px;
   /* border-radius: 16px 16px 4px 4px; */
   box-shadow: var(--form-shadow);
-  font-size: var(--fontsize-normal);
+  font-size: var(--fontsize-medium);
   height: var(--form-button-height);
   background-color: #fff;
   color: #666;
@@ -116,7 +130,7 @@ export default Vue.extend({
 
 /* width */
 .ca-button.-width-s {
-  min-width: 200px;
+  min-width: 140px;
 }
 .ca-button.-width-l {
   min-width: 300px;
@@ -127,7 +141,6 @@ export default Vue.extend({
   background-color: var(--positive);
   color: #796a1a;
   text-shadow: 0 0 1px rgba(30, 30, 30, 0.2);
-  box-shadow: 0 0 3px 0px rgba(51, 51, 51, 0.1);
 }
 
 /* danger */
@@ -135,7 +148,6 @@ export default Vue.extend({
   background-color: var(--danger);
   color: #640f0f;
   text-shadow: 0 0 1px rgba(30, 30, 30, 0.2);
-  box-shadow: 0 0 3px 0px rgba(51, 51, 51, 0.1);
 }
 
 /* loading */
@@ -145,6 +157,27 @@ export default Vue.extend({
 }
 .ca-button.-loading > .label {
   visibility: hidden;
+}
+
+/* text */
+.ca-button.-text {
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+.ca-button.-text:hover .label {
+  text-decoration: underline;
+}
+
+/* text */
+.ca-button.-submit {
+  border: solid 1px #ccc;
+  border-radius: 4px;
+  box-shadow: var(--form-shadow);
+
+  color: var(--dark);
+
+  background-color: #eee;
 }
 
 /* spin */

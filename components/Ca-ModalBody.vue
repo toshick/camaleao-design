@@ -1,14 +1,15 @@
 <template>
   <div :class="myClass">
     <header>
-      <CaButton class="btn-close-header" size="S" @click="onClickClose">とじる</CaButton>
+      <h1 v-if="title">{{ title }}</h1>
+      <a class="icon icon-cross btn-close-header" @click="onClickClose"></a>
     </header>
     <div class="ca-modal-body-center">
       <slot></slot>
     </div>
-
     <footer>
-      <CaButton size="S" @click="onClickClose">とじる</CaButton>
+      <CaButton width="S" @click="onClickClose" type="positive">OK</CaButton>
+      <CaButton width="S" @click="onClickClose">キャンセル</CaButton>
     </footer>
   </div>
 </template>
@@ -24,7 +25,12 @@ export default Vue.extend({
   components: {
     CaButton,
   },
-  props: {},
+  props: {
+    title: {
+      default: '',
+      type: String,
+    },
+  },
   computed: {
     myClass(): any {
       const klass: any = { 'ca-modal-body': true };
@@ -59,11 +65,13 @@ export default Vue.extend({
 <!------------------------------->
 <style scoped>
 .ca-modal-body {
+  position: relative;
   display: grid;
   grid-template-rows: min-content auto min-content;
 
-  width: 600px;
-  height: 600px;
+  width: 800px;
+  height: 90vh;
+  background-image: url('../img/subtle-dark-vertical.png');
   background-color: #fff;
   border-radius: 32px 6px 32px 6px;
   box-shadow: var(--form-shadow);
@@ -76,20 +84,31 @@ export default Vue.extend({
 header {
   display: flex;
   align-items: center;
-
-  background-color: #ddd;
-  padding: 6px 10px 6px 30px;
-  border-radius: 0px 6px 22px 0px;
-  box-shadow: 0 0 1px 2px rgba(21, 21, 21, 0.2);
+  background-color: #fff;
+  padding: 6px 14px 6px 20px;
+  box-shadow: 0 0 2px 0px rgba(21, 21, 21, 0.4);
+  height: 40px;
+}
+header h1 {
+  display: block;
+  font-size: 18px;
+  font-weight: normal;
+  color: #999;
+  margin: 6px 0 0;
 }
 .btn-close-header {
+  display: block;
   margin-left: auto;
 }
 footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ddd;
-  padding: 10px 30px 10px 10px;
+  padding: 20px 30px 20px 10px;
+  background-color: #fff;
+  box-shadow: 0 0 2px 0px rgba(21, 21, 21, 0.4);
+}
+footer button {
+  margin: 0 10px;
 }
 </style>

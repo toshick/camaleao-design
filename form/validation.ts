@@ -1,5 +1,5 @@
 import { extend } from 'vee-validate';
-import { required, email, is, numeric, max_value as maxValiue, min_value as minValiue } from 'vee-validate/dist/rules';
+import { required, email, is, numeric, max_value as maxValiue, min_value as minValiue, length } from 'vee-validate/dist/rules';
 
 /**
  * is
@@ -65,6 +65,16 @@ extend('email', {
 extend('required', {
   ...required,
   message: '必須項目です。',
+});
+
+/**
+ * length
+ */
+extend('length', {
+  ...length,
+  message: (_: string, rule: any) => {
+    return `${rule.length}文字ピッタリに入力してください。`;
+  },
 });
 
 /**

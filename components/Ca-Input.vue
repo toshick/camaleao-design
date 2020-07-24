@@ -7,7 +7,9 @@
       <input type="text" :value="myval" @input="(e) => onChangeInput(e)" :placeholder="placeholder" />
     </span>
     <span v-if="textRight" class="ca-input-text -right">{{ textRight }}</span>
-    <p v-if="errors.length > 0" class="ca-input-errors">{{ getErrMessage(errors) }}</p>
+    <div v-if="errors.length > 0" class="ca-input-errors">
+      <p>{{ getErrMessage(errors) }}</p>
+    </div>
   </ValidationProvider>
 </template>
 <!------------------------------->
@@ -210,7 +212,7 @@ export default Vue.extend({
 
 /* width */
 .ca-input.-width-s > span > input {
-  width: 90px;
+  width: 100px;
 }
 .ca-input.-width-l > span > input {
   width: 300px;
@@ -218,9 +220,18 @@ export default Vue.extend({
 
 /* positive */
 .ca-input-errors {
+  position: relative;
+  height: 20px;
+}
+.ca-input-errors p {
+  position: absolute;
+  top: 0;
+  left: 0;
   font-size: var(--fontsize-small);
   color: var(--danger);
-  margin: 1em 0 0;
+  white-space: nowrap;
+  padding: 0;
+  margin: 6px 0 0;
 }
 
 /* ng */
@@ -235,8 +246,8 @@ export default Vue.extend({
 }
 .ca-input > span.-has-ok::after {
   position: absolute;
-  top: 30%;
-  right: 24px;
+  top: 35%;
+  right: 20px;
   display: block;
   content: '';
   transform: rotate(45deg) translate(0, -50%);
@@ -257,7 +268,7 @@ export default Vue.extend({
   position: absolute;
   top: 0;
   left: 0;
-  font-size: var(--fontsize-normal);
+  font-size: var(--fontsize-small);
   color: var(--dark);
   margin: 0;
   padding-bottom: 6px;

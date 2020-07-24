@@ -1,7 +1,9 @@
 <template>
   <ValidationProvider :class="myClass" :name="name" :rules="rules" v-slot="{ errors, valid, invalid, validated }" :data-e2e="e2eAttr" tag="label">
-    <input :value="myval" @input="(e) => onChangeInput(e)" type="checkbox" />
-    {{ label }}
+    <span>
+      <input :value="myval" @input="(e) => onChangeInput(e)" type="checkbox" />
+      {{ label }}
+    </span>
     <!-- <span v-if="errors.length > 0" class="ca-input-errors">{{ getErrMessage(errors) }}</span> -->
   </ValidationProvider>
 </template>
@@ -16,6 +18,7 @@ type State = {
   myval: boolean;
   errorMsg: string;
 };
+type PropSize = 'S' | 'L';
 
 export default Vue.extend({
   name: 'CaCheckbox',
@@ -35,6 +38,14 @@ export default Vue.extend({
       default: false,
       type: Boolean,
     },
+    withHeadingSpace: {
+      default: false,
+      type: Boolean,
+    },
+    size: {
+      default: 'F',
+      type: String as PropType<PropSize>,
+    },
   },
   data(): State {
     return {
@@ -48,6 +59,13 @@ export default Vue.extend({
       if (this.myval) {
         klass['-checked'] = true;
       }
+      let size = '-size-m';
+      if (this.size && this.size === 'S') {
+        size = '-size-s';
+      } else if (this.size && this.size === 'L') {
+        size = '-size-l';
+      }
+      klass[size] = true;
 
       return klass;
     },
@@ -90,6 +108,11 @@ export default Vue.extend({
 <!------------------------------->
 <style scoped>
 .ca-checkbox {
+  display: inline-flex;
+  line-height: 1.4;
+}
+.ca-checkbox > span {
+  display: block;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -97,10 +120,10 @@ export default Vue.extend({
   font-size: var(--fontsize-normal);
   color: var(--dark);
 }
-.ca-checkbox > input {
+.ca-checkbox > span > input {
   display: none;
 }
-.ca-checkbox::before {
+.ca-checkbox > span::before {
   display: inline-block;
   content: '';
   width: var(--form-checkbox-size);
@@ -108,16 +131,18 @@ export default Vue.extend({
   background-color: var(--white);
   border: solid 1px #ccc;
   border-radius: 6px;
-  margin-right: 6px;
+  margin-right: 10px;
   box-shadow: var(--form-shadow);
+  flex-shrink: 0;
 }
-.ca-checkbox::after {
+.ca-checkbox > span::after {
   --ok: #999;
   display: none;
   content: '';
   position: absolute;
-  top: 9px;
-  left: 4px;
+  top: 50%;
+  left: 3px;
+  margin-top: -4px;
 
   transform: rotate(45deg) translate(0, -50%);
   height: 10px;
@@ -126,10 +151,22 @@ export default Vue.extend({
   border-right: 4px solid var(--ok);
 }
 
-.ca-checkbox.-checked::after {
+.ca-checkbox.-checked > span::after {
   display: block;
 }
 .ca-input-errors {
   color: var(--danger);
+}
+
+/* size */
+
+.ca-checkbox.-size-s > span {
+  min-height: var(--form-button-height-small);
+}
+.ca-checkbox.-size-m > span {
+  min-height: var(--form-button-height);
+}
+.ca-checkbox.-size-l > span {
+  min-height: var(--form-button-height-large);
 }
 </style>

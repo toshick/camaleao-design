@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+a.icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  cursor: pointer;
+}
+
+a.icon-cross {
+  position: relative;
+}
+
+.icon-cross:hover:before, .icon-cross:hover:after {
+  background-color: #777;
+}
+
+.icon-cross:before, .icon-cross:after {
+  position: absolute;
+  left: calc(var(--icon-size) / 2 - 2px);
+  content: '';
+  height: var(--icon-size);
+  width: 2px;
+  background-color: #AAA;
+}
+
+.icon-cross:before {
+  transform: rotate(45deg);
+}
+
+.icon-cross:after {
+  transform: rotate(-45deg);
+}

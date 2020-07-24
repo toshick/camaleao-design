@@ -25,6 +25,9 @@ module.exports = {
             transpileOnly: true, // used with ForkTsCheckerWebpackPlugin
           },
         },
+        // {
+        //   loader: 'css-loader',
+        // },
       ],
     });
     config.plugins.push(new ForkTsCheckerWebpackPlugin());

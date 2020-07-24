@@ -43,7 +43,6 @@ export default Vue.extend({
     this.$nextTick(() => {
       this.$children.forEach((child: any) => {
         child.$once('close', this.onClose);
-        console.log('setWindowClickチェッック', child.setWindowClick);
         if (this.easyClose && child.setWindowClick) {
           child.setWindowClick(true);
         }
@@ -66,14 +65,16 @@ export default Vue.extend({
       }
     },
     keydown(e: KeyboardEvent) {
-      console.log('e.keyCode', e.keyCode);
-      if (e.isComposing || e.keyCode === 27) {
+      if (!e.isComposing && e.keyCode === 27) {
         this.onClose();
       }
     },
   },
   beforeDestroy() {
     this.setCloseKeyListener(false);
+    this.$children.forEach((child: any) => {
+      child.$once('close', null);
+    });
   },
 });
 </script>

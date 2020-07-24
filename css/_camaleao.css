@@ -12,7 +12,8 @@
 
   /* font size */
   --fontsize-small: 12px;
-  --fontsize-normal: 16px;
+  --fontsize-normal: 14px;
+  --fontsize-medium: 16px;
   --fontsize-large: 22px;
 
   /* shadow */
@@ -28,16 +29,31 @@
   --form-button-height-large: 48px;
 
   /* checkbox */
-  --form-checkbox-size: 24px;
+  --form-checkbox-size: 22px;
 
   /* radio */
   --form-radio-size: 24px;
+
+  /* icon */
+  --icon-size-small: 20px;
+  --icon-size-normal: 34px;
+  --icon-size-large: 44px;
+
+  /* switch */
+  --switch-size-small: 20px;
+  --switch-size-normal: 30px;
+  --switch-size-large: 44px;
 
   /* mixin */
   --sample-mixin: {
     border: solid 1px #FF0000;
   };
+
+  /* radio */
+  --icon-size: 24px;
 }
+
+@import url("./_icon.css");
 
 * {
   box-sizing: border-box;
@@ -56,6 +72,7 @@
  ---------------------*/
 .ca-inputline {
   display: flex;
+  align-items: flex-start;
   padding-bottom: 20px;
 }
 
@@ -63,7 +80,7 @@
   padding-bottom: 0;
 }
 
-.ca-inputline > .ca-input, .ca-input-button {
+.ca-inputline > * {
   margin-right: 14px;
   margin-bottom: 10px;
 }
@@ -72,7 +89,7 @@
  transition
  ---------------------*/
 .fade-enter-active, .fade-leave-active {
-  /* transition: opacity .5s; */
+  transition: opacity .1s;
   opacity: 1;
 }
 
