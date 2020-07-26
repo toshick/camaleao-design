@@ -1,32 +1,44 @@
 <template>
-  <div :class="myClass">
-    <input type="hidden" v-model="myval" />
-    <div v-if="titleStr.length > 0" class="ca-input-heading">
-      <p v-html="titleStr"></p>
-    </div>
-    <button class="ca-pulldown-btn" @click.stop="onClick">
-      {{ selected.label }}
-      <i class="arrow"></i>
-    </button>
+  <ValidationObserver ref="obs" slim>
+    <ValidationProvider :class="myClass" :name="name" :rules="rules" v-slot="{ errors, valid, invalid, validated, passed }" :data-e2e="e2eAttr" tag="div">
+      <input type="hidden" :value="myval" />
+      <div v-if="titleStr.length > 0" class="ca-input-heading">
+        <p v-html="titleStr"></p>
+      </div>
+      <div class="ca-input-status">
+        <p v-if="required && !passed" class="formmark-required">＊</p>
+        <p v-if="myval.length > 0 && passed" class="formmark-passed"></p>
+      </div>
+      <button class="ca-pulldown-btn" @click.stop.prevent="onClick">
+        {{ selectedDisp }}
+        <i class="arrow"></i>
+      </button>
 
-    <transition name="fade">
-      <ul class="ca-pulldown-list" v-show="isOpen">
-        <li v-for="i in itemsAry" :key="`item-${i.pull.label}`" :class="{ '-selected': i.pull.selected }">
-          <a @click.stop="() => onClickItem(i.pull)">
-            <CaIcon type="check" size="S" class="check" />
-            {{ i.pull.label }}
-          </a>
-        </li>
-      </ul>
-    </transition>
-  </div>
+      <transition name="fade">
+        <ul class="ca-pulldown-list" v-show="isOpen">
+          <li v-for="i in itemsAry" :key="`item-${i.pull.label}`" :class="{ '-selected': i.pull.selected }">
+            <a @click.stop.prevent="() => onClickItem(i.pull)">
+              <CaIcon type="check" size="S" class="check" />
+              {{ i.pull.label }}
+            </a>
+          </li>
+        </ul>
+      </transition>
+
+      <div v-if="errors.length > 0" class="ca-input-errors">
+        <p>{{ getErrMessage(errors) }}</p>
+      </div>
+    </ValidationProvider>
+  </ValidationObserver>
 </template>
 <!------------------------------->
 
 <!------------------------------->
 <script lang="ts">
 import Vue, { PropType } from 'vue';
+import { ValidationProvider, ValidationObserver, validate } from 'vee-validate';
 import CaIcon from './Ca-Icon.vue';
+import { getErrMessage } from './helper.ts';
 
 export type CaPulldownItem = {
   value: string;
@@ -36,9 +48,10 @@ export type CaPulldownItem = {
 };
 
 type State = {
-  myval: CaPulldownItem;
+  myval: string;
   errorMsg: string;
   isOpen: boolean;
+  getErrMessage: (errors: string[]) => string;
 };
 
 type Item = {
@@ -46,15 +59,23 @@ type Item = {
   pull: CaPulldownItem;
 };
 
-const defaultItem = { value: '', label: '選択してください', default: true, selected: false };
-
 type PropSize = 'S' | 'L';
 export default Vue.extend({
   name: 'CaPulldown',
   components: {
     CaIcon,
+    ValidationProvider,
+    ValidationObserver,
   },
   props: {
+    name: {
+      type: String,
+      default: '',
+    },
+    value: {
+      default: '',
+      type: String,
+    },
     title: {
       default: '',
       type: String,
@@ -64,7 +85,7 @@ export default Vue.extend({
       type: Boolean,
     },
     size: {
-      default: 'F',
+      default: '',
       type: String as PropType<PropSize>,
     },
     items: {
@@ -75,15 +96,23 @@ export default Vue.extend({
       default: false,
       type: Boolean,
     },
+    rules: {
+      type: String,
+      default: '',
+    },
   },
   data(): State {
     return {
-      myval: { ...defaultItem },
+      myval: '',
       errorMsg: '',
       isOpen: false,
+      getErrMessage,
     };
   },
   computed: {
+    e2eAttr(): string {
+      return `e2e-${this.name}`;
+    },
     titleStr(): string {
       let str = '';
       if (this.title) {
@@ -113,7 +142,7 @@ export default Vue.extend({
     itemsAry(): Item[] {
       return this.items.map((pull: CaPulldownItem) => {
         const klass: any = { 'ca-pulldown-item': true };
-        if (this.myval && this.myval.value === pull.value) {
+        if (this.myval === pull.value) {
           pull.selected = true;
         } else {
           pull.selected = false;
@@ -121,37 +150,58 @@ export default Vue.extend({
         return { pull, klass };
       });
     },
-    selected(): CaPulldownItem {
-      if (this.myval.value) {
-        return this.myval;
+    selectedDisp(): string {
+      const noval = '選択してください';
+      if (this.myval) {
+        const find = this.items.find((pull: CaPulldownItem) => {
+          return pull.value === this.myval;
+        });
+        return find ? find.label : noval;
       }
-      return defaultItem;
+      return noval;
+    },
+    required(): boolean {
+      return this.rules.includes('required');
     },
   },
   mounted() {
     this.setWindowClick(true);
+
+    if (this.value) {
+      this.myval = this.value;
+    }
   },
   methods: {
     onClick() {
-      // this.$emit('click');
       this.isOpen = !this.isOpen;
     },
     onClickItem(i: CaPulldownItem) {
-      if (this.myval.value === i.value) {
-        this.myval = defaultItem;
+      if (this.myval === i.value) {
+        this.myval = '';
       } else {
-        this.myval = i;
+        this.myval = i.value;
       }
-      // this.isOpen = false;
+
+      this.doValidate();
+      this.$emit('input', this.myval);
+      this.isOpen = false;
     },
     closeMenu() {
       this.isOpen = false;
     },
     setWindowClick(flg: boolean) {
-      window.removeEventListener('click', this.windowClick);
-      if (flg) {
-        window.addEventListener('click', this.windowClick);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('click', this.windowClick);
+        if (flg) {
+          window.addEventListener('click', this.windowClick);
+        }
       }
+    },
+    doValidate() {
+      this.$nextTick(() => {
+        const obs = this.$refs.obs as ValidationObserver;
+        obs.validate();
+      });
     },
     windowClick(e: MouseEvent) {
       if (!this.$el.contains(e.target as Element)) {
@@ -230,6 +280,7 @@ export default Vue.extend({
   cursor: pointer;
   background-color: #fff;
   padding: 6px 20px 6px 34px;
+  max-width: 400px;
 
   font-size: var(--fontsize-small);
   border-bottom: solid 1px #ddd;
@@ -247,6 +298,7 @@ export default Vue.extend({
   border: solid 1px #ccc;
   border-radius: 4px;
   box-shadow: var(--form-shadow);
+  text-align: left;
 
   background-color: #fff;
   color: #666;
@@ -288,5 +340,40 @@ export default Vue.extend({
 
   border-bottom: 1px solid var(--color);
   border-right: 1px solid var(--color);
+}
+
+.ca-input-status {
+  position: absolute;
+  top: -14px;
+  right: 4px;
+  width: 14px;
+  height: 14px;
+}
+
+.formmark-passed {
+  position: absolute;
+  top: -18px;
+  left: 5px;
+}
+
+/* .ca-pulldown */
+.ca-pulldown .formmark-required {
+  font-size: 10px !important;
+}
+
+/* errors */
+.ca-input-errors {
+  position: relative;
+  height: 20px;
+}
+.ca-input-errors p {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: var(--fontsize-small);
+  color: var(--danger);
+  white-space: nowrap;
+  padding: 0;
+  margin: 6px 0 0;
 }
 </style>

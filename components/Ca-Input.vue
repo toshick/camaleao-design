@@ -1,9 +1,13 @@
 <template>
-  <ValidationProvider :class="myClass" :name="name" :rules="rules" v-slot="{ errors, valid, invalid, validated }" :data-e2e="e2eAttr" tag="div">
+  <ValidationProvider :class="myClass" :name="name" :rules="myrules" v-slot="{ errors, valid, invalid, validated, passed }" :data-e2e="e2eAttr" tag="div">
     <div v-if="titleStr.length > 0" class="ca-input-heading">
       <p v-html="titleStr"></p>
     </div>
     <span :class="setValidateClass(validated, valid, invalid)">
+      <div class="ca-input-status">
+        <p v-if="required && !passed" class="formmark-required">＊</p>
+        <p v-if="myval.length > 0 && passed" class="formmark-passed"></p>
+      </div>
       <input type="text" :value="myval" @input="(e) => onChangeInput(e)" :placeholder="placeholder" />
     </span>
     <span v-if="textRight" class="ca-input-text -right">{{ textRight }}</span>
@@ -18,6 +22,7 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue';
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
+import { getErrMessage } from './helper.ts';
 
 export type ValidationState = {
   passed: boolean;
@@ -26,10 +31,11 @@ export type ValidationState = {
 };
 
 type State = {
-  myval: string | null;
+  myval: string;
   errorMsg: string;
+  getErrMessage: (errors: string[]) => string;
 };
-type PropSize = 'S' | 'L';
+type PropSize = 'S' | 'M' | 'L';
 export default Vue.extend({
   name: 'CaInput',
   components: {
@@ -53,11 +59,11 @@ export default Vue.extend({
       default: '',
     },
     size: {
-      default: 'F',
+      default: '',
       type: String as PropType<PropSize>,
     },
     width: {
-      default: 'F',
+      default: '',
       type: String as PropType<PropSize>,
     },
     type: {
@@ -72,11 +78,27 @@ export default Vue.extend({
       default: '',
       type: String,
     },
+    height: {
+      default: '',
+      type: String,
+    },
+    disabled: {
+      default: false,
+      type: Boolean,
+    },
+  },
+  watch: {
+    disabled(newval, oldval) {
+      if (newval === true) {
+        this.myval = '';
+      }
+    },
   },
   data(): State {
     return {
       myval: '',
       errorMsg: '',
+      getErrMessage,
     };
   },
   computed: {
@@ -106,10 +128,19 @@ export default Vue.extend({
       let width = '';
       if (this.width && this.width === 'S') {
         width = '-width-s';
+      } else if (this.width && this.width === 'M') {
+        width = '-width-m';
       } else if (this.width && this.width === 'L') {
         width = '-width-l';
       }
       klass[width] = true;
+
+      if (this.height && this.height === 'M') {
+        klass['-height-m'] = true;
+      }
+      if (this.disabled) {
+        klass['-disabled'] = true;
+      }
 
       if (this.type) {
         klass[`-${this.type}`] = true;
@@ -120,6 +151,14 @@ export default Vue.extend({
     e2eAttr(): string {
       return `e2e-${this.name}`;
     },
+    required(): boolean {
+      if (this.disabled) return false;
+      return this.rules.includes('required');
+    },
+    myrules(): string {
+      if (this.disabled) return '';
+      return this.rules;
+    },
   },
   created() {
     if (!this.name) {
@@ -128,6 +167,9 @@ export default Vue.extend({
   },
   mounted() {
     this.myval = this.value;
+    if (this.value) {
+      this.$emit('change', this.myval);
+    }
   },
   methods: {
     /**
@@ -147,16 +189,6 @@ export default Vue.extend({
       if (passed) return 'is-success';
       if (failed) return 'is-danger';
       return '';
-    },
-    /**
-     * getErrMessage
-     */
-    getErrMessage(errors: string[]) {
-      let msg = '';
-      if (errors && errors.length > 0) {
-        msg = errors.join(',');
-      }
-      return msg;
     },
     setValidateClass(validated: boolean, valid: boolean, invalid: boolean) {
       const klass: any = {};
@@ -178,6 +210,13 @@ export default Vue.extend({
   position: relative;
 }
 
+.ca-input > span {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: calc(var(--form-input-height));
+}
+
 .ca-input > span > input {
   padding: 0px 12px;
   border: solid 1px #ccc;
@@ -186,8 +225,9 @@ export default Vue.extend({
   box-shadow: var(--form-shadow);
   font-size: var(--fontsize-normal);
   color: var(--dark);
+
+  width: var(--form-input-width-normal);
   height: calc(var(--form-input-height));
-  width: 220px;
 }
 
 .ca-input > span > input:focus {
@@ -196,6 +236,9 @@ export default Vue.extend({
 }
 
 /* size */
+.ca-input.-size-s > span {
+  height: calc(var(--form-input-height-small));
+}
 .ca-input.-size-s > span > input {
   padding: 0 10px;
   font-size: var(--fontsize-small);
@@ -212,13 +255,22 @@ export default Vue.extend({
 
 /* width */
 .ca-input.-width-s > span > input {
-  width: 100px;
+  width: var(--form-input-width-small);
+}
+.ca-input.-width-m > span > input {
+  width: var(--form-input-width-medium);
 }
 .ca-input.-width-l > span > input {
-  width: 300px;
+  width: var(--form-input-width-large);
 }
 
-/* positive */
+/* -disabled */
+.ca-input.-disabled input {
+  pointer-events: none;
+  background-color: #eee;
+}
+
+/* errors */
 .ca-input-errors {
   position: relative;
   height: 20px;
@@ -244,7 +296,7 @@ export default Vue.extend({
 .ca-input > span.-has-ok {
   position: relative;
 }
-.ca-input > span.-has-ok::after {
+/* .ca-input > span.-has-ok::after {
   position: absolute;
   top: 35%;
   right: 20px;
@@ -255,7 +307,7 @@ export default Vue.extend({
   width: 5px;
   border-bottom: 4px solid var(--ok);
   border-right: 4px solid var(--ok);
-}
+} */
 .ca-input > span.-has-ok > input,
 .ca-input > span.-has-ok > input:focus {
   border: solid 1px var(--ok);
@@ -278,5 +330,24 @@ export default Vue.extend({
 /* side text */
 .ca-input-text.-right {
   padding-left: 4px;
+}
+
+/* height */
+.ca-input.-height-m > span {
+  height: calc(var(--form-input-height));
+}
+
+.ca-input-status {
+  position: absolute;
+  top: -14px;
+  right: 4px;
+  width: 14px;
+  height: 14px;
+}
+
+.formmark-passed {
+  position: absolute;
+  top: -18px;
+  left: 5px;
 }
 </style>

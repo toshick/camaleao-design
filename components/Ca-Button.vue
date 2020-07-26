@@ -1,5 +1,5 @@
 <template>
-  <button :class="myClass" @click.stop="onClick">
+  <button :class="myClass" @click.stop.prevent="onClick">
     <template v-if="loading">
       <CaSpinner :size="size" class="spin"></CaSpinner>
     </template>
@@ -46,6 +46,10 @@ export default Vue.extend({
       default: false,
       type: Boolean,
     },
+    disabled: {
+      default: false,
+      type: Boolean,
+    },
   },
   computed: {
     myClass(): any {
@@ -77,6 +81,9 @@ export default Vue.extend({
       }
       if (this.submit) {
         klass['-submit'] = true;
+      }
+      if (this.disabled) {
+        klass['-disabled'] = true;
       }
 
       return klass;
@@ -186,5 +193,13 @@ export default Vue.extend({
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* -disabled */
+.ca-button.-disabled {
+  pointer-events: none;
+}
+.ca-button.-disabled .label {
+  opacity: 0.3;
 }
 </style>

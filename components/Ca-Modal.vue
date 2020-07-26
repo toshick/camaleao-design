@@ -59,9 +59,11 @@ export default Vue.extend({
       this.$emit('close');
     },
     setCloseKeyListener(flg: boolean) {
-      window.removeEventListener('keydown', this.keydown);
-      if (flg) {
-        window.addEventListener('keydown', this.keydown);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('keydown', this.keydown);
+        if (flg) {
+          window.addEventListener('keydown', this.keydown);
+        }
       }
     },
     keydown(e: KeyboardEvent) {

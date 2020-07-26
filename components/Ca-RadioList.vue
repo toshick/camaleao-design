@@ -1,26 +1,34 @@
 <template>
-  <ValidationProvider :class="myClass" :name="name" :rules="rules" :data-e2e="e2eAttr" tag="div">
-    <div v-if="titleStr.length > 0" class="ca-input-heading">
-      <p v-html="titleStr"></p>
-    </div>
-    <ul>
-      <li v-for="(i, index) in itemsAry" :class="i.klass" :key="`${index}-${i.radio.value}`">
-        <label>
-          <input v-model="myval" type="radio" :value="i.radio.value" @input="(e) => onChangeInput(e, i.radio)" />
-          {{ i.radio.label }}
-        </label>
-      </li>
-    </ul>
+  <ValidationObserver ref="obs" slim>
+    <ValidationProvider :class="myClass" :name="name" :rules="rules" v-slot="{ errors, passed }" :data-e2e="e2eAttr" tag="div">
+      <div v-if="titleStr.length > 0" class="ca-input-heading">
+        <p v-html="titleStr"></p>
+      </div>
+      <ul>
+        <li v-for="(i, index) in itemsAry" :class="i.klass" :key="`${index}-${i.radio.value}`">
+          <label>
+            <input v-model="myval" type="radio" :value="i.radio.value" @input="(e) => onChangeInput(e)" />
+            {{ i.radio.label }}
+          </label>
+        </li>
+        <li>
+          <p v-if="required && !passed" class="formmark-required">＊</p>
+        </li>
+      </ul>
 
-    <!-- <span v-if="errors.length > 0" class="ca-input-errors">{{ getErrMessage(errors) }}</span> -->
-  </ValidationProvider>
+      <div v-if="errors.length > 0" class="ca-input-errors">
+        <p>{{ getErrMessage(errors) }}</p>
+      </div>
+    </ValidationProvider>
+  </ValidationObserver>
 </template>
 <!------------------------------->
 
 <!------------------------------->
 <script lang="ts">
 import Vue, { PropType } from 'vue';
-import { ValidationProvider } from 'vee-validate';
+import { ValidationProvider, ValidationObserver } from 'vee-validate';
+import { getErrMessage } from './helper.ts';
 
 export type CaRadio = {
   value: string;
@@ -36,15 +44,21 @@ export type Item = {
 type State = {
   myval: string;
   errorMsg: string;
+  getErrMessage: (errors: string[]) => string;
 };
 
 export default Vue.extend({
   name: 'CaRadioList',
   components: {
     ValidationProvider,
+    ValidationObserver,
   },
   props: {
     title: {
+      default: '',
+      type: String,
+    },
+    value: {
       default: '',
       type: String,
     },
@@ -77,6 +91,7 @@ export default Vue.extend({
     return {
       myval: '',
       errorMsg: '',
+      getErrMessage,
     };
   },
   computed: {
@@ -125,25 +140,27 @@ export default Vue.extend({
       });
     },
   },
+  mounted() {
+    if (this.value) {
+      this.myval = this.value;
+    }
+  },
   methods: {
     /**
      * onChangeInput
      */
-    onChangeInput(e: Event, radio: CaRadio) {
+    onChangeInput(e: Event) {
       if (e.target instanceof HTMLInputElement) {
         this.myval = String(e.target.value);
-        this.$emit('input', { ...radio, checked: true });
+        this.$emit('input', this.myval);
+        this.doValidate();
       }
     },
-    /**
-     * getErrMessage
-     */
-    getErrMessage(errors: string[]) {
-      let msg = '';
-      if (errors && errors.length > 0) {
-        msg = errors.join(',');
-      }
-      return msg;
+    doValidate() {
+      this.$nextTick(() => {
+        const obs = this.$refs.obs as ValidationObserver;
+        obs.validate();
+      });
     },
   },
 });
@@ -170,6 +187,8 @@ export default Vue.extend({
   align-items: center;
   cursor: pointer;
   line-height: 1;
+  color: var(--dark);
+  font-size: var(--fontsize-normal);
 }
 .ca-radiolist-item > label:hover {
   opacity: 0.8;
@@ -241,7 +260,18 @@ export default Vue.extend({
 }
 
 .ca-input-errors {
+  position: relative;
+  height: 20px;
+}
+.ca-input-errors p {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: var(--fontsize-small);
   color: var(--danger);
+  white-space: nowrap;
+  padding: 0;
+  margin: 6px 0 0;
 }
 
 .ca-input-heading {

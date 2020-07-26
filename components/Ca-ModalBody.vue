@@ -7,10 +7,10 @@
     <div class="ca-modal-body-center">
       <slot></slot>
     </div>
-    <footer>
-      <CaButton width="S" @click="onClickClose" type="positive">OK</CaButton>
+    <!-- <footer>
+      <CaButton width="S" @click="onClickClose" type="positive" :disabled="true">OK</CaButton>
       <CaButton width="S" @click="onClickClose">キャンセル</CaButton>
-    </footer>
+    </footer> -->
   </div>
 </template>
 <!------------------------------->
@@ -44,9 +44,11 @@ export default Vue.extend({
       this.$emit('close');
     },
     setWindowClick(flg: boolean) {
-      window.removeEventListener('click', this.windowClick);
-      if (flg) {
-        window.addEventListener('click', this.windowClick);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('click', this.windowClick);
+        if (flg) {
+          window.addEventListener('click', this.windowClick);
+        }
       }
     },
     windowClick(e: MouseEvent) {
@@ -87,7 +89,7 @@ header {
   background-color: #fff;
   padding: 6px 14px 6px 20px;
   box-shadow: 0 0 2px 0px rgba(21, 21, 21, 0.4);
-  height: 40px;
+  height: 60px;
 }
 header h1 {
   display: block;

@@ -1,7 +1,7 @@
 <template>
   <span :class="myClass">
     <input type="hidden" v-model="myval" />
-    <a class="ca-switch-toggle" @click.stop="onClick">
+    <a class="ca-switch-toggle" @click.stop.prevent="onClick">
       <i class="ca-switch-icon" />
       <label>{{ label }}</label>
     </a>
@@ -62,7 +62,7 @@ export default Vue.extend({
   methods: {
     onClick() {
       this.myval = !this.myval;
-      this.$emit('click', this.myval);
+      this.$emit('input', this.myval);
     },
   },
 });
@@ -88,6 +88,7 @@ label {
   white-space: nowrap;
   line-height: 1;
   cursor: pointer;
+  color: var(--dark);
 }
 .ca-switch-icon {
   position: relative;

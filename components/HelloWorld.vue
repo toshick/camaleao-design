@@ -39,13 +39,13 @@
       <article>
         <p class="heading">CaSwitch</p>
         <div class="ca-taglist">
-          <CaSwitch label="スイッチオン" size="S" />
           <CaSwitch label="スイッチオン" />
         </div>
       </article>
 
       <article>
         <p class="heading">CaInput</p>
+
         <div class="ca-inputline">
           <CaInput name="mail1" title="ユーザのメールアドレス及び担当者のメールアドレス" rules="required|max:2" v-model="dummyVal" placeholder="ユーザのメールアドレス"></CaInput>
           <CaInput name="mail2" title="" rules="required|max:2" v-model="dummyVal" placeholder="担当者のメールアドレス"></CaInput>
@@ -93,10 +93,10 @@
         <p class="heading">CaPulldown</p>
 
         <div class="ca-inputline">
-          <CaPulldown title="プルダウン" name="pull01" size="S" v-model="dummyRadio01" :items="pulldownItems"></CaPulldown>
-          <CaPulldown withHeadingSpace name="pull01" v-model="dummyRadio01" :items="pulldownItems"></CaPulldown>
+          <CaPulldown title="プルダウン" name="pull01" size="S" v-model="dummyPulldown01" :items="pulldownItems"></CaPulldown>
+          <CaPulldown withHeadingSpace name="pull01" v-model="dummyPulldown01" :items="pulldownItems"></CaPulldown>
 
-          <CaFloat withHeadingSpace> せんたく {{ dummySelect }} </CaFloat>
+          <CaFloat withHeadingSpace> せんたく </CaFloat>
         </div>
 
         <p class="shell">ラジオ {{ dummyRadio01 }}</p>
@@ -115,104 +115,112 @@
     <!-- モーダル -->
     <CaModal v-if="visibleModal" @close="visibleModal = false">
       <CaModalBody class="modalcont" title="1984">
-        <div class="modalcont-img">
-          <img src="https://storage.googleapis.com/toshickcom-a7f98.appspot.com/upload_images/Camera_2020-06-13_18.48.53-1592041744904.jpeg" alt="" />
-        </div>
-        <div class="modalcont-line">
-          1950年代に発生した核戦争を経て、1984年現在、世界はオセアニア、ユーラシア、イースタシアの3つの超大国によって分割統治されている。さらに、間にある紛争地域をめぐって絶えず戦争が繰り返されている。作品の舞台となるオセアニアでは、思想・言語・結婚などあらゆる市民生活に統制が加えられ、物資は欠乏し、市民は常に「テレスクリーン」と呼ばれる双方向テレビジョン、さらには町なかに仕掛けられたマイクによって屋内・屋外を問わず、ほぼすべての行動が当局によって監視されている。
-        </div>
-        <div class="modalcont-line ca-inputline">
-          <CaInput width="M" size="S" name="tanto_tel" title="担当者の電話番号" rules="required|max:2" v-model="dummyVal" placeholder="メールアドレス"></CaInput>
-          <CaPulldown title="プルダウン" name="pull01" size="S" v-model="dummyRadio01" :items="pulldownItems"></CaPulldown>
-          <CaSwitch withHeadingSpace label="スイッチオン" size="S" />
-          <CaFloat withHeadingSpace>
-            <CaButton size="S" @click="sendDummy(1)" :loading="loading1" submit>送信する</CaButton>
-          </CaFloat>
-        </div>
-        <div class="modalcont-line ca-inputline">
-          <CaInput size="S" width="S" name="tanto_age" title="担当者の年齢" textRight="歳" rules="numeric" v-model="dummyVal" placeholder="年齢"></CaInput>
-          <CaInput size="S" width="S" name="tanto_year" title="年度" textRight="年" rules="numeric" v-model="dummyVal" placeholder="年度"></CaInput>
-          <CaFloat size="S" withHeadingSpace>
-            <CaCheckBox name="check01" size="S" label="チェックボックス01" v-model="dummyCheck01"></CaCheckBox>
-          </CaFloat>
-          <CaFloat withHeadingSpace>
-            <CaButton size="S" @click="sendDummy(1)" :loading="loading1" text>送信する</CaButton>
-          </CaFloat>
-        </div>
-        <p class="modalcont-line">
-          オセアニアに内属しているロンドンに住む主人公ウィンストン・スミスは、真理省の役人として日々歴史記録の改竄作業を行っていた。物心ついたころに見た旧体制やオセアニア成立当時の記憶は、記録が絶えず改竄されるため、存在したかどうかすら定かではない。ウィンストンは、古道具屋で買ったノートに自分の考えを書いて整理するという、禁止された行為に手を染める。ある日の仕事中、抹殺されたはずの3人の人物が載った過去の新聞記事を偶然に見つけたことで、体制への疑いは確信へと変わる。「憎悪週間」の時間に遭遇した同僚の若い女性、ジューリアから手紙による告白を受け、出会いを重ねて愛し合うようになる。また、古い物の残るチャリントンという老人の店（ノートを買った古道具屋）を見つけ、隠れ家としてジューリアと共に過ごした。さらに、ウインストンが話をしたがっていた党内局の高級官僚の1人、オブライエンと出会い、現体制に疑問を持っていることを告白した。エマニュエル・ゴールドスタインが書いたとされる禁書をオブライエンより渡されて読み、体制の裏側を知るようになる。
-        </p>
+        <ValidationObserver tag="form" v-slot="{ invalid }">
+          <div class="modalcont-img">
+            <img src="https://storage.googleapis.com/toshickcom-a7f98.appspot.com/upload_images/Camera_2020-06-13_18.48.53-1592041744904.jpeg" alt="" />
+          </div>
+          <div class="modalcont-line">
+            1950年代に発生した核戦争を経て、1984年現在、世界はオセアニア、ユーラシア、イースタシアの3つの超大国によって分割統治されている。さらに、間にある紛争地域をめぐって絶えず戦争が繰り返されている。作品の舞台となるオセアニアでは、思想・言語・結婚などあらゆる市民生活に統制が加えられ、物資は欠乏し、市民は常に「テレスクリーン」と呼ばれる双方向テレビジョン、さらには町なかに仕掛けられたマイクによって屋内・屋外を問わず、ほぼすべての行動が当局によって監視されている。
+          </div>
+          <div class="modalcont-line ca-inputline">
+            <CaInput width="M" size="S" name="tanto_tel" title="担当者の電話番号" rules="required|max:2" v-model="dummyVal" placeholder="メールアドレス"></CaInput>
+            <CaPulldown title="プルダウン" name="pull01" size="S" v-model="dummyRadio01" :items="pulldownItems"></CaPulldown>
+            <CaSwitch withHeadingSpace label="スイッチオン" size="S" />
+            <CaFloat withHeadingSpace>
+              <CaButton size="S" @click="sendDummy(1)" :loading="loading1" submit>送信する</CaButton>
+            </CaFloat>
+          </div>
+          <div class="modalcont-line ca-inputline">
+            <CaInput size="S" width="S" name="tanto_age" title="担当者の年齢" textRight="歳" rules="numeric" v-model="dummyVal" placeholder="年齢"></CaInput>
+            <CaInput size="S" width="S" name="tanto_year" title="年度" textRight="年" rules="numeric" v-model="dummyVal" placeholder="年度"></CaInput>
+            <CaFloat size="S" withHeadingSpace>
+              <CaCheckBox name="check01" size="S" label="チェックボックス01" v-model="dummyCheck01"></CaCheckBox>
+            </CaFloat>
+            <CaFloat withHeadingSpace>
+              <CaButton size="S" @click="sendDummy(1)" :loading="loading1" text>送信する</CaButton>
+            </CaFloat>
+          </div>
+          <p class="modalcont-line">
+            オセアニアに内属しているロンドンに住む主人公ウィンストン・スミスは、真理省の役人として日々歴史記録の改竄作業を行っていた。物心ついたころに見た旧体制やオセアニア成立当時の記憶は、記録が絶えず改竄されるため、存在したかどうかすら定かではない。ウィンストンは、古道具屋で買ったノートに自分の考えを書いて整理するという、禁止された行為に手を染める。ある日の仕事中、抹殺されたはずの3人の人物が載った過去の新聞記事を偶然に見つけたことで、体制への疑いは確信へと変わる。「憎悪週間」の時間に遭遇した同僚の若い女性、ジューリアから手紙による告白を受け、出会いを重ねて愛し合うようになる。また、古い物の残るチャリントンという老人の店（ノートを買った古道具屋）を見つけ、隠れ家としてジューリアと共に過ごした。さらに、ウインストンが話をしたがっていた党内局の高級官僚の1人、オブライエンと出会い、現体制に疑問を持っていることを告白した。エマニュエル・ゴールドスタインが書いたとされる禁書をオブライエンより渡されて読み、体制の裏側を知るようになる。
+          </p>
+        </ValidationObserver>
       </CaModalBody>
     </CaModal>
 
     <!-- モーダル user -->
     <CaModal v-if="visibleModalUser" @close="visibleModalUser = false">
       <CaModalBody class="modalcont" title="ユーザ情報入力">
-        <div class="modalcont-line">
-          あなたのユーザ情報を入力してみてね
-        </div>
-        <h2>希望プラン</h2>
-        <div class="modalcont-line ca-inputline">
-          <CaPulldown name="pull01" v-model="dummyRadio01" :items="pulldownItemsPlan"></CaPulldown>
-          <CaSwitch label="クーポンコードを持っている" />
-        </div>
-        <h2>氏名</h2>
-        <div class="modalcont-line ca-inputline">
-          <CaInput width="S" size="S" name="tanto_tel" title="氏名（漢字）" rules="required" v-model="dummyVal" placeholder="姓"></CaInput>
-          <CaInput width="S" size="S" name="tanto_tel" title="" rules="required" v-model="dummyVal" placeholder="名"></CaInput>
-          <CaInput width="S" size="S" name="tanto_tel" title="氏名（カナ）" rules="required" v-model="dummyVal" placeholder="セイ" class="space-left"></CaInput>
-          <CaInput width="S" size="S" name="tanto_tel" title="" rules="required" v-model="dummyVal" placeholder="メイ"></CaInput>
-        </div>
+        <ValidationObserver tag="form" v-slot="{ errors, validate }">
+          <div class="modalcont-line">あなたのユーザ情報を入力してみてね</div>
+          <h2>希望プラン</h2>
+          <div class="modalcont-line ca-inputline">
+            <CaPulldown name="myplan" v-model="myplan" rules="required" :items="pulldownItemsPlan"></CaPulldown>
+            <CaSwitch label="クーポンコードを持っている" v-model="hasCoupon" />
+            <CaFloat>
+              <CaInput v-if="hasCoupon" size="S" height="M" name="coupon_code" rules="required" v-model="couponCode" placeholder="クーポンコード"></CaInput>
+            </CaFloat>
+          </div>
+          <h2>氏名</h2>
+          <div class="modalcont-line ca-inputline">
+            <CaInput width="S" size="S" name="user_name_last" title="氏名（漢字）" rules="required" v-model="userNameLast" placeholder="姓"></CaInput>
+            <CaInput width="S" size="S" name="user_name_first" title="" rules="required" v-model="userNameFirst" placeholder="名"></CaInput>
+            <CaInput width="S" size="S" name="user_name_last_kana" title="氏名（カナ）" rules="required" v-model="userNameLastKana" placeholder="セイ" class="space-left"></CaInput>
+            <CaInput width="S" size="S" name="user_name_first_kana" title="" rules="required" v-model="userNameFirstKana" placeholder="メイ"></CaInput>
+          </div>
 
-        <h2>住所</h2>
-        <div class="modalcont-line ca-inputline">
-          <CaInput width="S" size="S" name="tanto_tel" title="郵便番号" rules="required|numeric|length:7" v-model="dummyVal" placeholder="郵便番号"></CaInput>
-          <CaFloat withHeadingSpace>
-            <CaButton size="S" @click="sendDummy(1)" :loading="loading1" submit>郵便番号から自動入力</CaButton>
-          </CaFloat>
-        </div>
-        <div class="modalcont-line ca-inputline">
-          <CaInput size="S" name="tanto_tel" title="都道府県" rules="required" v-model="dummyVal" placeholder="都道府県"></CaInput>
-          <CaInput size="S" name="tanto_tel" title="市区町村" rules="required" v-model="dummyVal" placeholder="市区町村"></CaInput>
-        </div>
-        <div class="modalcont-line ca-inputline">
-          <CaInput size="S" name="tanto_tel" title="番地" rules="required" v-model="dummyVal" placeholder="番地"></CaInput>
-          <CaInput size="S" name="tanto_tel" title="建物名・号室" rules="required" v-model="dummyVal" placeholder="建物名・号室"></CaInput>
-        </div>
+          <h2>住所</h2>
+          <div class="modalcont-line ca-inputline">
+            <CaInput width="S" size="S" name="zip_code" title="郵便番号" rules="required|numeric|length:7" v-model="zipCode" placeholder="郵便番号"></CaInput>
+            <CaFloat withHeadingSpace>
+              <CaButton size="S" @click="sendDummy(1)" :loading="loading1" submit :disabled="zipCode.length !== 7 || (errors.zip_code && errors.zip_code.length > 0)">郵便番号から自動入力</CaButton>
+            </CaFloat>
+          </div>
+          <div class="modalcont-line ca-inputline">
+            <CaInput size="S" width="S" name="prefecture" title="都道府県" rules="required" v-model="prefecture" placeholder="都道府県"></CaInput>
+            <CaInput size="S" name="city" title="市区町村" rules="required" v-model="city" placeholder="市区町村"></CaInput>
+            <CaInput size="S" name="address1" title="番地" rules="required" v-model="address1" placeholder="番地"></CaInput>
+            <CaInput size="S" name="address2" title="建物名・号室" v-model="address2" placeholder="建物名・号室"></CaInput>
+          </div>
 
-        <h2>その他</h2>
-        <div class="modalcont-line ca-inputline">
-          <CaInput width="M" size="S" name="tanto_tel" title="電話番号" rules="required|max:2" v-model="dummyVal" placeholder="080-XXXX-XXXX"></CaInput>
-          <CaInput width="M" size="S" name="tanto_tel" title="メールアドレス" rules="required|max:2" v-model="dummyVal" placeholder="メールアドレス"></CaInput>
-          <CaSwitch withHeadingSpace label="スイッチオン" size="S" />
-        </div>
-        <div class="modalcont-line ca-inputline">
-          <CaRadioList title="性別" name="radio01" v-model="dummyRadio01" :items="radioItemsSex" size="S" float></CaRadioList>
-        </div>
-        <div class="modalcont-line ca-inputline">
-          <CaInput size="S" width="S" name="tanto_age" title="年齢" textRight="歳" rules="numeric" v-model="dummyVal" placeholder="年齢"></CaInput>
-        </div>
-        <div class="modalcont-line ca-inputline">
-          <CaInput size="S" width="S" name="tanto_year" title="生年月日" rules="numeric" v-model="dummyVal" placeholder="生年月日"></CaInput>
-          <CaFloat size="S" withHeadingSpace>
-            <CaCheckBox name="check01" size="S" label="キノコよりタケノコのほうが好みです" v-model="dummyCheck01"></CaCheckBox>
-          </CaFloat>
-        </div>
+          <h2>その他</h2>
+          <div class="modalcont-line ca-inputline">
+            <CaInput :disabled="hasNoTel" width="M" size="S" name="user_tel" title="電話番号" rules="required|max:2" v-model="userTel" placeholder="080-XXXX-XXXX"></CaInput>
+            <CaSwitch withHeadingSpace label="電話もってない" size="S" v-model="hasNoTel" />
+          </div>
+          <div class="modalcont-line ca-inputline">
+            <CaInput width="M" size="S" name="user_mail" title="メールアドレス" rules="required|max:2" v-model="userMail" placeholder="メールアドレス"></CaInput>
+          </div>
+          <div class="modalcont-line ca-inputline">
+            <CaInput size="S" width="S" name="user_age" title="年齢" textRight="歳" rules="required|numeric|max_value:120" v-model="userAge" placeholder="年齢"></CaInput>
+            <CaRadioList class="space-left" required title="性別" name="user_sex" v-model="userSex" :items="radioItemsSex" size="S" float></CaRadioList>
+          </div>
+          <div class="modalcont-line ca-inputline"></div>
+          <div class="modalcont-line ca-inputline">
+            <CaInput size="S" width="S" name="user_birthday" title="生年月日" rules="numeric" v-model="userBirthday" placeholder="生年月日"></CaInput>
+            <CaFloat size="S" withHeadingSpace>
+              <CaCheckBox required name="user_takenoko" size="S" label="キノコよりタケノコのほうが好みです" v-model="userTakenoko"></CaCheckBox>
+            </CaFloat>
+          </div>
 
-        <h2>免責事項</h2>
-        <div class="modalcont-line disclaimer">
-          <ul class="disclaimer-list">
-            <li>
-              <CaCheckBox name="check01" size="S" label="免責についての文言免責についての文言免責についての文言免責についての文言" v-model="dummyCheck01"></CaCheckBox>
-            </li>
-            <li>
-              <CaCheckBox name="check01" size="S" label="免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言" v-model="dummyCheck01"></CaCheckBox>
-            </li>
-            <li>
-              <CaCheckBox name="check01" size="S" label="免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言" v-model="dummyCheck01"></CaCheckBox>
-            </li>
-          </ul>
-        </div>
+          <h2>免責事項</h2>
+          <div class="modalcont-line disclaimer">
+            <ul class="disclaimer-list">
+              <li>
+                <CaCheckBox required name="disclaimer1" size="S" label="免責についての文言免責についての文言免責についての文言免責についての文言" v-model="disclaimer1"></CaCheckBox>
+              </li>
+              <li>
+                <CaCheckBox required name="disclaimer2" size="S" label="免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言" v-model="disclaimer2"></CaCheckBox>
+              </li>
+              <li>
+                <CaCheckBox name="disclaimer3" size="S" label="免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言免責についての文言" v-model="disclaimer3"></CaCheckBox>
+              </li>
+            </ul>
+          </div>
+          <footer>
+            <CaButton width="S" type="positive" @click="validate">OK</CaButton>
+            <CaButton width="S" @click="visibleModalUser = false">キャンセル</CaButton>
+          </footer>
+        </ValidationObserver>
       </CaModalBody>
     </CaModal>
   </div>
@@ -222,6 +230,8 @@
 import Vue from 'vue';
 import CaSpinner from '../components/Ca-Spinner.vue';
 Vue.component('CaSpinner', CaSpinner);
+
+import { ValidationObserver } from 'vee-validate';
 
 import CaButton from '../components/Ca-Button.vue';
 import CaInput from '../components/Ca-Input.vue';
@@ -242,7 +252,7 @@ type State = {
   dummyCheck01: boolean;
   dummyCheck02: boolean;
   dummyRadio01: string;
-  dummySelect: CaPulldownItem | null;
+  dummyPulldown01: CaPulldownItem | null;
   radioItems: CaRadio[];
   radioItemsSex: CaRadio[];
   visibleModal: boolean;
@@ -250,6 +260,28 @@ type State = {
   loading1: boolean;
   pulldownItems: CaPulldownItem[];
   pulldownItemsPlan: CaPulldownItem[];
+  hasCoupon: boolean;
+  zipCode: string;
+  myplan: string;
+  hasNoTel: boolean;
+  userNameLast: string;
+  userNameFirst: string;
+  userNameLastKana: string;
+  userNameFirstKana: string;
+  userSex: string;
+  userAge: string;
+  userTel: string;
+  userMail: string;
+  userBirthday: string;
+  prefecture: string;
+  city: string;
+  address1: string;
+  address2: string;
+  userTakenoko: boolean;
+  disclaimer1: boolean;
+  disclaimer2: boolean;
+  disclaimer3: boolean;
+  couponCode: string;
 };
 
 export default {
@@ -258,6 +290,7 @@ export default {
     msg: String,
   },
   components: {
+    ValidationObserver,
     CaButton,
     CaInput,
     CaTag,
@@ -300,7 +333,29 @@ export default {
         { value: 'plan02', label: 'スダンダードプラン' },
         { value: 'plan03', label: 'コンテンポラリープラン' },
       ],
-      dummySelect: null,
+      dummyPulldown01: null,
+      hasCoupon: false,
+      zipCode: '',
+      myplan: '',
+      hasNoTel: false,
+      userNameLast: '',
+      userNameFirst: '',
+      userNameLastKana: '',
+      userNameFirstKana: '',
+      userSex: '',
+      userAge: '',
+      userTel: '',
+      userMail: '',
+      userBirthday: '',
+      prefecture: '',
+      city: '',
+      address1: '',
+      address2: '',
+      userTakenoko: false,
+      disclaimer1: false,
+      disclaimer2: false,
+      disclaimer3: false,
+      couponCode: '',
     };
   },
   mounted() {
@@ -374,7 +429,7 @@ article > button {
 .modalcont h2 {
   font-size: 16px;
   font-weight: normal;
-  padding: 4px 20px 0;
+  padding: 10px 20px 10px;
   color: #999;
 }
 
@@ -399,6 +454,14 @@ article > button {
 
 .modalcont-line.ca-inputline {
   padding: 0px 20px;
+}
+
+.modalcont footer {
+  text-align: center;
+  padding: 20px 0 40px;
+}
+.modalcont footer button {
+  margin: 0 10px;
 }
 
 .btn-close-top {

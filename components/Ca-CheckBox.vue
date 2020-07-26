@@ -1,10 +1,13 @@
 <template>
-  <ValidationProvider :class="myClass" :name="name" :rules="rules" v-slot="{ errors, valid, invalid, validated }" :data-e2e="e2eAttr" tag="label">
-    <span>
+  <ValidationProvider :class="myClass" :name="name" :rules="rules" v-slot="{ passed, errors }" :data-e2e="e2eAttr" tag="label">
+    <div :class="labelClass(errors)">
       <input :value="myval" @input="(e) => onChangeInput(e)" type="checkbox" />
-      {{ label }}
-    </span>
-    <!-- <span v-if="errors.length > 0" class="ca-input-errors">{{ getErrMessage(errors) }}</span> -->
+      <p v-if="required && !passed" class="formmark-required">＊</p>
+      <div>
+        <!-- <span v-if="errors.length > 0" class="ca-input-errors">（{{ getErrMessage(errors) }}）</span> -->
+        {{ label }}
+      </div>
+    </div>
   </ValidationProvider>
 </template>
 <!------------------------------->
@@ -30,6 +33,10 @@ export default Vue.extend({
       default: '',
       type: String,
     },
+    value: {
+      default: false,
+      type: Boolean,
+    },
     label: {
       default: '',
       type: String,
@@ -43,7 +50,7 @@ export default Vue.extend({
       type: Boolean,
     },
     size: {
-      default: 'F',
+      default: '',
       type: String as PropType<PropSize>,
     },
   },
@@ -80,6 +87,11 @@ export default Vue.extend({
       return str;
     },
   },
+  mounted() {
+    if (this.value) {
+      this.myval = this.value;
+    }
+  },
   methods: {
     /**
      * onChangeInput
@@ -100,6 +112,15 @@ export default Vue.extend({
       }
       return msg;
     },
+    labelClass(errors: string[]): string {
+      const klass: any = { 'ca-checkbox-label': true };
+
+      if (errors.length > 0) {
+        klass['-has-error'] = true;
+      }
+
+      return klass;
+    },
   },
 });
 </script>
@@ -107,11 +128,7 @@ export default Vue.extend({
 
 <!------------------------------->
 <style scoped>
-.ca-checkbox {
-  display: inline-flex;
-  line-height: 1.4;
-}
-.ca-checkbox > span {
+.ca-checkbox-label {
   display: block;
   position: relative;
   display: inline-flex;
@@ -120,10 +137,15 @@ export default Vue.extend({
   font-size: var(--fontsize-normal);
   color: var(--dark);
 }
-.ca-checkbox > span > input {
+
+.ca-checkbox-label.-has-error > div {
+  color: var(--danger);
+}
+
+.ca-checkbox-label > input {
   display: none;
 }
-.ca-checkbox > span::before {
+.ca-checkbox-label::before {
   display: inline-block;
   content: '';
   width: var(--form-checkbox-size);
@@ -135,7 +157,7 @@ export default Vue.extend({
   box-shadow: var(--form-shadow);
   flex-shrink: 0;
 }
-.ca-checkbox > span::after {
+.ca-checkbox-label::after {
   --ok: #999;
   display: none;
   content: '';
@@ -151,22 +173,31 @@ export default Vue.extend({
   border-right: 4px solid var(--ok);
 }
 
-.ca-checkbox.-checked > span::after {
+.ca-checkbox.-checked > .ca-checkbox-label::after {
   display: block;
 }
+/* errors */
+
 .ca-input-errors {
+  font-size: var(--fontsize-small);
   color: var(--danger);
+  white-space: nowrap;
+  padding: 0;
+  margin: 0px 0 0 0;
+}
+.formmark-required {
+  padding-right: 4px;
 }
 
 /* size */
 
-.ca-checkbox.-size-s > span {
+.ca-checkbox.-size-s > .ca-checkbox-label {
   min-height: var(--form-button-height-small);
 }
-.ca-checkbox.-size-m > span {
+.ca-checkbox.-size-m > .ca-checkbox-label {
   min-height: var(--form-button-height);
 }
-.ca-checkbox.-size-l > span {
+.ca-checkbox.-size-l > .ca-checkbox-label {
   min-height: var(--form-button-height-large);
 }
 </style>

@@ -19,9 +19,15 @@
   /* shadow */
   --form-shadow: 0 0 2px 2px rgba(51, 51, 51, 0.1);
 
-  /* form */
+  /* form height */
   --form-input-height: 38px;
   --form-input-height-small: 28px;
+
+  /* form width */
+  --form-input-width-small: 100px;
+  --form-input-width-normal: 160px;
+  --form-input-width-medium: 220px;
+  --form-input-width-large: 300px;
 
   /* button */
   --form-button-height: 38px;
@@ -95,4 +101,28 @@
 
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+
+/* -------------------- 
+ form
+ ---------------------*/
+.formmark-required {
+  font-size: 10px;
+  color: var(--danger);
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  text-align: right;
+}
+
+.formmark-passed {
+  display: block;
+  transform: rotate(45deg);
+  height: 10px;
+  width: 5px;
+  border-bottom: 2px solid var(--ok);
+  border-right: 2px solid var(--ok);
+  position: absolute;
+  top: -18px;
+  left: 5px;
 }
