@@ -91,7 +91,6 @@ label {
   color: var(--dark);
 }
 .ca-switch-icon {
-  position: relative;
   display: flex;
   align-items: center;
 

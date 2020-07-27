@@ -5,7 +5,7 @@
     </div>
     <span :class="setValidateClass(validated, valid, invalid)">
       <div class="ca-input-status">
-        <p v-if="required && !passed" class="formmark-required">＊</p>
+        <p v-if="required && !passed && errors.length == 0" class="formmark-required">＊</p>
         <p v-if="myval.length > 0 && passed" class="formmark-passed"></p>
       </div>
       <input type="text" :value="myval" @input="(e) => onChangeInput(e)" :placeholder="placeholder" />
@@ -247,6 +247,9 @@ export default Vue.extend({
 .ca-input.-size-s .ca-input-text {
   font-size: var(--fontsize-small);
 }
+.ca-input.-size-s .ca-input-status {
+  top: 33px;
+}
 
 .ca-input.-size-l > span > input {
   padding: 16px 120px;
@@ -257,6 +260,7 @@ export default Vue.extend({
 .ca-input.-width-s > span > input {
   width: var(--form-input-width-small);
 }
+
 .ca-input.-width-m > span > input {
   width: var(--form-input-width-medium);
 }
@@ -339,7 +343,7 @@ export default Vue.extend({
 
 .ca-input-status {
   position: absolute;
-  top: -14px;
+  top: 43px;
   right: 4px;
   width: 14px;
   height: 14px;

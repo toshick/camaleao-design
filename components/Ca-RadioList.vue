@@ -11,8 +11,8 @@
             {{ i.radio.label }}
           </label>
         </li>
-        <li>
-          <p v-if="required && !passed" class="formmark-required">＊</p>
+        <li class="ca-input-status" v-if="required && !passed && errors.length == 0">
+          <p class="formmark-required">＊</p>
         </li>
       </ul>
 
@@ -300,5 +300,14 @@ export default Vue.extend({
 }
 .ca-radiolist.-float li {
   margin-right: 1em;
+}
+
+.ca-input-status {
+  position: relative;
+}
+.formmark-required {
+  position: absolute;
+  top: 40%;
+  left: 0;
 }
 </style>
