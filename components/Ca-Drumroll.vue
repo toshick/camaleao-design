@@ -9,7 +9,6 @@
         <p v-if="required && !passed && errors.length == 0" class="formmark-required">＊</p>
         <p v-if="myval.length > 0 && passed" class="formmark-passed"></p>
       </div>
-      <p>{{ currentPage }}</p>
       <div class="ca-drumroll-waku" v-wheel="handleScroll" :class="{ '-smooth': xTimer !== 0 }">
         <!-- リスト -->
         <ul class="ca-drumroll-list" :style="{ top: scrollVal + 'px' }">
