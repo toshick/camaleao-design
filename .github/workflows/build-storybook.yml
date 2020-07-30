@@ -1,6 +1,9 @@
-name: Node CI
+name: StoryBook
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build_and_test:
@@ -12,8 +15,13 @@ jobs:
         run: |
           npm ci
           npm run build-storybook
-      - name: Archive storybook artifacts
-        uses: actions/upload-artifact@v1
+      # - name: Archive storybook artifacts
+      #   uses: actions/upload-artifact@v1
+      #   with:
+      #     name: docs
+      #     path: docs
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: docs
-          path: docs
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
