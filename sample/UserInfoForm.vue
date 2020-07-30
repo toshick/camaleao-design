@@ -249,11 +249,6 @@ export default {
   margin: 0 10px;
 }
 
-.btn-close-top {
-  position: absolute;
-  right: 32px;
-  top: 32px;
-}
 .space-left {
   margin-left: 2em;
 }

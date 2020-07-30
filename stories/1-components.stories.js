@@ -10,7 +10,7 @@ import MyButton from '../components/Ca-Button.vue';
 
 storiesOf('components', module).add('MyButton', () => ({
   components: { MyButton },
-  template: `<MyButton @click="action">Hello Buttonです</MyButton>`,
+  template: `<MyButton >Hello Buttonです</MyButton>`,
 }));
 
 // export const Text = () => ({

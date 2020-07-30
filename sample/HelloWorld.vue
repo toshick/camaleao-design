@@ -3,6 +3,14 @@
     <section>
       <a class="icon icon-cross btn-close-top"></a>
       <article>
+        <p class="heading">CaDrumroll</p>
+        <div>
+          <CaDrumroll size="S" :items="drumrollItemsYear" required></CaDrumroll>
+          <CaDrumroll size="S" :items="drumrollItemsMonth" required></CaDrumroll>
+          <CaDrumroll size="S" :items="drumrollItemsDate" required></CaDrumroll>
+        </div>
+      </article>
+      <article>
         <p class="heading">CaButton | size</p>
         <div class="btns">
           <CaButton size="S">スモールボタン</CaButton>
@@ -93,13 +101,13 @@
         <p class="heading">CaPulldown</p>
 
         <div class="ca-inputline">
-          <CaPulldown title="プルダウン" name="pull01" size="S" v-model="dummyPulldown01" :items="pulldownItems"></CaPulldown>
-          <CaPulldown withHeadingSpace name="pull01" v-model="dummyPulldown01" :items="pulldownItems"></CaPulldown>
+          <CaPulldown rules="required" title="プルダウン" name="pull01" size="S" v-model="dummyPulldown01" :items="pulldownItems"></CaPulldown>
+          <CaPulldown rules="required" withHeadingSpace name="pull02" v-model="dummyPulldown02" :items="pulldownItems"></CaPulldown>
 
           <CaFloat withHeadingSpace> せんたく </CaFloat>
         </div>
 
-        <p class="shell">ラジオ {{ dummyRadio01 }}</p>
+        <p class="shell">プルダウン {{ dummyPulldown01 }}</p>
       </article>
       <article>
         <p class="heading">CaIcon</p>
@@ -137,6 +145,7 @@ import CaPulldown, { CaPulldownItem } from '../components/Ca-Pulldown.vue';
 import CaFloat from '../components/Ca-Float.vue';
 import CaIcon from '../components/Ca-Icon.vue';
 import CaSwitch from '../components/Ca-Switch.vue';
+import CaDrumroll, { CaDrumrollItem } from '../components/Ca-Drumroll.vue';
 // sample
 import UserInfoForm from '../sample/UserInfoForm.vue';
 
@@ -145,7 +154,8 @@ type State = {
   dummyCheck01: boolean;
   dummyCheck02: boolean;
   dummyRadio01: string;
-  dummyPulldown01: CaPulldownItem | null;
+  dummyPulldown01: string;
+  dummyPulldown02: string;
   radioItems: CaRadio[];
   visibleModal: boolean;
   visibleModalUser: boolean;
@@ -153,6 +163,10 @@ type State = {
   loading1: boolean;
   pulldownItems: CaPulldownItem[];
   pulldownItemsPlan: CaPulldownItem[];
+  drumrollItems: CaDrumrollItem[];
+  drumrollItemsYear: CaDrumrollItem[];
+  drumrollItemsMonth: CaDrumrollItem[];
+  drumrollItemsDate: CaDrumrollItem[];
 };
 
 export default {
@@ -175,6 +189,7 @@ export default {
     CaFloat,
     CaIcon,
     CaSwitch,
+    CaDrumroll,
     // sample
     UserInfoForm,
   },
@@ -203,7 +218,24 @@ export default {
         { value: 'plan02', label: 'スダンダードプラン' },
         { value: 'plan03', label: 'コンテンポラリープラン' },
       ],
-      dummyPulldown01: null,
+      drumrollItems: Array.from(Array(20)).map((_, idx: number) => {
+        return { value: `plan${idx}`, label: `カメレオン${idx}` };
+      }),
+      drumrollItemsYear: Array.from(Array(100)).map((_, idx: number) => {
+        const val = 1900 + idx;
+        return { value: `${val}`, label: `${val}年` };
+      }),
+      drumrollItemsMonth: Array.from(Array(12)).map((_, idx: number) => {
+        const val = 1 + idx;
+        return { value: `${val}`, label: `${val}月` };
+      }),
+      drumrollItemsDate: Array.from(Array(31)).map((_, idx: number) => {
+        const val = 1 + idx;
+        return { value: `${val}`, label: `${val}日` };
+      }),
+
+      dummyPulldown01: '',
+      dummyPulldown02: '',
     };
   },
   mounted() {},
@@ -263,6 +295,12 @@ article > button {
   color: #ddd;
   border-radius: 3px;
   font-size: 12px;
+}
+
+.btn-close-top {
+  position: absolute;
+  right: 32px;
+  top: 32px;
 }
 
 .space-left {
