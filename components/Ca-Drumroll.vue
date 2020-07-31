@@ -112,6 +112,10 @@ export default Vue.extend({
       type: String,
       default: '',
     },
+    placeholder: {
+      type: String,
+      default: '-',
+    },
   },
   data(): State {
     return {
@@ -139,7 +143,7 @@ export default Vue.extend({
     },
     myClass(): any {
       const klass: any = { 'ca-drumroll': true };
-      let size = '-size-m';
+      let size = '';
       if (this.size && this.size === 'S') {
         size = '-size-s';
       } else if (this.size && this.size === 'L') {
@@ -156,7 +160,7 @@ export default Vue.extend({
       return klass;
     },
     itemsAry(): Item[] {
-      const defaultVal: CaDrumrollItem = { value: '', label: '選択してください', default: true };
+      const defaultVal: CaDrumrollItem = { value: '', label: this.placeholder, default: true };
       const items2 = [defaultVal, ...this.items];
       return items2.map((pull: CaDrumrollItem) => {
         const klass: any = { 'ca-drumroll-item': true };
@@ -168,24 +172,17 @@ export default Vue.extend({
         return { pull, klass };
       });
     },
-    selectedDisp(): string {
-      const noval = '選択してください';
-      if (this.myval) {
-        const find = this.items.find((pull: CaDrumrollItem) => {
-          return pull.value === this.myval;
-        });
-        return find ? find.label : noval;
-      }
-      return noval;
-    },
     required(): boolean {
       return this.rules.includes('required');
     },
     cellHeight(): number {
-      return 40;
+      if (this.size && this.size === 'S') {
+        return 28;
+      }
+      return 38;
     },
     cellHeightMax(): number {
-      return (this.items.length - 1) * this.cellHeight;
+      return (this.itemsAry.length - 1) * this.cellHeight;
     },
   },
   mounted() {
@@ -242,7 +239,7 @@ export default Vue.extend({
       } else if (this.scrollVal < -this.cellHeightMax) {
         this.scrollVal = -this.cellHeightMax;
         this.scrollSpeed = 0;
-        this.currentPage = this.items.length - 1;
+        this.currentPage = this.itemsAry.length - 1;
         return true;
       }
       return false;
@@ -312,7 +309,7 @@ export default Vue.extend({
   position: relative;
   min-width: var(--form-input-width-normal);
   width: max-content;
-  height: 40px;
+  height: var(--form-input-height);
   border: solid 1px #ccc;
   border-radius: 4px;
   box-shadow: var(--form-shadow);
@@ -365,11 +362,12 @@ export default Vue.extend({
   cursor: pointer;
   background-color: #fff;
   padding: 0 30px 0 20px;
+  white-space: nowrap;
 
   width: 100%;
-  height: 40px;
+  height: var(--form-input-height);
 
-  font-size: var(--fontsize-small);
+  font-size: var(--fontsize-normal);
   border-bottom: solid 1px #ddd;
   box-shadow: inset 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
 }
@@ -477,5 +475,13 @@ export default Vue.extend({
   white-space: nowrap;
   padding: 0;
   margin: 6px 0 0;
+}
+
+/* size */
+.ca-drumroll.-size-s .ca-drumroll-waku {
+  height: var(--form-input-height-small);
+}
+.ca-drumroll.-size-s .ca-drumroll-list li a {
+  height: var(--form-input-height-small);
 }
 </style>

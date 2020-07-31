@@ -5,6 +5,11 @@
       <article>
         <p class="heading">CaDrumroll</p>
         <div>
+          <CaDrumroll :items="drumrollItemsYear" required title="誕生日"></CaDrumroll>
+          <CaDrumroll :items="drumrollItemsMonth" required></CaDrumroll>
+          <CaDrumroll :items="drumrollItemsDate" required></CaDrumroll>
+        </div>
+        <div>
           <CaDrumroll size="S" :items="drumrollItemsYear" required title="誕生日"></CaDrumroll>
           <CaDrumroll size="S" :items="drumrollItemsMonth" required></CaDrumroll>
           <CaDrumroll size="S" :items="drumrollItemsDate" required></CaDrumroll>
