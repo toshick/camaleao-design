@@ -4,8 +4,10 @@ import '../form/validation.ts';
 import { addons } from '@storybook/addons';
 
 addons.setConfig({
-  // showNav: true,
-  // panelPosition: 'right',
+  showNav: false,
+  panelPosition: 'right',
   // showPanel: false,
-  // isToolshown: false,
+  isToolshown: false,
+  showRoots: false,
+  showAddons: false,
 });

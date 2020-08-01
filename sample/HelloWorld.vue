@@ -2,24 +2,32 @@
   <div class="hello">
     <section>
       <a class="icon icon-cross btn-close-top"></a>
+      <article class="modal-user">
+        <CaButton @click="visibleModalUser = true">ユーザ情報入力のモーダルがでます</CaButton>
+      </article>
       <article>
         <p class="heading">CaDrumroll</p>
-        <div>
-          <CaDrumroll :items="drumrollItemsYear" required title="誕生日"></CaDrumroll>
-          <CaDrumroll :items="drumrollItemsMonth" required></CaDrumroll>
-          <CaDrumroll :items="drumrollItemsDate" required></CaDrumroll>
+        <div class="ca-inputline">
+          <CaFloat>誕生日を選択してください</CaFloat>
+          <CaDrumroll width="S" :items="drumrollItemsYear" required placeholder="年" v-model="birthYear"></CaDrumroll>
+          <CaDrumroll width="S" :items="drumrollItemsMonth" required placeholder="月" v-model="birthMonth"></CaDrumroll>
+          <CaDrumroll width="S" :items="drumrollItemsDate" required placeholder="日" v-model="birthDate"></CaDrumroll>
+          <CaFloat>
+            <p class="shell">誕生日: {{ birthYear }}/{{ birthMonth }}/{{ birthDate }}</p>
+          </CaFloat>
         </div>
-        <div>
-          <CaDrumroll size="S" :items="drumrollItemsYear" required title="誕生日"></CaDrumroll>
-          <CaDrumroll size="S" :items="drumrollItemsMonth" required></CaDrumroll>
-          <CaDrumroll size="S" :items="drumrollItemsDate" required></CaDrumroll>
+
+        <div class="ca-inputline">
+          <CaDrumroll width="S" size="S" :items="drumrollItemsYear" required title="あなたが最初にカメレオンを見た日をおしえてくださいカマ" v-model="birthYear2"></CaDrumroll>
+          <CaDrumroll width="M" size="S" :items="drumrollItemsMonth" required withHeadingSpace v-model="birthMonth2"></CaDrumroll>
+          <CaDrumroll size="S" :items="drumrollItemsDate" required withHeadingSpace v-model="birthDate2"></CaDrumroll>
         </div>
       </article>
       <article>
         <p class="heading">CaButton | size</p>
         <div class="btns">
           <CaButton size="S">スモールボタン</CaButton>
-          <CaButton @click="visibleModalUser = true">ユーザ情報入力</CaButton>
+          <CaButton>通常ボタン</CaButton>
           <CaButton size="L" @click="visibleModal = true">ラージボタン</CaButton>
           <CaButton size="S" loading>モーダル開く</CaButton>
         </div>
@@ -109,10 +117,10 @@
           <CaPulldown rules="required" title="プルダウン" name="pull01" size="S" v-model="dummyPulldown01" :items="pulldownItems"></CaPulldown>
           <CaPulldown rules="required" withHeadingSpace name="pull02" v-model="dummyPulldown02" :items="pulldownItems"></CaPulldown>
 
-          <CaFloat withHeadingSpace> せんたく </CaFloat>
+          <CaFloat withHeadingSpace>
+            <p class="shell">プルダウン1（{{ dummyPulldown01 }}）　プルダウン2（{{ dummyPulldown02 }}）</p>
+          </CaFloat>
         </div>
-
-        <p class="shell">プルダウン {{ dummyPulldown01 }}</p>
       </article>
       <article>
         <p class="heading">CaIcon</p>
@@ -172,6 +180,13 @@ type State = {
   drumrollItemsYear: CaDrumrollItem[];
   drumrollItemsMonth: CaDrumrollItem[];
   drumrollItemsDate: CaDrumrollItem[];
+
+  birthYear: string;
+  birthMonth: string;
+  birthDate: string;
+  birthYear2: string;
+  birthMonth2: string;
+  birthDate2: string;
 };
 
 export default {
@@ -241,6 +256,14 @@ export default {
 
       dummyPulldown01: '',
       dummyPulldown02: '',
+
+      birthYear: '1999',
+      birthMonth: '3',
+      birthDate: '30',
+
+      birthYear2: '',
+      birthMonth2: '',
+      birthDate2: '',
     };
   },
   mounted() {},
@@ -289,7 +312,7 @@ article > button {
 }
 
 .heading {
-  font-size: 26px;
+  font-size: 36px;
   color: #999;
   margin: 0;
   padding: 0 0 1em;
@@ -310,5 +333,10 @@ article > button {
 
 .space-left {
   margin-left: 2em;
+}
+
+.modal-user {
+  text-align: center;
+  padding: 40px;
 }
 </style>

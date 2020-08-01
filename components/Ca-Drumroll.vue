@@ -5,20 +5,24 @@
       <div v-if="titleStr.length > 0" class="ca-input-heading">
         <p v-html="titleStr"></p>
       </div>
-      <div class="ca-input-status">
-        <p v-if="required && !passed && errors.length == 0" class="formmark-required">＊</p>
-        <p v-if="myval.length > 0 && passed" class="formmark-passed"></p>
-      </div>
-      <div class="ca-drumroll-waku" v-wheel="handleScroll" :class="{ '-smooth': xTimer !== 0 }">
-        <!-- リスト -->
-        <ul class="ca-drumroll-list" :style="{ top: scrollVal + 'px' }">
-          <li v-for="i in itemsAry" :key="`item-${i.pull.label}`" :class="{ '-selected': i.pull.selected }">
-            <a @click.stop.prevent="() => onClickItem(i.pull)">
-              {{ i.pull.label }}
-            </a>
-          </li>
-        </ul>
-        <i class="arrow"></i>
+
+      <div class="ca-drumroll-waku" v-wheel="handleScroll" :class="{ '-smooth': smoothTimer !== 0 }" v-on:mouseover="() => onMouseOver(true)" v-on:mouseleave="() => onMouseOver(false)">
+        <div class="ca-input-status">
+          <p v-if="required && !passed && errors.length == 0" class="formmark-required">＊</p>
+          <p v-if="myval.length > 0 && passed" class="formmark-passed"></p>
+        </div>
+
+        <div class="ca-drumroll-list">
+          <!-- リスト -->
+          <ul :style="{ top: scrollVal + 'px' }">
+            <li v-for="i in itemsAry" :key="`item-${i.drum.label}`" :class="{ '-selected': i.drum.selected }">
+              <a @click.stop.prevent="() => onClickItem(i.drum)">
+                {{ i.drum.label }}
+              </a>
+            </li>
+          </ul>
+          <i class="arrow"></i>
+        </div>
       </div>
 
       <div v-if="errors.length > 0" class="ca-input-errors">
@@ -47,17 +51,20 @@ export type CaDrumrollItem = {
 type State = {
   myval: string;
   errorMsg: string;
-  isOpen: boolean;
   getErrMessage: (errors: string[]) => string;
   scrollVal: number;
   scrollSpeed: number;
-  xTimer: number;
+  smoothTimer: number;
   currentPage: number;
+  enabledWheel: {
+    flg: boolean;
+    timer: number;
+  };
 };
 
 type Item = {
   klass: string;
-  pull: CaDrumrollItem;
+  drum: CaDrumrollItem;
 };
 
 export default Vue.extend({
@@ -100,6 +107,10 @@ export default Vue.extend({
       default: '',
       type: String as PropType<'S' | 'L'>,
     },
+    width: {
+      default: '',
+      type: String as PropType<'S' | 'M' | 'L'>,
+    },
     items: {
       default: [],
       type: Array as PropType<CaDrumrollItem[]>,
@@ -108,25 +119,28 @@ export default Vue.extend({
       default: false,
       type: Boolean,
     },
-    rules: {
-      type: String,
-      default: '',
-    },
     placeholder: {
       type: String,
       default: '-',
+    },
+    required: {
+      type: Boolean,
+      default: false,
     },
   },
   data(): State {
     return {
       myval: '',
       errorMsg: '',
-      isOpen: false,
       getErrMessage,
       scrollVal: 0,
       scrollSpeed: 0,
-      xTimer: 0,
+      smoothTimer: 0,
       currentPage: 0,
+      enabledWheel: {
+        flg: false,
+        timer: 0,
+      },
     };
   },
   computed: {
@@ -141,6 +155,12 @@ export default Vue.extend({
 
       return str;
     },
+    rules(): string {
+      if (this.required) {
+        return 'required';
+      }
+      return '';
+    },
     myClass(): any {
       const klass: any = { 'ca-drumroll': true };
       let size = '';
@@ -150,6 +170,17 @@ export default Vue.extend({
         size = '-size-l';
       }
       klass[size] = true;
+
+      let width = '';
+      if (this.width && this.width === 'S') {
+        width = '-width-s';
+      } else if (this.size && this.width === 'M') {
+        width = '-width-m';
+      } else if (this.size && this.width === 'L') {
+        width = '-width-l';
+      }
+      klass[width] = true;
+
       if (this.hoverOpen) {
         klass['-hover-open'] = true;
       }
@@ -162,18 +193,15 @@ export default Vue.extend({
     itemsAry(): Item[] {
       const defaultVal: CaDrumrollItem = { value: '', label: this.placeholder, default: true };
       const items2 = [defaultVal, ...this.items];
-      return items2.map((pull: CaDrumrollItem) => {
+      return items2.map((drum: CaDrumrollItem) => {
         const klass: any = { 'ca-drumroll-item': true };
-        if (this.myval === pull.value) {
-          pull.selected = true;
+        if (this.myval === drum.value) {
+          drum.selected = true;
         } else {
-          pull.selected = false;
+          drum.selected = false;
         }
-        return { pull, klass };
+        return { drum, klass };
       });
-    },
-    required(): boolean {
-      return this.rules.includes('required');
     },
     cellHeight(): number {
       if (this.size && this.size === 'S') {
@@ -186,48 +214,39 @@ export default Vue.extend({
     },
   },
   mounted() {
-    this.setWindowClick(true);
-
     if (this.value) {
       this.myval = this.value;
+      let index = 0;
+      this.itemsAry.forEach((i: Item, idx: number) => {
+        if (i.drum.value === this.value) {
+          index = idx;
+          return;
+        }
+      });
+      if (index > 0) {
+        this.scrollVal = -(index * this.cellHeight);
+      }
     }
   },
   methods: {
-    onClick() {
-      this.isOpen = !this.isOpen;
-    },
-    onClickItem(i: CaDrumrollItem) {
-      if (this.myval === i.value) {
-        this.myval = '';
+    onMouseOver(flg: boolean) {
+      clearTimeout(this.enabledWheel.timer);
+      if (flg) {
+        this.enabledWheel.timer = <any>setTimeout(() => {
+          this.enabledWheel.flg = true;
+        }, 100);
       } else {
-        this.myval = i.value;
+        this.enabledWheel.flg = false;
       }
+    },
 
-      this.doValidate();
-      this.$emit('input', this.myval);
-      this.isOpen = false;
-    },
-    closeMenu() {
-      this.isOpen = false;
-    },
-    setWindowClick(flg: boolean) {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('click', this.windowClick);
-        if (flg) {
-          window.addEventListener('click', this.windowClick);
-        }
-      }
-    },
+    onClickItem(i: CaDrumrollItem) {},
+
     doValidate() {
       this.$nextTick(() => {
         const obs = this.$refs.obs as ValidationObserver;
         obs.validate();
       });
-    },
-    windowClick(e: MouseEvent) {
-      if (!this.$el.contains(e.target as Element)) {
-        this.closeMenu();
-      }
     },
 
     limitScrollVal(): boolean {
@@ -246,24 +265,26 @@ export default Vue.extend({
     },
 
     handleScroll(evt: MouseWheelEvent, el: HTMLElement) {
+      if (!this.enabledWheel.flg) return;
       evt.stopPropagation();
       evt.preventDefault();
-      clearTimeout(this.xTimer);
+      clearTimeout(this.smoothTimer);
 
       this.scrollSpeed += 0;
       let val = -evt.deltaY * 0.2;
       val = val < 0 ? val - this.scrollSpeed : val + this.scrollSpeed;
 
-      if (this.xTimer !== 0) {
+      if (this.smoothTimer !== 0) {
         this.scrollVal += val;
       }
 
       if (this.limitScrollVal()) {
+        this.valChanged();
         return;
       }
 
-      this.xTimer = <any>setTimeout(() => {
-        this.xTimer = 0;
+      this.smoothTimer = <any>setTimeout(() => {
+        this.smoothTimer = 0;
         this.scrollSpeed = 0;
         this.fixScrollVal();
       }, 120);
@@ -279,14 +300,29 @@ export default Vue.extend({
       const addPage = amari > this.cellHeight / 2 ? 0 : 1;
       v = (page + addPage) * this.cellHeight;
       this.currentPage = Math.abs(page + addPage);
-
       this.scrollVal = v;
       this.limitScrollVal();
+      this.valChanged();
+    },
+
+    valChanged() {
+      this.doValidate();
+      const item: Item = this.itemsAry[this.currentPage];
+      const v = item.drum.value;
+
+      if (v === this.myval) {
+        return;
+      }
+      this.myval = v;
+
+      console.log('valChanged', this.myval);
+
+      this.$emit('input', this.myval);
     },
   },
   beforeDestroy() {
-    clearTimeout(this.xTimer);
-    this.setWindowClick(false);
+    clearTimeout(this.enabledWheel.timer);
+    clearTimeout(this.smoothTimer);
   },
 });
 </script>
@@ -307,24 +343,33 @@ export default Vue.extend({
 
 .ca-drumroll-waku {
   position: relative;
-  min-width: var(--form-input-width-normal);
-  width: max-content;
+  width: var(--form-input-width-normal);
   height: var(--form-input-height);
+}
+/* .ca-drumroll-waku:hover .arrow {
+  opacity: 0.1;
+} */
+
+.ca-drumroll-waku.-smooth .ca-drumroll-list ul {
+  transition: none;
+}
+
+.ca-drumroll-list {
+  position: relative;
+  width: 100%;
+  height: 100%;
   border: solid 1px #ccc;
   border-radius: 4px;
   box-shadow: var(--form-shadow);
   overflow: hidden;
   scroll-behavior: smooth;
 }
-/* .ca-drumroll-waku:hover .arrow {
-  opacity: 0.1;
-} */
 
-.ca-drumroll-waku.-smooth .ca-drumroll-list {
-  transition: none;
+.ca-drumroll-list > ul {
+  position: relative;
 }
 
-.ca-drumroll-list {
+.ca-drumroll-list > ul {
   position: absolute;
   top: 0;
   left: 0px;
@@ -481,7 +526,23 @@ export default Vue.extend({
 .ca-drumroll.-size-s .ca-drumroll-waku {
   height: var(--form-input-height-small);
 }
+.ca-drumroll.-size-s .ca-input-status {
+  top: 33px;
+}
+
 .ca-drumroll.-size-s .ca-drumroll-list li a {
   height: var(--form-input-height-small);
+  font-size: var(--fontsize-small);
+}
+
+/* width */
+.ca-drumroll.-width-s .ca-drumroll-waku {
+  width: var(--form-input-width-small);
+}
+.ca-drumroll.-width-m .ca-drumroll-waku {
+  width: var(--form-input-width-medium);
+}
+.ca-drumroll.-width-l .ca-drumroll-waku {
+  width: var(--form-input-width-large);
 }
 </style>

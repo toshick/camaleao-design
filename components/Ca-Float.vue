@@ -1,6 +1,8 @@
 <template>
   <div :class="myClass">
-    <slot></slot>
+    <div>
+      <slot></slot>
+    </div>
   </div>
 </template>
 <!------------------------------->
@@ -24,6 +26,10 @@ export default Vue.extend({
       default: false,
       type: Boolean,
     },
+    vCenter: {
+      default: true,
+      type: Boolean,
+    },
   },
   data(): State {
     return {};
@@ -43,6 +49,10 @@ export default Vue.extend({
         klass['-with-heading-space'] = true;
       }
 
+      if (this.vCenter) {
+        klass['-vcenter'] = true;
+      }
+
       return klass;
     },
   },
@@ -54,18 +64,27 @@ export default Vue.extend({
 <!------------------------------->
 <style scoped>
 .ca-float {
-  display: flex;
 }
+
+.ca-float > div {
+  display: flex;
+  height: var(--form-input-height);
+}
+
 /* heading-space */
 .ca-float.-with-heading-space {
   padding-top: 25px;
 }
 
-/* size */
-.ca-float.-size-s {
-  height: var(--form-button-height-small);
+.ca-float.-vcenter > div {
+  align-items: center;
 }
-.ca-float.-size-l {
+
+/* size */
+.ca-float.-size-s > div {
+  height: var(--form-input-height-small);
+}
+.ca-float.-size-l > div {
   height: var(--form-button-height-large);
 }
 </style>

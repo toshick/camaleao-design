@@ -102,7 +102,7 @@ export default Vue.extend({
 <style scoped>
 .ca-button {
   position: relative;
-  padding: 0 14px;
+  padding: 0 24px;
   border: solid 1px #ccc;
   border-radius: 16px 4px 16px 4px;
   /* border-radius: 16px 16px 4px 4px; */
@@ -138,9 +138,11 @@ export default Vue.extend({
 /* width */
 .ca-button.-width-s {
   min-width: 140px;
+  padding: 0 14px;
 }
 .ca-button.-width-l {
   min-width: 300px;
+  padding: 0 14px;
 }
 
 /* positive */
