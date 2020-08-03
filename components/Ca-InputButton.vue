@@ -4,7 +4,7 @@
       <template v-if="loading">
         <CaSpinner :size="size" class="spin"></CaSpinner>
       </template>
-      <span class="label">
+      <span class="ca-input-button-label">
         <slot></slot>
       </span>
     </button>
@@ -122,7 +122,7 @@ export default Vue.extend({
 .ca-input-button > button:active {
   filter: brightness(96%);
 }
-.ca-input-button > button > .label {
+.ca-input-button > button > .ca-input-button-label {
   white-space: nowrap;
 }
 
@@ -131,7 +131,7 @@ export default Vue.extend({
   pointer-events: none;
   filter: brightness(90%);
 }
-.ca-input-button.-loading > button > .label {
+.ca-input-button.-loading > button > .ca-input-button-label {
   visibility: hidden;
 }
 

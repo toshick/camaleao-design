@@ -1,4 +1,4 @@
-import '../css/_camaleao.css';
+import '../css/camaleao.css';
 import '../form/validation.ts';
 
 import { addons } from '@storybook/addons';

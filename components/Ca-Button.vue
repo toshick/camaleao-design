@@ -3,7 +3,7 @@
     <template v-if="loading">
       <CaSpinner :size="size" class="spin"></CaSpinner>
     </template>
-    <span class="label">
+    <span class="ca-button-label">
       <slot></slot>
     </span>
   </button>
@@ -103,7 +103,8 @@ export default Vue.extend({
 .ca-button {
   position: relative;
   padding: 0 24px;
-  border: solid 1px #ccc;
+  /* border: solid 1px #ccc; */
+  border: solid 1px #fff;
   border-radius: 16px 4px 16px 4px;
   /* border-radius: 16px 16px 4px 4px; */
   box-shadow: var(--form-shadow);
@@ -164,7 +165,7 @@ export default Vue.extend({
   pointer-events: none;
   filter: brightness(90%);
 }
-.ca-button.-loading > .label {
+.ca-button.-loading > .ca-button-label {
   visibility: hidden;
 }
 
@@ -174,7 +175,7 @@ export default Vue.extend({
   background-color: transparent;
   box-shadow: none;
 }
-.ca-button.-text:hover .label {
+.ca-button.-text:hover .ca-button-label {
   text-decoration: underline;
 }
 
@@ -201,7 +202,7 @@ export default Vue.extend({
 .ca-button.-disabled {
   pointer-events: none;
 }
-.ca-button.-disabled .label {
+.ca-button.-disabled .ca-button-label {
   opacity: 0.3;
 }
 </style>
