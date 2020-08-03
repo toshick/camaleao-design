@@ -28,7 +28,8 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue';
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
-import { getErrMessage } from './helper.ts';
+import { getErrMessage } from './helper';
+type Observernstance = InstanceType<typeof ValidationObserver>;
 
 export type CaRadio = {
   value: string;
@@ -158,7 +159,7 @@ export default Vue.extend({
     },
     doValidate() {
       this.$nextTick(() => {
-        const obs = this.$refs.obs as ValidationObserver;
+        const obs = this.$refs.obs as Observernstance;
         obs.validate();
       });
     },

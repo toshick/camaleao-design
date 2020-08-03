@@ -22,7 +22,7 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue';
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
-import { getErrMessage } from './helper.ts';
+import { getErrMessage } from './helper';
 
 export type ValidationState = {
   passed: boolean;

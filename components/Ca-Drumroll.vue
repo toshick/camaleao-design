@@ -38,7 +38,7 @@
 import Vue, { PropType } from 'vue';
 import { ValidationProvider, ValidationObserver, validate } from 'vee-validate';
 import CaIcon from './Ca-Icon.vue';
-import { getErrMessage, throttle } from './helper.ts';
+import { getErrMessage, throttle } from './helper';
 import { DirectiveBinding } from 'vue/types/options';
 
 export type CaDrumrollItem = {
@@ -66,6 +66,8 @@ type Item = {
   klass: string;
   drum: CaDrumrollItem;
 };
+
+type Observernstance = InstanceType<typeof ValidationObserver>;
 
 export default Vue.extend({
   name: 'CaPulldown',
@@ -244,7 +246,7 @@ export default Vue.extend({
 
     doValidate() {
       this.$nextTick(() => {
-        const obs = this.$refs.obs as ValidationObserver;
+        const obs = this.$refs.obs as Observernstance;
         obs.validate();
       });
     },
