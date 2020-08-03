@@ -13,6 +13,7 @@ module.exports = {
   webpackFinal: async (config, { configType }) => {
     config.resolve.alias['~'] = rootPath;
     config.resolve.alias['@'] = rootPath;
+    config.resolve.extensions.push('.ts');
 
     config.module.rules.push({
       test: /\.ts$/,
