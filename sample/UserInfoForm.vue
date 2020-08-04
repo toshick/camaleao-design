@@ -23,7 +23,7 @@
         <h2>住所</h2>
         <div class="modalcont-line ca-inputline">
           <CaInput width="S" size="S" name="zip_code" title="郵便番号" rules="required|numeric|length:7" v-model="zipCode" placeholder="郵便番号"></CaInput>
-          <CaFloat withHeadingSpace>
+          <CaFloat withHeadingSpace size="S">
             <CaButton size="S" @click="sendDummy(1)" :loading="loading" submit :disabled="zipCode.length !== 7 || (errors.zip_code && errors.zip_code.length > 0)">郵便番号から自動入力</CaButton>
           </CaFloat>
         </div>

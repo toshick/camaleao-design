@@ -172,6 +172,6 @@ label {
 
 /* heading-space */
 .ca-switch.-with-heading-space {
-  padding-top: 25px;
+  padding-top: var(--form-heading-height);
 }
 </style>

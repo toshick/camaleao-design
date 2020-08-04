@@ -229,13 +229,13 @@ export default Vue.extend({
 
 /* heading-space */
 .ca-pulldown.-with-heading-space {
-  padding-top: 25px;
+  padding-top: var(--form-heading-height);
 }
 
 /* size */
 .ca-pulldown.-size-s .ca-pulldown-btn {
   font-size: var(--fontsize-small);
-  height: var(--form-button-height-small);
+  height: var(--button-height-small);
 }
 .ca-pulldown.-size-s .ca-input-status {
   top: 33px;
@@ -243,11 +243,11 @@ export default Vue.extend({
 
 .ca-pulldown.-size-m .ca-pulldown-btn {
   font-size: var(--fontsize-normal);
-  height: var(--form-button-height);
+  height: var(--button-height-normal);
 }
 .ca-pulldown.-size-l .ca-pulldown-btn {
   font-size: var(--fontsize-large);
-  height: var(--form-button-height-large);
+  height: var(--button-height-large);
 }
 
 .ca-pulldown-list {
@@ -258,9 +258,9 @@ export default Vue.extend({
   list-style: none;
   width: max-content;
   box-shadow: var(--form-shadow);
-  border-radius: 6px;
+  border-radius: var(--form-radius);
   overflow: hidden;
-  border: solid 1px #ccc;
+  border: var(--form-border-color);
   margin-top: 4px;
 }
 
@@ -299,8 +299,8 @@ export default Vue.extend({
 .ca-pulldown-btn {
   position: relative;
   padding: 0 34px 0 14px;
-  border: solid 1px #ccc;
-  border-radius: 4px;
+  border: var(--form-border-color);
+  border-radius: var(--form-radius);
   box-shadow: var(--form-shadow);
   text-align: left;
 
@@ -313,7 +313,7 @@ export default Vue.extend({
 /* heading */
 .ca-input-heading {
   position: relative;
-  height: 25px;
+  height: var(--form-heading-height);
 }
 .ca-input-heading > p {
   position: absolute;

@@ -78,7 +78,7 @@ export default Vue.extend({
 
 .ca-input-heading {
   position: relative;
-  height: 25px;
+  height: var(--form-heading-height);
 }
 .ca-input-heading > p {
   position: absolute;

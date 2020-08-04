@@ -1,66 +1,8 @@
 @charset "utf-8";
 
-:root {
-  --positive: #ecde92;
-  --positive-hover: #d9cb7e;
-  --danger: #ecb092;
-  --danger-hover: #d79472;
-  --ok: #b2e3c8;
-  --ok-hover: #97c8ad;
-  --dark: #666;
-  --white: #fff;
+@import url("./camaleao_variables.css");
 
-  /* font size */
-  --fontsize-small: 12px;
-  --fontsize-normal: 14px;
-  --fontsize-medium: 16px;
-  --fontsize-large: 22px;
-
-  /* shadow */
-  --form-shadow: 0 0 2px 2px rgba(51, 51, 51, 0.1);
-
-  /* form height */
-  --form-input-height: 38px;
-  --form-input-height-small: 28px;
-  --form-input-height-large: 48px;
-
-  /* form width */
-  --form-input-width-small: 100px;
-  --form-input-width-normal: 160px;
-  --form-input-width-medium: 220px;
-  --form-input-width-large: 300px;
-
-  /* button */
-  --form-button-height: 38px;
-  --form-button-height-small: 28px;
-  --form-button-height-large: 48px;
-
-  /* checkbox */
-  --form-checkbox-size: 22px;
-
-  /* radio */
-  --form-radio-size: 24px;
-
-  /* icon */
-  --icon-size-small: 20px;
-  --icon-size-normal: 34px;
-  --icon-size-large: 44px;
-
-  /* switch */
-  --switch-size-small: 20px;
-  --switch-size-normal: 30px;
-  --switch-size-large: 44px;
-
-  /* mixin */
-  --sample-mixin: {
-    border: solid 1px #FF0000;
-  };
-
-  /* radio */
-  --icon-size: 24px;
-}
-
-@import url("./_icon.css");
+@import url("./camaleao_icon.css");
 
 * {
   box-sizing: border-box;

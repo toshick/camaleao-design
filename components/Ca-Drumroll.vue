@@ -340,7 +340,7 @@ export default Vue.extend({
 
 /* heading-space */
 .ca-drumroll.-with-heading-space {
-  padding-top: 25px;
+  padding-top: var(--form-heading-height);
 }
 
 .ca-drumroll-waku {
@@ -360,8 +360,8 @@ export default Vue.extend({
   position: relative;
   width: 100%;
   height: 100%;
-  border: solid 1px #ccc;
-  border-radius: 4px;
+  border: var(--form-border-color);
+  border-radius: var(--form-radius);
   box-shadow: var(--form-shadow);
   overflow: hidden;
   scroll-behavior: smooth;
@@ -428,8 +428,8 @@ export default Vue.extend({
 .ca-drumroll-btn {
   position: relative;
   padding: 0 34px 0 14px;
-  border: solid 1px #ccc;
-  border-radius: 4px;
+  border: var(--form-border-color);
+  border-radius: var(--form-radius);
   box-shadow: var(--form-shadow);
   text-align: left;
 
@@ -442,7 +442,7 @@ export default Vue.extend({
 /* heading */
 .ca-input-heading {
   position: relative;
-  height: 25px;
+  height: var(--form-heading-height);
 }
 .ca-input-heading > p {
   position: absolute;
@@ -457,13 +457,12 @@ export default Vue.extend({
 
 /* arrow */
 .arrow {
+  display: block;
   position: absolute;
   top: 50%;
   right: 12px;
   z-index: 1;
   margin-top: -6px;
-  /* transform: translate(0, -80%); */
-  display: block;
   pointer-events: none;
 }
 .arrow::before {

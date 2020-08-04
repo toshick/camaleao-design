@@ -104,23 +104,22 @@ export default Vue.extend({
 <style scoped>
 .ca-input-button > button {
   position: relative;
-
-  padding: 0px 22px;
-  border: solid 1px #ccc;
-  border-radius: 4px;
+  padding: var(--button-padding);
+  border: var(--form-border-color);
+  border-radius: var(--form-radius);
   box-shadow: var(--form-shadow);
   font-size: var(--fontsize-small);
   color: var(--dark);
   height: calc(var(--form-input-height));
   cursor: pointer;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--button-letter-spacing);
   background-color: #eee;
 }
 .ca-input-button > button:hover {
   background-color: #f4f4f4;
 }
 .ca-input-button > button:active {
-  filter: brightness(96%);
+  filter: var(--button-active-filter);
 }
 .ca-input-button > button > .ca-input-button-label {
   white-space: nowrap;
@@ -145,7 +144,7 @@ export default Vue.extend({
 
 /* heading-space */
 .ca-input-button.-with-heading-space {
-  padding-top: 25px;
+  padding-top: var(--form-heading-height);
 }
 
 /* size */

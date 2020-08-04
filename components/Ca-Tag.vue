@@ -44,14 +44,15 @@ export default Vue.extend({
 <style scoped>
 .ca-tag {
   display: inline-block;
-  padding: 8px 12px;
+
+  padding: var(--tag-padding-normal);
   border: none;
-  border-radius: 10px;
+  border-radius: var(--tag-radius-normal);
   box-shadow: var(--form-shadow);
-  font-size: var(--fontsize-small);
+  font-size: var(--tag-fontsize-normal);
   background-color: #fff;
   color: var(--dark);
-  letter-spacing: 0.05em;
+  letter-spacing: var(--tag-letter-spacing);
   pointer-events: none;
 }
 .ca-tag:hover {
@@ -62,12 +63,12 @@ export default Vue.extend({
   filter: brightness(94%);
 }
 .ca-tag.-size-s {
-  padding: 6px 16px;
-  font-size: 12px;
+  padding: var(--tag-padding-small);
+  font-size: var(--tag-fontsize-small);
 }
 .ca-tag.-size-l {
-  padding: 16px 120px;
-  font-size: 18px;
+  padding: var(--tag-padding-large);
+  font-size: var(--tag-fontsize-large);
 }
 .ca-tag.-long {
   display: inline-block;

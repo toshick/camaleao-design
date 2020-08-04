@@ -1,6 +1,7 @@
 <template>
   <ValidationProvider :class="myClass" :name="name" :rules="rules" v-slot="{ passed, errors }" :data-e2e="e2eAttr" tag="label">
     <div :class="labelClass(errors)">
+      <i class="ca-checkbox-box" />
       <input :value="myval" @input="(e) => onChangeInput(e)" type="checkbox" />
       <p v-if="required && !passed" class="formmark-required">＊</p>
       <div>
@@ -128,6 +129,11 @@ export default Vue.extend({
 
 <!------------------------------->
 <style scoped>
+.ca-checkbox {
+  display: inline-flex;
+  align-items: center;
+}
+
 .ca-checkbox-label {
   display: block;
   position: relative;
@@ -145,35 +151,39 @@ export default Vue.extend({
 .ca-checkbox-label > input {
   display: none;
 }
-.ca-checkbox-label::before {
+
+.ca-checkbox-box {
+  position: relative;
   display: inline-block;
   content: '';
   width: var(--form-checkbox-size);
   height: var(--form-checkbox-size);
   background-color: var(--white);
-  border: solid 1px #ccc;
+  border: var(--form-border-color);
   border-radius: 6px;
   margin-right: 10px;
   box-shadow: var(--form-shadow);
   flex-shrink: 0;
 }
-.ca-checkbox-label::after {
+
+.ca-checkbox-box::after {
   --ok: #999;
   display: none;
   content: '';
   position: absolute;
   top: 50%;
-  left: 3px;
-  margin-top: -4px;
+  left: 50%;
+  z-index: 1;
+  margin-left: -6px;
 
-  transform: rotate(45deg) translate(0, -50%);
+  transform: rotate(45deg) translate(-50%, -50%);
   height: 10px;
   width: 5px;
   border-bottom: 4px solid var(--ok);
   border-right: 4px solid var(--ok);
 }
 
-.ca-checkbox.-checked > .ca-checkbox-label::after {
+.ca-checkbox.-checked .ca-checkbox-box::after {
   display: block;
 }
 /* errors */
@@ -192,12 +202,12 @@ export default Vue.extend({
 /* size */
 
 .ca-checkbox.-size-s > .ca-checkbox-label {
-  min-height: var(--form-button-height-small);
+  min-height: var(--button-height-small);
 }
 .ca-checkbox.-size-m > .ca-checkbox-label {
-  min-height: var(--form-button-height);
+  min-height: var(--button-height-normal);
 }
 .ca-checkbox.-size-l > .ca-checkbox-label {
-  min-height: var(--form-button-height-large);
+  min-height: var(--button-height-large);
 }
 </style>

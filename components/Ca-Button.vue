@@ -18,7 +18,7 @@ export default Vue.extend({
   name: 'CaButton',
   props: {
     size: {
-      default: 'F',
+      default: '',
       type: String as PropType<PropSize>,
     },
     width: {
@@ -102,62 +102,58 @@ export default Vue.extend({
 <style scoped>
 .ca-button {
   position: relative;
-  padding: 0 24px;
-  /* border: solid 1px #ccc; */
-  border: solid 1px #fff;
-  border-radius: 16px 4px 16px 4px;
-  /* border-radius: 16px 16px 4px 4px; */
+  padding: var(--button-padding);
+  border: var(--button-border-color);
+  border-radius: var(--button-radius);
   box-shadow: var(--form-shadow);
   font-size: var(--fontsize-medium);
-  height: var(--form-button-height);
-  background-color: #fff;
-  color: #666;
-  letter-spacing: 0.05em;
+  height: var(--button-height-normal);
+  background-color: var(--button-bg-color);
+  color: var(--button-label-color);
+  letter-spacing: var(--button-letter-spacing);
 }
 .ca-button:hover {
-  filter: brightness(96%);
+  filter: var(--button-hover-filter);
   cursor: pointer;
 }
 .ca-button:active {
-  filter: brightness(94%);
+  filter: var(--button-active-filter);
 }
 
 /* size */
 .ca-button.-size-s {
   font-size: var(--fontsize-small);
-  height: var(--form-button-height-small);
+  height: var(--button-height-small);
 }
 .ca-button.-size-l {
   font-size: var(--fontsize-large);
-  height: var(--form-button-height-large);
-}
-.ca-button.-long {
-  display: inline-block;
-  min-width: 320px;
+  height: var(--button-height-large);
 }
 
 /* width */
 .ca-button.-width-s {
-  min-width: 140px;
-  padding: 0 14px;
+  min-width: var(--button-width-small);
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .ca-button.-width-l {
-  min-width: 300px;
-  padding: 0 14px;
+  min-width: var(--button-width-large);
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 /* positive */
 .ca-button.-positive {
   background-color: var(--positive);
   color: #796a1a;
-  text-shadow: 0 0 1px rgba(30, 30, 30, 0.2);
+  text-shadow: var(--button-text-shadow);
 }
 
 /* danger */
 .ca-button.-danger {
   background-color: var(--danger);
   color: #640f0f;
-  text-shadow: 0 0 1px rgba(30, 30, 30, 0.2);
+  text-shadow: var(--button-text-shadow);
 }
 
 /* loading */
@@ -181,12 +177,9 @@ export default Vue.extend({
 
 /* text */
 .ca-button.-submit {
-  border: solid 1px #ccc;
-  border-radius: 4px;
+  border: var(--form-border-color);
   box-shadow: var(--form-shadow);
-
   color: var(--dark);
-
   background-color: #eee;
 }
 

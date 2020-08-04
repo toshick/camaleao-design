@@ -12,7 +12,6 @@
 import Vue, { PropType } from 'vue';
 
 type State = {};
-type PropSize = 'S' | 'L';
 
 export default Vue.extend({
   name: 'CaFloat',
@@ -20,7 +19,7 @@ export default Vue.extend({
   props: {
     size: {
       default: '',
-      type: String as PropType<PropSize>,
+      type: String as PropType<'S' | 'L'>,
     },
     withHeadingSpace: {
       default: false,
@@ -37,7 +36,7 @@ export default Vue.extend({
   computed: {
     myClass(): any {
       const klass: any = { 'ca-float': true };
-      let size = '-size-m';
+      let size = '';
       if (this.size && this.size === 'S') {
         size = '-size-s';
       } else if (this.size && this.size === 'L') {
@@ -63,9 +62,6 @@ export default Vue.extend({
 
 <!------------------------------->
 <style scoped>
-.ca-float {
-}
-
 .ca-float > div {
   display: flex;
   height: var(--form-input-height);
@@ -73,7 +69,7 @@ export default Vue.extend({
 
 /* heading-space */
 .ca-float.-with-heading-space {
-  padding-top: 25px;
+  padding-top: var(--form-heading-height);
 }
 
 .ca-float.-vcenter > div {
@@ -85,6 +81,6 @@ export default Vue.extend({
   height: var(--form-input-height-small);
 }
 .ca-float.-size-l > div {
-  height: var(--form-button-height-large);
+  height: var(--button-height-large);
 }
 </style>

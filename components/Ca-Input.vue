@@ -219,9 +219,8 @@ export default Vue.extend({
 
 .ca-input > span > input {
   padding: 0px 12px;
-  border: solid 1px #ccc;
-  border-radius: 4px;
-  /* border-radius: 16px 2px 16px 2px; */
+  border: var(--form-border-color);
+  border-radius: var(--form-radius);
   box-shadow: var(--form-shadow);
   font-size: var(--fontsize-normal);
   color: var(--dark);
@@ -318,7 +317,7 @@ export default Vue.extend({
 }
 
 .ca-input-heading {
-  height: 25px;
+  height: var(--form-heading-height);
 }
 .ca-input-heading > p {
   position: absolute;

@@ -184,7 +184,7 @@ export default Vue.extend({
 
 .ca-radiolist-item > label {
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   cursor: pointer;
   line-height: 1;
@@ -197,25 +197,26 @@ export default Vue.extend({
 
 .ca-radiolist-item label::before {
   position: relative;
-
   display: block;
   content: '';
   width: var(--form-radio-size);
   height: var(--form-radio-size);
   background-color: var(--white);
-  border: solid 1px #ccc;
+  border: var(--form-border-color);
   border-radius: calc(var(--form-radio-size) / 2);
-  margin-right: calc(var(--form-radio-size) / 2);
+  margin-right: calc(var(--form-radio-size) / 3);
   box-shadow: var(--form-shadow);
 }
 .ca-radiolist-item label::after {
+  --margin: 3px;
   --circle-color: #ddd;
-  --smallcircle-size: calc(var(--form-radio-size) - 15px);
+  --smallcircle-size: calc(var(--form-radio-size) * 0.5 - var(--margin));
   display: none;
   content: '';
   position: absolute;
-  top: 4px;
-  left: 4px;
+  top: calc(var(--margin) + 1px);
+  left: calc(var(--margin) + 1px);
+  /* transform: rotate(45deg) translate(-50%, -50%); */
   background-color: #bbb;
 
   width: 0px;
@@ -277,7 +278,7 @@ export default Vue.extend({
 
 .ca-input-heading {
   position: relative;
-  height: 25px;
+  height: var(--form-heading-height);
 }
 .ca-input-heading > p {
   position: absolute;
