@@ -1,3 +1,4 @@
+import '../css/normalize.css';
 import '../css/camaleao.css';
 import '../form/validation.ts';
 
