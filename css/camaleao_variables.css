@@ -66,7 +66,7 @@
   --button-radius: 4px;
   --button-border-color: solid 1px #ccc;
   --button-text-shadow: 0 0 1px rgba(30, 30, 30, 0.2);
-  --button-bg-color: #FFF;
+  --button-bg-color: #fff;
   --button-label-color: #666;
   --button-letter-spacing: 0.05em;
   --button-hover-filter: brightness(96%);
@@ -107,9 +107,36 @@
 
   /* mixin */
   --sample-mixin: {
-    border: solid 1px #FF0000;
+    border: solid 1px #ff0000;
   }
 
   /* radio */
   --icon-size: 24px;
+
+  /* ------------------ */
+  /* modal */
+  /* ------------------ */
+  --modal-bg: rgba(0, 0, 0, 0.3);
+  --modal-transition: all 0.2s ease 0s;
+
+  /* ------------------ */
+  /* modalbody */
+  /* ------------------ */
+  --modalbody-bg: rgba(0, 0, 0, 0.3);
+  --modal-transition: all 0.2s ease 0s;
+
+  --modalbody-width: 800px;
+  --modalbody-height: 90vh;
+  --modalbody-bg-img: url('../img/subtle-dark-vertical.png');
+  --modalbody-bg-color: #fff;
+  --modalbody-radius: 8px;
+
+  --modalbody-header-bgcolor: #fff;
+  --modalbody-header-padding: 6px 14px 6px 20px;
+  --modalbody-header-shadow: 0 0 2px 0px rgba(21, 21, 21, 0.4);
+  --modalbody-header-height: 60px;
+
+  --modalbody-footer-padding: 20px 30px 20px 10px;
+  --modalbody-footer-bgcolor: #fff;
+  --modalbody-footer-shadow: 0 0 2px 0px rgba(21, 21, 21, 0.4);
 }

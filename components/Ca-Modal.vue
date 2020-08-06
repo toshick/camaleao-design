@@ -94,7 +94,8 @@ export default Vue.extend({
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  transition: all 0.2s ease 0s;
+
+  background-color: var(--modal-bg);
+  transition: var(--modal-transition);
 }
 </style>

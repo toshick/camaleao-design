@@ -71,13 +71,15 @@ export default Vue.extend({
   display: grid;
   grid-template-rows: min-content auto min-content;
 
-  width: 800px;
-  height: 90vh;
-  background-image: url('../img/subtle-dark-vertical.png');
-  background-color: #fff;
-  border-radius: 32px 6px 32px 6px;
   box-shadow: var(--form-shadow);
   overflow: hidden;
+
+  width: var(--modalbody-width);
+  height: var(--modalbody-height);
+  background-image: var(--modalbody-bg-img);
+  /* background-image: url('../img/subtle-dark-vertical.png'); */
+  background-color: var(--modalbody-bg-color);
+  border-radius: var(--modalbody-radius);
 }
 .ca-modal-body-center {
   overflow: scroll;
@@ -86,17 +88,18 @@ export default Vue.extend({
 header {
   display: flex;
   align-items: center;
-  background-color: #fff;
-  padding: 6px 14px 6px 20px;
-  box-shadow: 0 0 2px 0px rgba(21, 21, 21, 0.4);
-  height: 60px;
+
+  background-color: var(--modalbody-header-bgcolor);
+  padding: var(--modalbody-header-padding);
+  box-shadow: var(--modalbody-header-shadow);
+  height: var(--modalbody-header-height);
 }
 header h1 {
   display: block;
   font-size: 18px;
   font-weight: normal;
   color: #999;
-  margin: 6px 0 0;
+  line-height: 1;
 }
 .btn-close-header {
   display: block;
@@ -106,9 +109,10 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px 30px 20px 10px;
-  background-color: #fff;
-  box-shadow: 0 0 2px 0px rgba(21, 21, 21, 0.4);
+
+  padding: var(--modalbody-footer-padding);
+  background-color: var(--modalbody-footer-bgcolor);
+  box-shadow: var(--modalbody-footer-shadow);
 }
 footer button {
   margin: 0 10px;
