@@ -137,7 +137,9 @@
     <UserInfoForm v-if="visibleModalUser" @close="visibleModalUser = false" />
   </div>
 </template>
+<!------------------------------->
 
+<!------------------------------->
 <script lang="ts">
 import Vue from 'vue';
 import CaSpinner from '../components/Ca-Spinner.vue';
@@ -189,7 +191,7 @@ type State = {
   birthDate2: string;
 };
 
-export default {
+export default Vue.extend({
   name: 'HelloWorld',
   props: {
     msg: String,
@@ -283,10 +285,11 @@ export default {
       }, 3000);
     },
   },
-};
+});
 </script>
+<!------------------------------->
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!------------------------------->
 <style>
 html {
   font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;

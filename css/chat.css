@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+:root {
+  --chat-base-color2: #d2bd28;
+  --chat-base-color: #d9c84e;
+  --chat-bg-color: #fbecad;
+  --chat-icon-size: 30px;
+  --chat-comment-color: #666;
+}
+
+.chat-usericon {
+  width: var(--chat-icon-size);
+  height: var(--chat-icon-size);
+  border-radius: calc(var(--chat-icon-size) / 2);
+
+  /* box-shadow: 0 0 0px 2px rgba(255, 255, 255, 0.5); */
+
+  /* border: solid 1px #FFF; */
+}

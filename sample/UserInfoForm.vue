@@ -126,7 +126,7 @@ type State = {
   couponCode: string;
 };
 
-export default {
+export default Vue.extend({
   name: 'HelloWorld',
   props: {
     msg: String,
@@ -204,7 +204,7 @@ export default {
       this.$emit('close');
     },
   },
-};
+});
 </script>
 
 
