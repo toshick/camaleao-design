@@ -23,22 +23,6 @@ module.exports = {
     //   },
     // });
 
-    // Unknown word
-    // config.module.rules.push({
-    //   test: /\.css$/,
-    //   use: [
-    //     {
-    //       loader: 'style-loader',
-    //     },
-    //     {
-    //       loader: 'css-loader',
-    //       options: {
-    //         modules: true,
-    //       },
-    //     },
-    //   ],
-    // });
-
     config.module.rules.push({
       test: /\.ts$/,
       exclude: /node_modules/,
@@ -51,6 +35,30 @@ module.exports = {
           },
         },
       ],
+    });
+
+    config.module.rules.push({
+      test: /\.(sass|scss)$/,
+      use: [
+        'style-loader',
+        'css-loader',
+        {
+          loader: 'sass-loader',
+          options: {
+            // sassOptions: {
+            //   indentedSyntax: true,
+            // },
+          },
+        },
+        {
+          loader: 'sass-resources-loader',
+          options: {
+            resources: ['./css/chat/mixins.scss', './css/chat/variables.scss'],
+            include: rootPath,
+          },
+        },
+      ],
+      include: rootPath,
     });
 
     config.plugins.push(new ForkTsCheckerWebpackPlugin());

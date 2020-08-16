@@ -1,6 +1,6 @@
 import '../css/reset.css';
 import '../css/camaleao.css';
-import '../css/sample.css';
+import '../css/sample.scss';
 import '../form/validation.ts';
 
 export const parameters = {

@@ -9,6 +9,9 @@
   --chat-color-red: #ff3366;
 }
 
+@import './mixins.scss';
+@import './variables.scss';
+
 .app {
   position: relative;
   display: grid;
@@ -16,7 +19,7 @@
   overflow: hidden;
   padding: 0;
   background-color: var(--chat-bg-color);
-  background-image: url("../img/subtle-dark-vertical.png");
+  background-image: url('/img/subtle-dark-vertical.png');
   height: 100%;
 }
 

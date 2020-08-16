@@ -39,7 +39,7 @@ export default Vue.extend({
 <!------------------------------->
 
 <!------------------------------->
-<style scoped>
+<style scoped lang="scss">
 .tanu {
   display: block;
   width: 157px;

@@ -55,5 +55,6 @@ export default Vue.extend({
 .setting-menu a {
   color: #666;
   text-decoration: none;
+  font-size: var(--fontsize-medium);
 }
 </style>
