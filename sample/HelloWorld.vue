@@ -147,20 +147,8 @@ Vue.component('CaSpinner', CaSpinner);
 
 import { ValidationObserver } from 'vee-validate';
 
-import CaButton from '../components/Ca-Button.vue';
-import CaInput from '../components/Ca-Input.vue';
-import CaInputButton from '../components/Ca-InputButton.vue';
-import CaTag from '../components/Ca-Tag.vue';
-import CaCheckBox from '../components/Ca-CheckBox.vue';
-import CaCheckBoxList from '../components/Ca-CheckBoxList.vue';
-import CaRadioList, { CaRadio } from '../components/Ca-RadioList.vue';
-import CaModal from '../components/Ca-Modal.vue';
-import CaModalBody from '../components/Ca-ModalBody.vue';
-import CaPulldown, { CaPulldownItem } from '../components/Ca-Pulldown.vue';
-import CaFloat from '../components/Ca-Float.vue';
-import CaIcon from '../components/Ca-Icon.vue';
-import CaSwitch from '../components/Ca-Switch.vue';
-import CaDrumroll, { CaDrumrollItem } from '../components/Ca-Drumroll.vue';
+import { CaPulldownItem } from '../components/Ca-Pulldown.vue';
+import { CaDrumrollItem } from '../components/Ca-Drumroll.vue';
 // sample
 import UserInfoForm from '../sample/UserInfoForm.vue';
 
@@ -198,20 +186,6 @@ export default Vue.extend({
   },
   components: {
     ValidationObserver,
-    CaButton,
-    CaInput,
-    CaTag,
-    CaInputButton,
-    CaCheckBox,
-    CaCheckBoxList,
-    CaRadioList,
-    CaModal,
-    CaModalBody,
-    CaPulldown,
-    CaFloat,
-    CaIcon,
-    CaSwitch,
-    CaDrumroll,
     // sample
     UserInfoForm,
   },

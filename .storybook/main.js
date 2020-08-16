@@ -53,8 +53,6 @@ module.exports = {
       ],
     });
 
-    console.log('config.module.rules', { ...config.module.rules });
-
     config.plugins.push(new ForkTsCheckerWebpackPlugin());
     // Return the altered config
     return config;

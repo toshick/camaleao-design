@@ -124,18 +124,16 @@
   /* ------------------ */
   --modalbody-bg: rgba(0, 0, 0, 0.3);
   --modal-transition: all 0.2s ease 0s;
-
   --modalbody-width: 800px;
   --modalbody-height: 90vh;
-  --modalbody-bg-img: url('../img/subtle-dark-vertical.png');
+
+  --modalbody-bg-img: url("../img/subtle-dark-vertical.png");
   --modalbody-bg-color: #fff;
   --modalbody-radius: 8px;
-
   --modalbody-header-bgcolor: #fff;
   --modalbody-header-padding: 6px 14px 6px 20px;
   --modalbody-header-shadow: 0 0 2px 0px rgba(21, 21, 21, 0.4);
   --modalbody-header-height: 60px;
-
   --modalbody-footer-padding: 20px 30px 20px 10px;
   --modalbody-footer-bgcolor: #fff;
   --modalbody-footer-shadow: 0 0 2px 0px rgba(21, 21, 21, 0.4);

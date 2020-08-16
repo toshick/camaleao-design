@@ -77,7 +77,6 @@ export default Vue.extend({
   width: var(--modalbody-width);
   height: var(--modalbody-height);
   background-image: var(--modalbody-bg-img);
-  /* background-image: url('../img/subtle-dark-vertical.png'); */
   background-color: var(--modalbody-bg-color);
   border-radius: var(--modalbody-radius);
 }

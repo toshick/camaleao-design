@@ -208,15 +208,14 @@ export default Vue.extend({
   box-shadow: var(--form-shadow);
 }
 .ca-radiolist-item label::after {
-  --margin: 3px;
+  --margin: 4px;
   --circle-color: #ddd;
   --smallcircle-size: calc(var(--form-radio-size) * 0.5 - var(--margin));
   display: none;
   content: '';
   position: absolute;
-  top: calc(var(--margin) + 1px);
-  left: calc(var(--margin) + 1px);
-  /* transform: rotate(45deg) translate(-50%, -50%); */
+  top: calc(var(--margin) + 0px);
+  left: calc(var(--margin) + 0px);
   background-color: #bbb;
 
   width: 0px;

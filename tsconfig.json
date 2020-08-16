@@ -15,8 +15,8 @@
       "~/*": ["./*"],
       "@/*": ["./*"]
     },
-    "types": ["@types/node", "@nuxt/types", "./src/types", "@types/jest"],
+    "types": ["@types/node", "./src/types", "@types/jest"],
     "resolveJsonModule": true
   },
-  "exclude": ["node_modules", ".nuxt", "dist", "functions", "stories"]
+  "exclude": ["node_modules", "dist", "functions", "stories"]
 }

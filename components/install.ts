@@ -14,6 +14,7 @@ import CaFloat from '../components/Ca-Float.vue';
 import CaIcon from '../components/Ca-Icon.vue';
 import CaSwitch from '../components/Ca-Switch.vue';
 import CaDrumroll from '../components/Ca-Drumroll.vue';
+import CaBadge from '../components/Ca-Badge.vue';
 
 Vue.component('CaButton', CaButton);
 Vue.component('CaInput', CaInput);
@@ -29,3 +30,4 @@ Vue.component('CaFloat', CaFloat);
 Vue.component('CaIcon', CaIcon);
 Vue.component('CaSwitch', CaSwitch);
 Vue.component('CaDrumroll', CaDrumroll);
+Vue.component('CaBadge', CaBadge);
