@@ -25,7 +25,7 @@ export default Vue.extend({
 <!------------------------------->
 
 <!------------------------------->
-<style scoped>
+<style scoped lang="scss">
 /* ------------------ 
  app header
  ------------------ */
@@ -34,24 +34,51 @@ export default Vue.extend({
   display: flex;
   align-items: center;
   background: linear-gradient(var(--chat-base-color) 60%, var(--chat-base-color2) 0%);
-  padding: 0px 10px;
+  padding: 0px 15px;
   height: 40px;
-}
 
-.app-header .chat-usericon {
-  margin-right: 0.5em;
-}
+  a {
+    display: flex;
+    align-items: center;
+  }
 
-.app-header p {
-  color: #fff;
-  font-size: 12px;
-}
-.app-header h1 {
-  color: #fff;
-  font-size: 16px;
-  font-weight: normal;
-  text-align: center;
-  width: 100%;
-  letter-spacing: 0.2em;
+  // .md {
+  //   font-size: 20px;
+  //   svg {
+  //     color: #7e7020;
+  //   }
+  // }
+  .chat-usericon {
+    margin-right: 0.5em;
+  }
+  p {
+    color: #fff;
+    font-size: 12px;
+  }
+  h1 {
+    color: #fff;
+    font-size: 16px;
+    font-weight: normal;
+    text-align: center;
+    letter-spacing: 0.2em;
+    margin-right: auto;
+  }
+  /* -------------------- 
+    Ionicons
+  ---------------------*/
+
+  .btn-header {
+    margin-left: 10px;
+  }
+  .btn-back {
+    margin-left: -10px;
+    margin-right: 10px;
+
+    color: #fff;
+
+    ion-icon {
+      color: #fff;
+    }
+  }
 }
 </style>

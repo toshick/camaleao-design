@@ -1,6 +1,10 @@
 <template>
   <section class="app">
-    <AppHeader><h1>設定</h1></AppHeader>
+    <AppHeader>
+      <a class="btn-back" href=""><ion-icon name="chevron-back" size="medium" /></a>
+      <h1>設定</h1>
+      <a href=""><ion-icon name="restaurant-outline" size="medium" /></a>
+    </AppHeader>
     <div class="setting-body">
       <div class="setting-user">
         <UserIcon url="https://avatars3.githubusercontent.com/u/6635142?s=460&v=4" />

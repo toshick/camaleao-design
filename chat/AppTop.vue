@@ -1,12 +1,16 @@
 <template>
   <section class="app">
-    <AppHeader><h1>たぬきのしっぽ</h1></AppHeader>
+    <AppHeader>
+      <h1>たぬきのしっぽ</h1>
+      <a href=""><ion-icon name="leaf-outline" size="medium" /></a>
+    </AppHeader>
     <div class="top-body">
       <div class="chara">
         <img src="../img/chat/tanu.png" class="tanu" alt="kitanu" />
         <img src="../img/chat/tanu-title.png" class="tanu-title" alt="kitanu-title" />
         <p>
           キータヌは世話焼きたぬき
+          <ion-icon name="heart"></ion-icon>
           <br />
           キータヌに自分のアクティビティをみてもらおう
         </p>

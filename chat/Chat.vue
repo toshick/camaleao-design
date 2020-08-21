@@ -1,8 +1,11 @@
 <template>
   <section class="app">
     <AppHeader>
+      <a class="btn-back" href=""><ion-icon name="chevron-back" size="medium" /></a>
       <img class="chat-usericon" src="https://storage.googleapis.com/toshickcom-a7f98.appspot.com/upload_images/%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8-1595803900938.jpeg" alt="" />
       <p class="chat-username">{{ title }}</p>
+      <a class="btn-header margin-left-auto" href=""><ion-icon name="log-in" size="medium" /></a>
+      <a class="btn-header" href=""><ion-icon name="log-in-outline" size="medium" /></a>
     </AppHeader>
 
     <div class="chat-body">
@@ -68,7 +71,7 @@ export default Vue.extend({
 <!------------------------------->
 
 <!------------------------------->
-<style scoped>
+<style scoped lang="scss">
 .chat-body {
   overflow: scroll;
 }

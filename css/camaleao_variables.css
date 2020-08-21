@@ -127,7 +127,7 @@
   --modalbody-width: 800px;
   --modalbody-height: 90vh;
 
-  --modalbody-bg-img: url("../img/subtle-dark-vertical.png");
+  --modalbody-bg-img: url('../img/subtle-dark-vertical.png');
   --modalbody-bg-color: #fff;
   --modalbody-radius: 8px;
   --modalbody-header-bgcolor: #fff;

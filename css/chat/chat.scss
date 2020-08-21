@@ -36,3 +36,18 @@
   height: var(--chat-icon-size);
   border-radius: calc(var(--chat-icon-size) / 2);
 }
+
+/* -------------------- 
+ Ionicons
+ ---------------------*/
+ion-icon {
+  color: #7e7020;
+
+  font-size: 24px;
+  fill: currentColor;
+}
+
+// svg {
+//   fill: currentColor;
+//   stroke: red;
+// }
