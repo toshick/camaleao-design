@@ -3,11 +3,11 @@
     <div :class="labelClass(errors)">
       <i class="ca-checkbox-box" />
       <input :value="myval" @input="(e) => onChangeInput(e)" type="checkbox" />
-      <p v-if="required && !passed" class="formmark-required">＊</p>
       <div>
         <!-- <span v-if="errors.length > 0" class="ca-input-errors">（{{ getErrMessage(errors) }}）</span> -->
         {{ label }}
       </div>
+      <p v-if="required && !passed" class="formmark-required">＊</p>
     </div>
   </ValidationProvider>
 </template>
@@ -177,8 +177,8 @@ export default Vue.extend({
   margin-left: -6px;
 
   transform: rotate(45deg) translate(-50%, -50%);
-  height: 10px;
-  width: 5px;
+  height: 15px;
+  width: 10px;
   border-bottom: 4px solid var(--ok);
   border-right: 4px solid var(--ok);
 }
@@ -196,7 +196,7 @@ export default Vue.extend({
   margin: 0px 0 0 0;
 }
 .formmark-required {
-  padding-right: 4px;
+  padding-left: 4px;
 }
 
 /* size */

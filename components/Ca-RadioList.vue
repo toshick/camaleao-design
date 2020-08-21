@@ -80,7 +80,7 @@ export default Vue.extend({
       type: Boolean,
     },
     float: {
-      default: false,
+      default: true,
       type: Boolean,
     },
     items: {

@@ -15,7 +15,9 @@ import CaIcon from '../components/Ca-Icon.vue';
 import CaSwitch from '../components/Ca-Switch.vue';
 import CaDrumroll from '../components/Ca-Drumroll.vue';
 import CaBadge from '../components/Ca-Badge.vue';
+import CaSpinner from '../components/Ca-Spinner.vue';
 
+Vue.component('CaSpinner', CaSpinner);
 Vue.component('CaButton', CaButton);
 Vue.component('CaInput', CaInput);
 Vue.component('CaInputButton', CaInputButton);

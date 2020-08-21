@@ -490,7 +490,7 @@ export default Vue.extend({
 
 .ca-input-status {
   position: absolute;
-  top: 43px;
+  bottom: -18px;
   right: 4px;
   width: 14px;
   height: 14px;
@@ -526,9 +526,6 @@ export default Vue.extend({
 /* size */
 .ca-drumroll.-size-s .ca-drumroll-waku {
   height: var(--form-input-height-small);
-}
-.ca-drumroll.-size-s .ca-input-status {
-  top: 33px;
 }
 
 .ca-drumroll.-size-s .ca-drumroll-list li a {

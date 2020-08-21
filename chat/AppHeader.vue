@@ -46,4 +46,12 @@ export default Vue.extend({
   color: #fff;
   font-size: 12px;
 }
+.app-header h1 {
+  color: #fff;
+  font-size: 16px;
+  font-weight: normal;
+  text-align: center;
+  width: 100%;
+  letter-spacing: 0.2em;
+}
 </style>

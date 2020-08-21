@@ -1,6 +1,6 @@
 <template>
   <section class="app">
-    <AppHeader />
+    <AppHeader><h1>設定</h1></AppHeader>
     <div class="setting-body">
       <div class="setting-user">
         <UserIcon url="https://avatars3.githubusercontent.com/u/6635142?s=460&v=4" />
@@ -48,13 +48,27 @@ export default Vue.extend({
 <!------------------------------->
 
 <!------------------------------->
-<style scoped>
+<style scoped lang="scss">
 .setting-body {
   padding: 20px;
 }
-.setting-menu a {
-  color: #666;
-  text-decoration: none;
-  font-size: var(--fontsize-medium);
+.setting-user {
+  display: flex;
+  align-items: center;
+  p {
+    margin-left: 1em;
+  }
+}
+.setting-menu {
+  margin-top: 20px;
+
+  li {
+    margin: 20px 0;
+  }
+  a {
+    color: #666;
+    text-decoration: none;
+    font-size: var(--fontsize-normal);
+  }
 }
 </style>

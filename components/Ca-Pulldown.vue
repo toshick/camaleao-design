@@ -237,9 +237,6 @@ export default Vue.extend({
   font-size: var(--fontsize-small);
   height: var(--button-height-small);
 }
-.ca-pulldown.-size-s .ca-input-status {
-  top: 33px;
-}
 
 .ca-pulldown.-size-m .ca-pulldown-btn {
   font-size: var(--fontsize-normal);
@@ -254,7 +251,7 @@ export default Vue.extend({
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 1;
+  z-index: 2;
   list-style: none;
   width: max-content;
   box-shadow: var(--form-shadow);
@@ -348,7 +345,7 @@ export default Vue.extend({
 
 .ca-input-status {
   position: absolute;
-  top: 43px;
+  bottom: -18px;
   right: 4px;
   width: 14px;
   height: 14px;
@@ -356,7 +353,7 @@ export default Vue.extend({
 
 .formmark-passed {
   position: absolute;
-  top: -18px;
+  top: 0;
   left: 5px;
 }
 

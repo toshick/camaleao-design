@@ -3,6 +3,7 @@
     <section>
       <a class="icon icon-cross btn-close-top"></a>
       <article class="modal-user">
+        <CaButton @click="visibleModalValidation = true">モーダルバリデーション</CaButton>
         <CaButton @click="visibleModalUser = true">ユーザ情報入力のモーダルがでます</CaButton>
       </article>
       <article>
@@ -135,6 +136,7 @@
 
     <!-- モーダル user -->
     <UserInfoForm v-if="visibleModalUser" @close="visibleModalUser = false" />
+    <ModalValidation v-if="visibleModalValidation" @close="visibleModalValidation = false" />
   </div>
 </template>
 <!------------------------------->
@@ -151,6 +153,7 @@ import { CaPulldownItem } from '../components/Ca-Pulldown.vue';
 import { CaDrumrollItem } from '../components/Ca-Drumroll.vue';
 // sample
 import UserInfoForm from '../sample/UserInfoForm.vue';
+import ModalValidation from '../sample/ModalValidation.vue';
 
 type State = {
   dummyVal: string;
@@ -162,6 +165,7 @@ type State = {
   radioItems: CaRadio[];
   visibleModal: boolean;
   visibleModalUser: boolean;
+  visibleModalValidation: boolean;
 
   loading1: boolean;
   pulldownItems: CaPulldownItem[];
@@ -188,6 +192,7 @@ export default Vue.extend({
     ValidationObserver,
     // sample
     UserInfoForm,
+    ModalValidation,
   },
   data(): State {
     return {
@@ -203,6 +208,7 @@ export default Vue.extend({
 
       visibleModal: false,
       visibleModalUser: false,
+      visibleModalValidation: false,
       loading1: false,
       pulldownItems: [
         { value: 'キック1', label: 'ケイシャーダ' },
@@ -292,7 +298,7 @@ article > button {
   font-size: 36px;
   color: #999;
   margin: 0;
-  padding: 0 0 1em;
+  padding: 1em 0 0.5em;
 }
 .shell {
   padding: 10px;

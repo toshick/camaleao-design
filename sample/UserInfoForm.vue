@@ -127,7 +127,7 @@ type State = {
 };
 
 export default Vue.extend({
-  name: 'HelloWorld',
+  name: 'UserInfoForm',
   props: {
     msg: String,
   },

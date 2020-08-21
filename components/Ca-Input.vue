@@ -350,7 +350,7 @@ export default Vue.extend({
 
 .formmark-passed {
   position: absolute;
-  top: -18px;
+  top: 0;
   left: 5px;
 }
 </style>

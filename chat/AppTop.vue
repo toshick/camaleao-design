@@ -1,6 +1,6 @@
 <template>
   <section class="app">
-    <AppHeader />
+    <AppHeader><h1>たぬきのしっぽ</h1></AppHeader>
     <div class="top-body">
       <div class="chara">
         <img src="../img/chat/tanu.png" class="tanu" alt="kitanu" />
@@ -57,11 +57,13 @@ export default Vue.extend({
   margin-top: -100px;
 }
 
-.chara > p {
-  font-size: var(--fontsize-medium);
-  color: #fff;
-  margin: 20px auto;
-  width: 260px;
+.chara {
+  & > p {
+    font-size: var(--fontsize-medium);
+    color: #fff;
+    margin: 20px auto;
+    width: 260px;
+  }
 }
 .top-body {
   position: relative;
