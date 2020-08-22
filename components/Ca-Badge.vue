@@ -31,16 +31,15 @@ export default Vue.extend({
 <!------------------------------->
 <style scoped>
 .ca-badge {
-  --icon-size: 16px;
   position: relative;
   font-size: 10px;
-  width: var(--icon-size);
-  height: var(--icon-size);
-  border-radius: calc(var(--icon-size) / 2);
-  background-color: var(--chat-color-red);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9);
+  width: var(--badge-size);
+  height: var(--badge-size);
+  border-radius: calc(var(--badge-size) / 2);
+  background-color: var(--badge-bg-color);
+  box-shadow: var(--badge-shadow);
   text-align: center;
-  color: #fff;
+  color: var(--badge-text-color);
   font-weight: bold;
   line-height: 1;
   pointer-events: none;

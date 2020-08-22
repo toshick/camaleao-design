@@ -3,6 +3,7 @@
     <AppHeader>
       <h1>キタキターヌ</h1>
       <a href=""><ion-icon name="leaf-outline" size="medium" /></a>
+      <CaBadge :num="5" />
     </AppHeader>
     <div class="top-body">
       <section>

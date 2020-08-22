@@ -105,6 +105,14 @@
   --switch-size-normal: 30px;
   --switch-size-large: 44px;
 
+  /* ------------------ */
+  /* badge */
+  /* ------------------ */
+  --badge-size: 16px;
+  --badge-bg-color: red;
+  --badge-text-color: #fff;
+  --badge-shadow: 0 0 0 1px #fff;
+
   /* mixin */
   --sample-mixin: {
     border: solid 1px #ff0000;

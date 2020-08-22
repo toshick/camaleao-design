@@ -69,7 +69,7 @@ export default Vue.extend({
 
   .btn-header {
     margin-left: 10px;
-    span {
+    & > span {
       color: var(--button-label-color);
       font-size: var(--fontsize-normal);
     }
@@ -83,6 +83,9 @@ export default Vue.extend({
     ion-icon {
       color: #fff;
     }
+  }
+  .ca-badge {
+    margin-left: 4px;
   }
 }
 </style>
