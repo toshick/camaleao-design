@@ -7,10 +7,18 @@
   --chat-icon-size: 30px;
   --chat-comment-color: #666;
   --chat-color-red: #ff3366;
+  --chat-color-dark: #57591d;
+
+  // override
+  --button-label-color: #57591d;
 }
 
 @import './mixins.scss';
 @import './variables.scss';
+
+a {
+  cursor: pointer;
+}
 
 .app {
   position: relative;

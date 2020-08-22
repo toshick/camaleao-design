@@ -267,9 +267,10 @@ export default Vue.extend({
     },
 
     handleScroll(evt: MouseWheelEvent, el: HTMLElement) {
-      if (!this.enabledWheel.flg) return;
       evt.stopPropagation();
       evt.preventDefault();
+      if (!this.enabledWheel.flg) return;
+
       clearTimeout(this.smoothTimer);
 
       this.scrollSpeed += 0;

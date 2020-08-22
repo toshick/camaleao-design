@@ -2,7 +2,7 @@
   <section class="app">
     <AppHeader>
       <a class="btn-back" href=""><ion-icon name="chevron-back" size="medium" /></a>
-      <h1>アルバム</h1>
+      <h1>2020.08.08</h1>
       <a class="btn-header margin-left-auto" href=""><ion-icon name="heart-outline" size="medium" /></a>
       <a class="btn-header" href=""><ion-icon name="log-in-outline" size="medium" /></a>
     </AppHeader>

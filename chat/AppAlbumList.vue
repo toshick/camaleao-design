@@ -3,20 +3,18 @@
     <AppHeader>
       <a class="btn-back" href=""><ion-icon name="chevron-back" size="medium" /></a>
       <h1>アルバムリスト</h1>
-      <a class="btn-header" href=""><ion-icon name="build-outline" size="medium" /></a>
+      <a class="btn-header" @click="editing = !editing">
+        <ion-icon name="build-outline" size="medium" v-if="!editing" />
+        <span v-else>完了</span>
+      </a>
     </AppHeader>
-    <div class="album-body">
+    <div :class="myClass">
       <div class="album-body-head">
         <p class="album-text-des">アルバムだよ</p>
-        <CaButton size="S" @click="validate">新規作成</CaButton>
+        <CaButton size="S" @click="create">新規作成</CaButton>
       </div>
-      <div class="album-item" v-for="(i, index) in 4" :key="`item${index}`">
-        <img src="https://storage.googleapis.com/toshickcom-a7f98.appspot.com/upload_images/Camera_2020-07-24_18.23.00-1595582593445.jpeg" alt="" />
-        <div class="album-item-body">
-          <h2>2020.02.22</h2>
-          <p>みんなで東北へいってきたよ。</p>
-        </div>
-      </div>
+      <!-- リスト -->
+      <AlbumList :items="albumItems" :editing="editing" />
     </div>
   </section>
 </template>
@@ -27,23 +25,44 @@
 import Vue from 'vue';
 import AppHeader from './AppHeader.vue';
 import AppFooter from './AppFooter.vue';
-import UserIcon from './parts/UserIcon.vue';
+import AlbumList from './parts/AlbumList.vue';
+import { AlbumItem } from './types/app';
+import { albumItems } from './sample';
 
-type State = {};
+type State = {
+  albumItems: AlbumItem[];
+  editing: boolean;
+};
 
 export default Vue.extend({
   name: 'AppAlbumList',
   components: {
     AppHeader,
     AppFooter,
-    UserIcon,
+    AlbumList,
+  },
+  computed: {
+    myClass(): any {
+      const klass: any = { 'album-body': true };
+
+      if (this.editing) {
+        klass['-editing'] = true;
+      }
+      return klass;
+    },
   },
   props: {},
   data(): State {
-    return {};
+    return {
+      albumItems,
+      editing: false,
+    };
   },
   mounted() {},
-  methods: {},
+  methods: {
+    selectItem() {},
+    create() {},
+  },
 });
 </script>
 <!------------------------------->
@@ -53,42 +72,23 @@ export default Vue.extend({
 .album-body {
   overflow: scroll;
   padding: 20px;
+  &.-editing {
+    .album-body-head {
+      display: none;
+    }
+  }
 }
 .album-body-head {
   display: flex;
   align-items: center;
   line-height: 1;
   margin: 0 0 20px;
+  color: var(--chat-color-dark);
   button {
     margin-left: auto;
   }
 }
 .album-text-des {
   font-size: var(--fontsize-normal);
-}
-.album-item {
-  display: flex;
-  position: relative;
-  margin: 0 0 10px;
-  color: #333;
-  h2 {
-    margin-bottom: 0.3em;
-    font-size: var(--fontsize-large);
-    line-height: 1;
-  }
-  p {
-    font-size: var(--fontsize-normal);
-  }
-
-  img {
-    display: block;
-    width: 40%;
-    height: 100px;
-    border-radius: 6px;
-    flex-grow: 0;
-    margin-right: 10px;
-  }
-}
-.album-item-body {
 }
 </style>

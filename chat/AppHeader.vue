@@ -69,6 +69,10 @@ export default Vue.extend({
 
   .btn-header {
     margin-left: 10px;
+    span {
+      color: var(--button-label-color);
+      font-size: var(--fontsize-normal);
+    }
   }
   .btn-back {
     margin-left: -10px;

@@ -6,7 +6,7 @@ import '../components/install';
 import HelloWorld from '../sample/HelloWorld.vue';
 import AppTop from '../chat/AppTop.vue';
 import AppSetting from '../chat/AppSetting.vue';
-import AppAlbum from '../chat/AppAlbum.vue';
+import AppAlbumDetail from '../chat/AppAlbumDetail.vue';
 import AppAlbumList from '../chat/AppAlbumList.vue';
 
 import Chat from '../chat/Chat.vue';
@@ -69,13 +69,13 @@ infoitems.push({
 });
 
 storiesOf('キータヌ', module).add('チャット', () => ({
-  components: { Chat, AppTop, AppSetting, AppAlbum, AppAlbumList },
+  components: { Chat, AppTop, AppSetting, AppAlbumDetail, AppAlbumList },
   template: `<main class="appviews">
   <div class="mobileview"><AppTop /></div>
   <div class="mobileview"><Chat :chatitems="chatitems" :infoitems="infoitems" /></div>
   <div class="mobileview"><AppSetting /></div>
   <div class="mobileview"><AppAlbumList /></div>
-  <div class="mobileview"><AppAlbum /></div>
+  <div class="mobileview"><AppAlbumDetail /></div>
   <div class="mobileview-des">
     ・リアルタイムにアルバムを構築していく<br>
     ・リアルタイムにアルバムを構築していく

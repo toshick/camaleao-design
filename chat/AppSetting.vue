@@ -19,6 +19,9 @@
           <a href="">本人確認</a>
         </li>
         <li>
+          <a href="">ともだちリスト</a>
+        </li>
+        <li>
           <a href="">ログアウト</a>
         </li>
       </ul>
@@ -55,6 +58,7 @@ export default Vue.extend({
 <style scoped lang="scss">
 .setting-body {
   padding: 20px;
+  color: var(--chat-color-dark);
 }
 .setting-user {
   display: flex;
@@ -70,9 +74,9 @@ export default Vue.extend({
     margin: 20px 0;
   }
   a {
-    color: #666;
     text-decoration: none;
     font-size: var(--fontsize-normal);
+    color: var(--chat-color-dark);
   }
 }
 </style>
