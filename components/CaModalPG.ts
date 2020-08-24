@@ -1,12 +1,15 @@
 import Vue from 'vue';
 import CaModal from './Ca-Modal.vue';
 import CaModalBody from './Ca-ModalBody.vue';
+import ModalConfirm from './modal/ModalConfirm.vue';
 import { CreateElement } from 'vue/types/umd';
 
 export type OpenParams = {
-  component: any;
+  component?: any;
   easyClose?: boolean;
   removeDuration?: number;
+  modalTitle?: string;
+  compoParams?: object;
 };
 
 export const open = (params: OpenParams) => {
@@ -43,9 +46,10 @@ export const open = (params: OpenParams) => {
               {
                 props: {
                   fit: true,
+                  title: p.modalTitle || '',
                 },
               },
-              [h(p.component)],
+              [p.component ? h(p.component, { props: { ...p.compoParams } }) : null],
             );
           },
         },
@@ -70,6 +74,25 @@ export const open = (params: OpenParams) => {
   return vm;
 };
 
+export type OpenParamsConfirm = OpenParams & {
+  confirmText?: string;
+  component?: any;
+  onConfirm?: () => void;
+};
+
+export const openConfirm = (params: OpenParamsConfirm) => {
+  return open({
+    compoParams: {
+      confirmText: params.confirmText || '',
+      onConfirm: params.onConfirm || null,
+    },
+    component: ModalConfirm,
+    modalTitle: params.modalTitle || '',
+    easyClose: params.easyClose || false,
+  });
+};
+
 export default {
   open,
+  openConfirm,
 };

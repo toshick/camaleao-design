@@ -3,7 +3,7 @@
     <section>
       <a class="icon icon-cross btn-close-top"></a>
       <article class="modal-user">
-        <CaButton @click="openModalPG">コードからモーダル</CaButton>
+        <CaButton @click="openConfirm">openConfirm</CaButton>
         <CaButton @click="visibleModalValidation = true">モーダルバリデーション {{ visibleModalValidation }}</CaButton>
         <CaButton @click="visibleModalUser = true">ユーザ情報入力のモーダルがでます</CaButton>
       </article>
@@ -267,10 +267,15 @@ export default Vue.extend({
         }
       }, 3000);
     },
-    openModalPG() {
-      console.log('openModalPG');
-      CaModalPG.open({
-        component: ModalContSample,
+    openConfirm() {
+      console.log('openConfirm');
+
+      CaModalPG.openConfirm({
+        modalTitle: '確認しますヨ',
+        confirmText: 'なんだかしらんけどよろしいですか？なんだかしらんけどよろしいですか？',
+        onConfirm: () => {
+          console.log('いえす');
+        },
       });
     },
   },
