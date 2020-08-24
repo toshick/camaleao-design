@@ -6,7 +6,7 @@
         <p v-html="titleStr"></p>
       </div>
       <div class="ca-input-status">
-        <p v-if="required && !passed && errors.length == 0" class="formmark-required">＊</p>
+        <p v-if="required && !passed && errors.length == 0" class="formmark-required"></p>
         <p v-if="myval.length > 0 && passed" class="formmark-passed"></p>
       </div>
       <button class="ca-pulldown-btn" @click.stop.prevent="onClick">
@@ -347,14 +347,8 @@ export default Vue.extend({
   position: absolute;
   bottom: -18px;
   right: 4px;
-  width: 14px;
+  /* width: 14px; */
   height: 14px;
-}
-
-.formmark-passed {
-  position: absolute;
-  top: 0;
-  left: 5px;
 }
 
 /* .ca-pulldown */

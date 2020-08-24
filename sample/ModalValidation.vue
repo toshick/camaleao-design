@@ -1,8 +1,8 @@
 <template>
   <!-- モーダル user -->
-  <CaModal @close="close">
+  <CaModal @close="close" v-if="isOpen">
     <CaModalBody class="modalcont" title="ユーザ情報入力">
-      <ValidationObserver tag="form" v-slot="{ errors, invalid, handleSubmit }">
+      <ValidationObserver tag="form" v-slot="{ invalid, handleSubmit }">
         <div class="modalcont-line margin-top-10">あなたのユーザ情報を入力してみてね</div>
         <h2>希望プラン</h2>
         <div class="modalcont-line ca-inputline">
@@ -34,8 +34,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import CaSpinner from '../components/Ca-Spinner.vue';
-Vue.component('CaSpinner', CaSpinner);
 
 import { ValidationObserver } from 'vee-validate';
 
@@ -52,8 +50,13 @@ type State = {
 
 export default Vue.extend({
   name: 'ModalValidation',
+  model: {
+    prop: 'isOpen',
+    event: 'change-open',
+  },
   props: {
     msg: String,
+    isOpen: Boolean,
   },
   components: {
     ValidationObserver,
@@ -84,7 +87,7 @@ export default Vue.extend({
       console.log('そうしん');
     },
     close() {
-      this.$emit('close');
+      this.$emit('change-open', false);
     },
   },
 });

@@ -3,7 +3,8 @@
     <section>
       <a class="icon icon-cross btn-close-top"></a>
       <article class="modal-user">
-        <CaButton @click="visibleModalValidation = true">モーダルバリデーション</CaButton>
+        <CaButton @click="openModalPG">コードからモーダル</CaButton>
+        <CaButton @click="visibleModalValidation = true">モーダルバリデーション {{ visibleModalValidation }}</CaButton>
         <CaButton @click="visibleModalUser = true">ユーザ情報入力のモーダルがでます</CaButton>
       </article>
       <article>
@@ -135,8 +136,8 @@
     </section>
 
     <!-- モーダル user -->
-    <UserInfoForm v-if="visibleModalUser" @close="visibleModalUser = false" />
-    <ModalValidation v-if="visibleModalValidation" @close="visibleModalValidation = false" />
+    <UserInfoForm v-model="visibleModalUser" />
+    <ModalValidation v-model="visibleModalValidation" />
   </div>
 </template>
 <!------------------------------->
@@ -151,9 +152,11 @@ import { ValidationObserver } from 'vee-validate';
 
 import { CaPulldownItem } from '../components/Ca-Pulldown.vue';
 import { CaDrumrollItem } from '../components/Ca-Drumroll.vue';
+import CaModalPG from '../components/CaModalPG';
 // sample
 import UserInfoForm from '../sample/UserInfoForm.vue';
 import ModalValidation from '../sample/ModalValidation.vue';
+import ModalContSample from '../sample/ModalContSample.vue';
 
 type State = {
   dummyVal: string;
@@ -263,6 +266,12 @@ export default Vue.extend({
           this.loading1 = false;
         }
       }, 3000);
+    },
+    openModalPG() {
+      console.log('openModalPG');
+      CaModalPG.open({
+        component: ModalContSample,
+      });
     },
   },
 });

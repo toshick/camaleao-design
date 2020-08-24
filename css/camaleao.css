@@ -1,8 +1,8 @@
 @charset "utf-8";
 
-@import url("./camaleao_variables.css");
+@import url('./camaleao_variables.css');
 
-@import url("./camaleao_icon.css");
+@import url('./camaleao_icon.css');
 
 * {
   box-sizing: border-box;
@@ -37,17 +37,19 @@
 /* -------------------- 
  transition
  ---------------------*/
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .1s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.1s;
   opacity: 1;
 }
 
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 
 /* -------------------- 
- form
+ required, passed
  ---------------------*/
 .formmark-required {
   font-size: 10px;
@@ -57,6 +59,18 @@
   line-height: 1;
   text-align: right;
 }
+.formmark-required::after {
+  content: '＊';
+  display: block;
+  /* 日本語 */
+  /* content: '必須';
+  white-space: nowrap;
+  background-color: #ff4488;
+  color: #fff;
+  padding: 2px 4px;
+  font-size: 9px;
+  border-radius: 3px; */
+}
 
 .formmark-passed {
   display: block;
@@ -65,7 +79,4 @@
   width: 5px;
   border-bottom: 2px solid var(--ok);
   border-right: 2px solid var(--ok);
-  position: absolute;
-  top: -18px;
-  left: 5px;
 }

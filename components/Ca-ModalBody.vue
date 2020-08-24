@@ -1,5 +1,5 @@
 <template>
-  <div :class="myClass">
+  <div :class="myClass" data-e2e="ca-modalbody">
     <header>
       <h1 v-if="title">{{ title }}</h1>
       <a class="icon icon-cross btn-close-header" @click="onClickClose"></a>
@@ -30,11 +30,17 @@ export default Vue.extend({
       default: '',
       type: String,
     },
+    fit: {
+      default: false,
+      type: Boolean,
+    },
   },
   computed: {
     myClass(): any {
       const klass: any = { 'ca-modal-body': true };
-
+      if (this.fit) {
+        klass['-fit-content'] = true;
+      }
       return klass;
     },
   },
@@ -76,10 +82,21 @@ export default Vue.extend({
 
   width: var(--modalbody-width);
   height: var(--modalbody-height);
+
   background-image: var(--modalbody-bg-img);
   background-color: var(--modalbody-bg-color);
   border-radius: var(--modalbody-radius);
 }
+.ca-modal-body.-fit-content {
+  max-width: var(--modalbody-width);
+  max-height: var(--modalbody-height);
+  width: min-content;
+  height: min-content;
+}
+.ca-modal-body.-fit-content .ca-modal-body-center {
+  overflow: visible;
+}
+
 .ca-modal-body-center {
   overflow: scroll;
 }

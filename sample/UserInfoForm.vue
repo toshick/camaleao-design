@@ -1,6 +1,6 @@
 <template>
   <!-- モーダル user -->
-  <CaModal @close="close">
+  <CaModal @close="close" v-if="isOpen">
     <CaModalBody class="modalcont" title="ユーザ情報入力">
       <ValidationObserver tag="form" v-slot="{ errors, validate }">
         <div class="modalcont-line">あなたのユーザ情報を入力してみてね</div>
@@ -128,8 +128,13 @@ type State = {
 
 export default Vue.extend({
   name: 'UserInfoForm',
+  model: {
+    prop: 'isOpen',
+    event: 'change-open',
+  },
   props: {
     msg: String,
+    isOpen: Boolean,
   },
   components: {
     ValidationObserver,
@@ -201,7 +206,7 @@ export default Vue.extend({
       }, 2000);
     },
     close() {
-      this.$emit('close');
+      this.$emit('change-open', false);
     },
   },
 });

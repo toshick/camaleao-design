@@ -1,7 +1,9 @@
 <template>
   <transition name="fade">
-    <div v-if="visible" :class="myClass" data-e2e="ca-modal">
-      <slot></slot>
+    <div v-if="visible" :class="myClass">
+      <div class="ca-modal-body">
+        <slot></slot>
+      </div>
     </div>
   </transition>
 </template>
@@ -16,7 +18,7 @@ type State = {
 };
 
 export default Vue.extend({
-  name: 'CaModal',
+  name: 'CaModalPG',
   props: {
     easyClose: {
       type: Boolean,
@@ -26,6 +28,7 @@ export default Vue.extend({
   computed: {
     myClass(): any {
       const klass: any = { 'ca-modal': true };
+
       return klass;
     },
   },

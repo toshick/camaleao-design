@@ -7,7 +7,7 @@
         <!-- <span v-if="errors.length > 0" class="ca-input-errors">（{{ getErrMessage(errors) }}）</span> -->
         {{ label }}
       </div>
-      <p v-if="required && !passed" class="formmark-required">＊</p>
+      <p v-if="required && !passed" class="formmark-required"></p>
     </div>
   </ValidationProvider>
 </template>

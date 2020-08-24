@@ -8,7 +8,7 @@
 
       <div class="ca-drumroll-waku" v-wheel="handleScroll" :class="{ '-smooth': smoothTimer !== 0 }" v-on:mouseover="() => onMouseOver(true)" v-on:mouseleave="() => onMouseOver(false)">
         <div class="ca-input-status">
-          <p v-if="required && !passed && errors.length == 0" class="formmark-required">＊</p>
+          <p v-if="required && !passed && errors.length == 0" class="formmark-required"></p>
           <p v-if="myval.length > 0 && passed" class="formmark-passed"></p>
         </div>
 
@@ -493,14 +493,8 @@ export default Vue.extend({
   position: absolute;
   bottom: -18px;
   right: 4px;
-  width: 14px;
+  /* width: 14px; */
   height: 14px;
-}
-
-.formmark-passed {
-  position: absolute;
-  top: -18px;
-  left: 5px;
 }
 
 /* .ca-drumroll */

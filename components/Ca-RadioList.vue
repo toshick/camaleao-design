@@ -12,7 +12,7 @@
           </label>
         </li>
         <li class="ca-input-status" v-if="required && !passed && errors.length == 0">
-          <p class="formmark-required">＊</p>
+          <p class="formmark-required"></p>
         </li>
       </ul>
 
