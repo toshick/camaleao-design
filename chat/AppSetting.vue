@@ -3,7 +3,7 @@
     <AppHeader>
       <a class="btn-back" href=""><ion-icon name="chevron-back" size="medium" /></a>
       <h1>設定</h1>
-      <a href=""><ion-icon name="restaurant-outline" size="medium" /></a>
+      <a href=""><ion-icon name="build-outline" size="medium" /></a>
     </AppHeader>
     <div class="setting-body">
       <div class="setting-user">

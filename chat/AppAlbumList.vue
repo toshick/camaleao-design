@@ -4,7 +4,7 @@
       <a class="btn-back" href=""><ion-icon name="chevron-back" size="medium" /></a>
       <h1>アルバムリスト</h1>
       <a class="btn-header" @click="editing = !editing">
-        <ion-icon name="build-outline" size="medium" v-if="!editing" />
+        <ion-icon name="restaurant-outline" size="medium" v-if="!editing" />
         <span v-else>完了</span>
       </a>
     </AppHeader>

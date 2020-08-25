@@ -62,7 +62,7 @@
   /* ------------------ */
   /* button */
   /* ------------------ */
-  --button-padding: 4px 10px;
+  --button-padding: 0px 10px;
   --button-radius: 4px;
   --button-border-color: solid 1px #ccc;
   --button-text-shadow: 0 0 1px rgba(30, 30, 30, 0.2);

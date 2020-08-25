@@ -120,6 +120,12 @@ export default Vue.extend({
   filter: var(--button-active-filter);
 }
 
+.ca-button-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* size */
 .ca-button.-size-s {
   font-size: var(--fontsize-small);
@@ -197,5 +203,9 @@ export default Vue.extend({
 }
 .ca-button.-disabled .ca-button-label {
   opacity: 0.3;
+}
+
+.ca-button ion-icon {
+  color: inherit;
 }
 </style>

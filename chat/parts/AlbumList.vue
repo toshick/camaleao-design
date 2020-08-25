@@ -7,14 +7,15 @@
             <img src="https://storage.googleapis.com/toshickcom-a7f98.appspot.com/upload_images/Camera_2020-07-24_18.23.00-1595582593445.jpeg" alt="" />
           </a>
           <span class="btn-remove" href=""><ion-icon name="trash"></ion-icon></span>
+          <p class="album-item-member">
+            <UserIcon v-for="(u, index) in i.members" :url="u.iconurl" size="S" :key="`${index}-${u.iconurl}`" />
+          </p>
         </div>
       </div>
       <div class="album-item-body">
         <h2>{{ i.dateDisp }}</h2>
         <p>{{ i.text }}</p>
-        <p class="album-item-member">
-          <UserIcon v-for="(u, index) in i.members" :url="u.iconurl" size="S" :key="`${index}-${u.iconurl}`" />
-        </p>
+        <CaTag class="update" type="yellow" size="S">update: 3min ago</CaTag>
       </div>
     </div>
     <a class="btn-more" href=""><ion-icon name="chevron-down-outline" size="large" /></a>

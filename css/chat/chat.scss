@@ -1,6 +1,13 @@
 @charset "utf-8";
 
-:root {
+@import './mixins.scss';
+@import './variables.scss';
+
+a {
+  cursor: pointer;
+}
+
+.app {
   --chat-base-color2: #d2bd28;
   --chat-base-color: #d9c84e;
   --chat-bg-color: #fbecad;
@@ -13,16 +20,8 @@
   --button-label-color: #57591d;
   --badge-bg-color: #ff3399;
   --badge-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9);
-}
+  --button-border-color: none;
 
-@import './mixins.scss';
-@import './variables.scss';
-
-a {
-  cursor: pointer;
-}
-
-.app {
   position: relative;
   display: grid;
   grid-template-rows: min-content auto min-content;

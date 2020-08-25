@@ -1,6 +1,7 @@
 export type User = {
   username: string;
   iconurl: string;
+  subtext?: string;
 };
 
 export type AlbumItem = {

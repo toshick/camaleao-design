@@ -8,6 +8,7 @@ import AppTop from '../chat/AppTop.vue';
 import AppSetting from '../chat/AppSetting.vue';
 import AppAlbumDetail from '../chat/AppAlbumDetail.vue';
 import AppAlbumList from '../chat/AppAlbumList.vue';
+import AppMember from '../chat/AppMember.vue';
 
 import Chat from '../chat/Chat.vue';
 
@@ -69,7 +70,7 @@ infoitems.push({
 });
 
 storiesOf('キータヌ', module).add('チャット', () => ({
-  components: { Chat, AppTop, AppSetting, AppAlbumDetail, AppAlbumList },
+  components: { Chat, AppTop, AppSetting, AppAlbumDetail, AppAlbumList, AppMember },
   template: `<main class="appviews">
   <div class="mobileview"><AppTop /></div>
   <div class="mobileview"><Chat :chatitems="chatitems" :infoitems="infoitems" /></div>
@@ -80,6 +81,8 @@ storiesOf('キータヌ', module).add('チャット', () => ({
     ・リアルタイムにアルバムを構築していく<br>
     ・リアルタイムにアルバムを構築していく
   </div>
+  <div class="mobileview"><AppMember /></div>
+  
 
   
   
