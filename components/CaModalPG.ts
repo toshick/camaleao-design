@@ -88,7 +88,7 @@ export const openConfirm = (params: OpenParamsConfirm) => {
     },
     component: ModalConfirm,
     modalTitle: params.modalTitle || '',
-    easyClose: params.easyClose || false,
+    // easyClose: params.easyClose || false,
   });
 };
 

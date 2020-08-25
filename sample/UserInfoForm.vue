@@ -3,7 +3,7 @@
   <CaModal @close="close" v-if="isOpen">
     <CaModalBody class="modalcont" title="ユーザ情報入力">
       <ValidationObserver tag="form" v-slot="{ errors, validate }">
-        <div class="modalcont-line">あなたのユーザ情報を入力してみてね</div>
+        <div class="modalcont-line margin-top-20">あなたのユーザ情報を入力してみてね</div>
         <h2>希望プラン</h2>
         <div class="modalcont-line ca-inputline">
           <CaPulldown name="myplan" v-model="myplan" rules="required" :items="pulldownItemsPlan"></CaPulldown>
@@ -219,7 +219,7 @@ export default Vue.extend({
 .modalcont h2 {
   font-size: 16px;
   font-weight: normal;
-  padding: 10px 20px 10px;
+  padding: 10px 40px 10px;
   color: #999;
 }
 
@@ -236,14 +236,14 @@ export default Vue.extend({
   object-position: center;
 }
 .modalcont-line {
-  padding: 10px 20px 10px;
+  padding: 10px 40px 10px;
   margin: 0;
   line-height: 1.6;
   color: #888;
 }
 
 .modalcont-line.ca-inputline {
-  padding: 0px 20px;
+  padding: 0px 40px;
 }
 
 .modalcont footer {

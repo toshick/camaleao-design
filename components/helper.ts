@@ -34,3 +34,20 @@ export const throttle = (fn: any, interval: number) => {
     }
   };
 };
+
+/**
+ * windowScrollable
+ */
+let savedScrollTop = 0;
+export const windowScrollable = (flg: boolean) => {
+  if (typeof window === 'undefined') return;
+  const $html = document.getElementsByTagName('html')[0];
+
+  if (flg) {
+    $html.classList.remove('-clipped');
+    $html.scrollTop = savedScrollTop;
+  } else {
+    $html.classList.add('-clipped');
+    savedScrollTop = $html.scrollTop;
+  }
+};

@@ -86,6 +86,7 @@ export default Vue.extend({
   background-image: var(--modalbody-bg-img);
   background-color: var(--modalbody-bg-color);
   border-radius: var(--modalbody-radius);
+  border: var(--modalbody-border);
 }
 .ca-modal-body.-fit-content {
   max-width: var(--modalbody-width);
@@ -109,6 +110,7 @@ header {
   padding: var(--modalbody-header-padding);
   box-shadow: var(--modalbody-header-shadow);
   height: var(--modalbody-header-height);
+  background-image: var(--modalbody-header-bg-img);
 }
 header h1 {
   display: block;

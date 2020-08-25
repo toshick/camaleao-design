@@ -268,8 +268,10 @@ export default Vue.extend({
 
     handleScroll(evt: MouseWheelEvent, el: HTMLElement) {
       evt.stopPropagation();
+      if (!this.enabledWheel.flg) {
+        return;
+      }
       evt.preventDefault();
-      if (!this.enabledWheel.flg) return;
 
       clearTimeout(this.smoothTimer);
 
@@ -317,8 +319,6 @@ export default Vue.extend({
         return;
       }
       this.myval = v;
-
-      console.log('valChanged', this.myval);
 
       this.$emit('input', this.myval);
     },

@@ -10,6 +10,7 @@
 <!------------------------------->
 <script lang="ts">
 import Vue, { PropType } from 'vue';
+import { windowScrollable } from './helper';
 
 type State = {
   visible: boolean;
@@ -36,6 +37,7 @@ export default Vue.extend({
   },
   mounted() {
     this.visible = true;
+    windowScrollable(false);
 
     this.$nextTick(() => {
       this.$children.forEach((child: any) => {
@@ -74,6 +76,7 @@ export default Vue.extend({
     this.$children.forEach((child: any) => {
       child.$once('close', null);
     });
+    windowScrollable(true);
   },
 });
 </script>
