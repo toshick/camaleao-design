@@ -90,7 +90,7 @@ h2 {
     font-size: var(--fontsize-medium);
   }
   p {
-    font-size: var(--fontsize-normal);
+    font-size: var(--fontsize-small);
   }
 }
 .ca-input-editablelabel {

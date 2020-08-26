@@ -1,5 +1,5 @@
 <template>
-  <span :class="buttonClass" @click.stop.prevent="onClick">
+  <span :class="myClass" @click.stop.prevent="onClick">
     <slot></slot>
   </span>
 </template>
@@ -15,9 +15,13 @@ export default Vue.extend({
       default: '',
       type: String,
     },
+    size: {
+      default: '',
+      type: String,
+    },
   },
   computed: {
-    buttonClass(): any {
+    myClass(): any {
       const klass: any = { 'ca-tag': true };
       if (this.type) {
         klass[`-${this.type}`] = true;
@@ -25,6 +29,13 @@ export default Vue.extend({
       if (this.isClickable) {
         klass['-clickable'] = true;
       }
+      let size = '';
+      if (this.size && this.size === 'S') {
+        size = '-size-s';
+      } else if (this.size && this.size === 'L') {
+        size = '-size-l';
+      }
+      klass[size] = true;
       return klass;
     },
     isClickable(): boolean {
@@ -65,6 +76,7 @@ export default Vue.extend({
 .ca-tag.-size-s {
   padding: var(--tag-padding-small);
   font-size: var(--tag-fontsize-small);
+  border-radius: var(--tag-radius-small);
 }
 .ca-tag.-size-l {
   padding: var(--tag-padding-large);

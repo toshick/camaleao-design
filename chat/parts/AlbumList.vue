@@ -1,21 +1,26 @@
 <template>
   <section :class="myClass">
     <div class="album-item" v-for="(i, index) in items" :key="`item${index}`">
-      <div class="album-item-left">
-        <div class="album-item-img">
-          <a class="btn-img" @click="selectItem(i)">
-            <img src="https://storage.googleapis.com/toshickcom-a7f98.appspot.com/upload_images/Camera_2020-07-24_18.23.00-1595582593445.jpeg" alt="" />
-          </a>
-          <span class="btn-remove" href=""><ion-icon name="trash"></ion-icon></span>
+      <header>
+        <h2>{{ i.dateDisp }}</h2>
+        <!-- <CaTag class="update" type="yellow" size="S">update: 3min ago</CaTag> -->
+        <p class="update">update: 5days ago</p>
+      </header>
+      <div class="album-item-cont">
+        <div class="album-item-left">
+          <div class="album-item-img">
+            <a class="btn-img" @click="selectItem(i)">
+              <img src="https://storage.googleapis.com/toshickcom-a7f98.appspot.com/upload_images/Camera_2020-07-24_18.23.00-1595582593445.jpeg" alt="" />
+            </a>
+            <span class="btn-remove" href=""><ion-icon name="trash"></ion-icon></span>
+          </div>
+        </div>
+        <div class="album-item-body">
+          <p>{{ i.text }}</p>
           <p class="album-item-member">
             <UserIcon v-for="(u, index) in i.members" :url="u.iconurl" size="S" :key="`${index}-${u.iconurl}`" />
           </p>
         </div>
-      </div>
-      <div class="album-item-body">
-        <h2>{{ i.dateDisp }}</h2>
-        <p>{{ i.text }}</p>
-        <CaTag class="update" type="yellow" size="S">update: 3min ago</CaTag>
       </div>
     </div>
     <a class="btn-more" href=""><ion-icon name="chevron-down-outline" size="large" /></a>
@@ -88,12 +93,25 @@ export default Vue.extend({
   }
 }
 .album-item {
-  display: flex;
   margin: 0 0 30px;
+  header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  h2 {
+    margin-right: 0.5em;
+    font-size: var(--fontsize-large);
+    line-height: 1;
+    color: var(--chat-color-dark);
+  }
+}
+.album-item-cont {
+  display: flex;
 }
 .album-item-left {
   width: 120px;
-  margin-right: 20px;
+  margin-right: 15px;
 }
 .album-item-img {
   position: relative;
@@ -117,11 +135,7 @@ img {
 .album-item-body {
   flex: 1 0 0;
   color: var(--chat-color-dark);
-  h2 {
-    margin-bottom: 0.3em;
-    font-size: var(--fontsize-large);
-    line-height: 1;
-  }
+
   p {
     font-size: var(--fontsize-small);
   }
@@ -165,5 +179,9 @@ img {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+}
+.update {
+  font-size: var(--fontsize-small);
+  color: var(--chat-color-dark);
 }
 </style>

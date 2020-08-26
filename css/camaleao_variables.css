@@ -42,7 +42,7 @@
   /* ------------------ */
   /* tag */
   /* ------------------ */
-  --tag-padding-small: 16px 16px;
+  --tag-padding-small: 4px 8px;
   --tag-padding-normal: 8px 12px;
   --tag-padding-large: 16px 120px;
 
@@ -52,7 +52,7 @@
   --tag-fontsize-large: 18px;
 
   /* tag radius */
-  --tag-radius-small: 10px;
+  --tag-radius-small: 3px;
   --tag-radius-normal: 10px;
   --tag-radius-large: 10px;
 
