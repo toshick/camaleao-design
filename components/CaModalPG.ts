@@ -20,6 +20,12 @@ export const open = (params: OpenParams) => {
     $body.appendChild($el);
   }
 
+  function getRender(h: CreateElement) {
+    // return [h(Sample)];
+    const component = [p.component ? h(p.component, { props: { ...p.compoParams } }) : null];
+    return component;
+  }
+
   const vm = new Vue({
     el: $el,
     props: {
@@ -49,7 +55,7 @@ export const open = (params: OpenParams) => {
                   title: p.modalTitle || '',
                 },
               },
-              [p.component ? h(p.component, { props: { ...p.compoParams } }) : null],
+              getRender(h),
             );
           },
         },

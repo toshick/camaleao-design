@@ -3,6 +3,7 @@
     <section>
       <a class="icon icon-cross btn-close-top"></a>
       <article class="modal-user">
+        <CaButton @click="openCustom">openCustom</CaButton>
         <CaButton @click="openConfirm">openConfirm</CaButton>
         <CaButton @click="visibleModalValidation = true">モーダルバリデーション {{ visibleModalValidation }}</CaButton>
         <CaButton @click="visibleModalUser = true">ユーザ情報入力のモーダルがでます</CaButton>
@@ -152,6 +153,7 @@ import { ValidationObserver } from 'vee-validate';
 
 import { CaPulldownItem } from '../components/Ca-Pulldown.vue';
 import { CaDrumrollItem } from '../components/Ca-Drumroll.vue';
+import CaButton from '../components/Ca-Button.vue';
 import CaModalPG from '../components/CaModalPG';
 // sample
 import UserInfoForm from '../sample/UserInfoForm.vue';
@@ -268,8 +270,6 @@ export default Vue.extend({
       }, 3000);
     },
     openConfirm() {
-      console.log('openConfirm');
-
       CaModalPG.openConfirm({
         modalTitle: '確認しますヨ',
         confirmText: 'なんだかしらんけどよろしいですか？なんだかしらんけどよろしいですか？',
@@ -278,13 +278,31 @@ export default Vue.extend({
         },
       });
     },
+    openCustom() {
+      const self = this;
+      const Sample = {
+        template: `<div class="custommodal"><h1>あほおいえうりえ</h1><button @click="closeCustom">とじる</button></div>`,
+        methods: {
+          closeCustom() {
+            self.ddd();
+          },
+        },
+      };
+      CaModalPG.open({
+        component: Sample,
+        modalTitle: 'ほーほけきょ',
+      });
+    },
+    ddd() {
+      console.log('ddd');
+    },
   },
 });
 </script>
 <!------------------------------->
 
 <!------------------------------->
-<style>
+<style lang="scss">
 html {
   font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
 }
@@ -335,5 +353,10 @@ article > button {
 .modal-user {
   text-align: center;
   padding: 40px;
+}
+.custommodal {
+  border: solid 1px #ff0000;
+  width: 500px;
+  padding: 30px;
 }
 </style>
