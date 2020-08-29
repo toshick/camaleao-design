@@ -142,8 +142,13 @@
   --modalbody-header-padding: 6px 14px 6px 20px;
   --modalbody-header-shadow: 0 0 2px 0px rgba(21, 21, 21, 0.4);
   --modalbody-header-height: 60px;
+  --modalbody-header-color: #c8bd6f;
   /* --modalbody-header-bg-img: url('../img/subtle-dark-vertical.png'); */
   --modalbody-footer-padding: 20px 30px 20px 10px;
   --modalbody-footer-bgcolor: #fff;
   --modalbody-footer-shadow: 0 0 2px 0px rgba(21, 21, 21, 0.4);
+
+  
 }
+
+

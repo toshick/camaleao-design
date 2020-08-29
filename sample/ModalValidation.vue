@@ -98,7 +98,7 @@ export default Vue.extend({
 /* modalcont */
 
 .form {
-  max-width: 400px;
+  width: 400px;
 }
 
 .modalcont h2 {

@@ -11,6 +11,13 @@ export type OpenParams = {
   modalTitle?: string;
   compoParams?: object;
   target?: Element | null;
+  titleIcon?: {
+    tag: string;
+    attrs: {
+      name?: string;
+      size?: string;
+    };
+  };
 };
 
 export const open = (params: OpenParams) => {
@@ -27,6 +34,14 @@ export const open = (params: OpenParams) => {
     // return [h(Sample)];
     const component = [p.component ? h(p.component, { props: { ...p.compoParams } }) : null];
     return component;
+  }
+
+  function getTitleIcon(h: CreateElement) {
+    if (!params.titleIcon) return null;
+    const { tag, attrs } = params.titleIcon;
+    return h(tag, {
+      attrs,
+    });
   }
 
   const vm = new Vue({
@@ -56,6 +71,9 @@ export const open = (params: OpenParams) => {
                 props: {
                   fit: true,
                   title: p.modalTitle || '',
+                },
+                scopedSlots: {
+                  titleicon: () => getTitleIcon(h),
                 },
               },
               getRender(h),
@@ -102,6 +120,7 @@ export const openConfirm = (params: OpenParamsConfirm) => {
     component: ModalConfirm,
     modalTitle: params.modalTitle || '',
     target: params.target || null,
+    titleIcon: params.titleIcon || null,
     // easyClose: params.easyClose || false,
   });
 };

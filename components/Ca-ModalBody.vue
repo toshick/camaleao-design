@@ -1,8 +1,11 @@
 <template>
   <div :class="myClass" data-e2e="ca-modalbody">
     <header>
-      <h1 v-if="title">{{ title }}</h1>
-      <a class="icon icon-cross btn-close-header" @click="onClickClose"></a>
+      <h1 v-if="title">
+        <slot name="titleicon" class="titleicon"></slot>
+        {{ title }}
+      </h1>
+      <!-- <a class="icon icon-cross btn-close-header" @click="onClickClose"></a> -->
     </header>
     <div class="ca-modal-body-center">
       <slot></slot>
@@ -113,12 +116,20 @@ header {
   background-image: var(--modalbody-header-bg-img);
 }
 header h1 {
-  display: block;
+  display: flex;
+  align-items: center;
   font-size: 18px;
   font-weight: normal;
-  color: #999;
+  color: var(--modalbody-header-color);
   line-height: 1;
 }
+header h1 ion-icon {
+  color: inherit;
+}
+.titleicon {
+  border: solid 1px #ff0000;
+}
+
 .btn-close-header {
   display: block;
   margin-left: auto;

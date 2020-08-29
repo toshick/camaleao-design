@@ -272,7 +272,6 @@ export default Vue.extend({
     },
     openConfirm() {
       const $t = document.querySelector('.previewblock') || null;
-      console.log('t', $t);
 
       CaModalPG.openConfirm({
         modalTitle: '確認しますヨ',
@@ -283,6 +282,12 @@ export default Vue.extend({
           console.log('いえす');
         },
         target: $t,
+        titleIcon: {
+          tag: 'ion-icon',
+          attrs: {
+            name: 'heart',
+          },
+        },
       });
     },
     openCustom() {
@@ -298,6 +303,12 @@ export default Vue.extend({
       CaModalPG.open({
         component: Sample,
         modalTitle: 'ほーほけきょ',
+        titleIcon: {
+          tag: 'ion-icon',
+          attrs: {
+            name: 'heart',
+          },
+        },
       });
     },
     ddd() {
