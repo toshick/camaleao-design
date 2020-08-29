@@ -8,6 +8,7 @@
         <CaButton @click="visibleModalValidation = true">モーダルバリデーション {{ visibleModalValidation }}</CaButton>
         <CaButton @click="visibleModalUser = true">ユーザ情報入力のモーダルがでます</CaButton>
       </article>
+      <article class="previewblock"></article>
       <article>
         <p class="heading">CaDrumroll</p>
         <div class="ca-inputline">
@@ -270,6 +271,9 @@ export default Vue.extend({
       }, 3000);
     },
     openConfirm() {
+      const $t = document.querySelector('.previewblock') || null;
+      console.log('t', $t);
+
       CaModalPG.openConfirm({
         modalTitle: '確認しますヨ',
         confirmText: 'なんだかしらんけどよろしいですか？なんだかしらんけどよろしいですか？',
@@ -278,6 +282,7 @@ export default Vue.extend({
         onConfirm: () => {
           console.log('いえす');
         },
+        target: $t,
       });
     },
     openCustom() {
@@ -360,5 +365,12 @@ article > button {
   border: solid 1px #ff0000;
   width: 500px;
   padding: 30px;
+}
+.previewblock {
+  position: relative;
+
+  box-shadow: 0 0 1px 1px rgba(#333, 0.2);
+  width: 500px;
+  height: 600px;
 }
 </style>

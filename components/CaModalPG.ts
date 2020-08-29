@@ -10,12 +10,15 @@ export type OpenParams = {
   removeDuration?: number;
   modalTitle?: string;
   compoParams?: object;
+  target?: Element | null;
 };
 
 export const open = (params: OpenParams) => {
   const p = { ...params, easyClose: params.easyClose !== false, removeDuration: params.removeDuration || 200 };
   const $el = document.createElement('article');
-  const $body = document.body;
+  const $body = params.target ? params.target : document.body;
+  console.log('$body', $body, params.target);
+
   if ($body) {
     $body.appendChild($el);
   }
@@ -98,6 +101,7 @@ export const openConfirm = (params: OpenParamsConfirm) => {
     },
     component: ModalConfirm,
     modalTitle: params.modalTitle || '',
+    target: params.target || null,
     // easyClose: params.easyClose || false,
   });
 };

@@ -85,7 +85,7 @@ export default Vue.extend({
 <!------------------------------->
 <style scoped>
 .ca-modal {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 100;
