@@ -1,11 +1,15 @@
 @charset "utf-8";
 
-@import url('./camaleao_variables.css');
+@import url("./camaleao_variables.css");
 
-@import url('./camaleao_icon.css');
+@import url("./camaleao_icon.css");
 
 * {
   box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
 }
 
 html.-clipped {
@@ -63,9 +67,11 @@ html.-clipped {
   line-height: 1;
   text-align: right;
 }
+
 .formmark-required::after {
   content: '＊';
   display: block;
+
   /* 日本語 */
   /* content: '必須';
   white-space: nowrap;
@@ -103,11 +109,13 @@ html.-clipped {
   vertical-align: middle;
   font-size: var(--fontsize-medium);
   line-height: 1;
+
   /* color: var(--chat-color-dark);
   background-color: #fff;
   border-radius: 6px;
   padding: 6px 20px; */
 }
+
 .textlink ion-icon {
   color: inherit;
 }
