@@ -75,7 +75,7 @@ export default Vue.extend({
 
 <style scoped lang="scss">
 .modal-confirm {
-  width: 400px;
+  max-width: 400px;
 }
 h1 {
   font-size: var(--tag-fontsize-medium);
