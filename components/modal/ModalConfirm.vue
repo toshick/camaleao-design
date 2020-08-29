@@ -1,10 +1,10 @@
 <template>
   <!-- モーダル user -->
-  <article class="modal-confirm">
+  <article :class="myClass">
     <h1 class="modal-title" v-html="confirmText"></h1>
 
     <footer>
-      <CaButton width="S" type="positive" @click="positive" :disabled="confirmed">OK</CaButton>
+      <CaButton width="S" :type="buttonType" @click="positive" :disabled="confirmed">{{ buttonLabel }}</CaButton>
       <CaButton width="S" @click="cancel" :disabled="confirmed">キャンセル</CaButton>
     </footer>
   </article>
@@ -22,8 +22,31 @@ export default Vue.extend({
   props: {
     confirmText: String,
     onConfirm: Function,
+    type: String,
+    btnLabel: String,
   },
-  components: {},
+  computed: {
+    myClass(): any {
+      const klass: any = { 'modal-confirm': true };
+      if (this.type) {
+        klass[`-${this.type}`] = true;
+      }
+
+      return klass;
+    },
+    buttonType(): string {
+      if (this.type) {
+        return this.type;
+      }
+      return 'positive';
+    },
+    buttonLabel(): string {
+      if (this.btnLabel) {
+        return this.btnLabel;
+      }
+      return 'OK';
+    },
+  },
   data(): State {
     return {
       confirmed: false,
@@ -55,7 +78,7 @@ export default Vue.extend({
   width: 400px;
 }
 h1 {
-  font-size: var(--tag-fontsize-large);
+  font-size: var(--tag-fontsize-medium);
   font-weight: normal;
   color: var(--dark);
   padding: 20px 20px;

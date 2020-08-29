@@ -83,6 +83,8 @@ export const open = (params: OpenParams) => {
 export type OpenParamsConfirm = OpenParams & {
   confirmText?: string;
   component?: any;
+  type?: 'danger';
+  btnLabel?: string;
   onConfirm?: () => void;
 };
 
@@ -91,6 +93,8 @@ export const openConfirm = (params: OpenParamsConfirm) => {
     compoParams: {
       confirmText: params.confirmText || '',
       onConfirm: params.onConfirm || null,
+      type: params.type,
+      btnLabel: params.btnLabel,
     },
     component: ModalConfirm,
     modalTitle: params.modalTitle || '',

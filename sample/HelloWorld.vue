@@ -273,6 +273,8 @@ export default Vue.extend({
       CaModalPG.openConfirm({
         modalTitle: '確認しますヨ',
         confirmText: 'なんだかしらんけどよろしいですか？なんだかしらんけどよろしいですか？',
+        btnLabel: 'さくじょ',
+        type: 'danger',
         onConfirm: () => {
           console.log('いえす');
         },
