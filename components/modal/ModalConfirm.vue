@@ -87,7 +87,7 @@ h1 {
 footer {
   display: flex;
   justify-content: center;
-  padding: 0 0 20px;
+  padding: 0 10px 20px;
   .ca-button {
     margin: 0 10px;
   }
