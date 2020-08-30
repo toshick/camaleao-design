@@ -120,7 +120,7 @@ export const openConfirm = (params: OpenParamsConfirm) => {
     component: ModalConfirm,
     modalTitle: params.modalTitle || '',
     target: params.target || null,
-    titleIcon: params.titleIcon || null,
+    titleIcon: params.titleIcon,
     // easyClose: params.easyClose || false,
   });
 };
