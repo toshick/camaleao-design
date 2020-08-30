@@ -275,11 +275,10 @@ export default Vue.extend({
       const inputs: Input[] = [];
       inputs.push({
         name: 'eventname',
-        value: 'eeee',
+        value: '',
         // title: 'イベント名',
         placeholder: 'イベント名',
-        width: 'L',
-        size: 'S',
+        width: 'M',
         rules: 'required',
       });
 

@@ -124,6 +124,7 @@ export const openDialog = (params: OpenParamsDialog) => {
     modalTitle: params.modalTitle || '',
     target: params.target || null,
     titleIcon: params.titleIcon,
+    easyClose: params.easyClose || false,
   });
 };
 

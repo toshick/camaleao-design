@@ -96,6 +96,10 @@ export default Vue.extend({
 <style scoped lang="scss">
 .modal-input {
   max-width: 400px;
+  .ca-input {
+    width: max-content;
+    margin: 0 auto;
+  }
 }
 h1 {
   font-size: var(--tag-fontsize-medium);
