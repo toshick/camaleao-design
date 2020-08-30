@@ -3,8 +3,8 @@
     <section>
       <a class="icon icon-cross btn-close-top"></a>
       <article class="modal-user">
-        <CaButton @click="openCustom">openCustom</CaButton>
-        <CaButton @click="openConfirm">openConfirm</CaButton>
+        <CaButton @click="openInput">openInput</CaButton>
+        <CaButton @click="openConfirm">openDialog</CaButton>
         <CaButton @click="visibleModalValidation = true">モーダルバリデーション {{ visibleModalValidation }}</CaButton>
         <CaButton @click="visibleModalUser = true">ユーザ情報入力のモーダルがでます</CaButton>
       </article>
@@ -160,6 +160,7 @@ import CaModalPG from '../components/CaModalPG';
 import UserInfoForm from '../sample/UserInfoForm.vue';
 import ModalValidation from '../sample/ModalValidation.vue';
 import ModalContSample from '../sample/ModalContSample.vue';
+import { Input, FormReturn } from '../components/type';
 
 type State = {
   dummyVal: string;
@@ -270,10 +271,39 @@ export default Vue.extend({
         }
       }, 3000);
     },
+    openInput() {
+      const inputs: Input[] = [];
+      inputs.push({
+        name: 'eventname',
+        value: 'eeee',
+        // title: 'イベント名',
+        placeholder: 'イベント名',
+        width: 'L',
+        size: 'S',
+        rules: 'required',
+      });
+
+      const $t = document.querySelector('.previewblock') || null;
+      CaModalPG.openDialog({
+        modalTitle: 'なんか入力しよーネ',
+        confirmText: 'イベント名を決定しよう',
+        btnLabel: '確定',
+        onConfirm: (res: FormReturn[]) => {
+          console.log('いえす', res);
+        },
+        target: $t,
+        titleIcon: {
+          tag: 'ion-icon',
+          attrs: {
+            name: 'heart',
+          },
+        },
+        inputs,
+      });
+    },
     openConfirm() {
       const $t = document.querySelector('.previewblock') || null;
-
-      CaModalPG.openConfirm({
+      CaModalPG.openDialog({
         modalTitle: '確認しますヨ',
         confirmText: 'なんだかしらんけどよろしいですか？なんだかしらんけどよろしいですか？',
         btnLabel: 'さくじょ',

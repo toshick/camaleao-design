@@ -2,7 +2,9 @@ import Vue from 'vue';
 import CaModal from './Ca-Modal.vue';
 import CaModalBody from './Ca-ModalBody.vue';
 import ModalConfirm from './modal/ModalConfirm.vue';
+import ModalInput from './modal/ModalInput.vue';
 import { CreateElement } from 'vue/types/umd';
+import { Input } from './type';
 
 export type OpenParams = {
   component?: any;
@@ -25,14 +27,12 @@ export const open = (params: OpenParams) => {
   const p = { ...params, easyClose: params.easyClose !== false, removeDuration: params.removeDuration || 200 };
   const $el = document.createElement('article');
   const $body = params.target ? params.target : document.body;
-  console.log('$body', $body, params.target);
 
   if ($body) {
     $body.appendChild($el);
   }
 
   function getRender(h: CreateElement) {
-    // return [h(Sample)];
     const component = [p.component ? h(p.component, { props: { ...p.compoParams } }) : null];
     return component;
   }
@@ -102,31 +102,32 @@ export const open = (params: OpenParams) => {
   return vm;
 };
 
-export type OpenParamsConfirm = OpenParams & {
+export type OpenParamsDialog = OpenParams & {
   confirmText?: string;
   component?: any;
-  type?: 'danger';
+  type?: 'danger' | string;
   btnLabel?: string;
   onConfirm?: () => void;
+  inputs?: Input[];
 };
 
-export const openConfirm = (params: OpenParamsConfirm) => {
+export const openDialog = (params: OpenParamsDialog) => {
   return open({
     compoParams: {
       confirmText: params.confirmText || '',
       onConfirm: params.onConfirm || null,
       type: params.type,
       btnLabel: params.btnLabel,
+      inputs: params.inputs,
     },
-    component: ModalConfirm,
+    component: ModalInput,
     modalTitle: params.modalTitle || '',
     target: params.target || null,
     titleIcon: params.titleIcon,
-    // easyClose: params.easyClose || false,
   });
 };
 
 export default {
   open,
-  openConfirm,
+  openDialog,
 };
