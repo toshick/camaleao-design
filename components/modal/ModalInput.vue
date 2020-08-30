@@ -3,7 +3,7 @@
   <article :class="myClass">
     <ValidationObserver tag="form" v-slot="{ invalid, handleSubmit }" class="form">
       <h1 class="modal-title" v-html="confirmText"></h1>
-      <section>
+      <section v-if="inputs.length > 0">
         <ul>
           <li v-for="i in inputs" :key="i.name">
             <CaInput :name="i.name" :title="i.title" :rules="i.rules" v-model="i.val" :placeholder="i.placeholder" :width="i.width" :size="i.size"></CaInput>
