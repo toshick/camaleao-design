@@ -126,8 +126,8 @@ header h1 {
 header h1 ion-icon {
   color: inherit;
 }
-.titleicon {
-  border: solid 1px #ff0000;
+.ca-modal-body-titleicon {
+  margin-right: 0.2em;
 }
 
 .btn-close-header {

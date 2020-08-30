@@ -16,6 +16,7 @@ export type OpenParams = {
     attrs: {
       name?: string;
       size?: string;
+      class?: string;
     };
   };
 };
@@ -40,7 +41,7 @@ export const open = (params: OpenParams) => {
     if (!params.titleIcon) return null;
     const { tag, attrs } = params.titleIcon;
     return h(tag, {
-      attrs,
+      attrs: { ...attrs, class: 'ca-modal-body-titleicon' },
     });
   }
 
