@@ -130,7 +130,6 @@
   /* ------------------ */
   /* modalbody */
   /* ------------------ */
-  --modal-transition: all 0.2s ease 0s;
   --modalbody-width: 800px;
   --modalbody-height: 90vh;
   --modalbody-border: solid 2px #d5ca91;
@@ -148,7 +147,16 @@
   --modalbody-footer-bgcolor: #fff;
   --modalbody-footer-shadow: 0 0 2px 0px rgba(21, 21, 21, 0.4);
 
-  
+  /* ------------------ */
+  /* modalview */
+  /* ------------------ */
+  --modalview-bg-color: #eee;
+  --modalview-header-height: 40px;
+  --modalview-header-bg-img: none;
+  --modalview-header-shadow: 0 0 2px 0px rgba(21, 21, 21, 0.4);
+  --modalview-header-bgcolor: #ddd;
+  --modalview-header-color: #fff;
+  --modalview-header-fontsize: 18px;
 }
 
 

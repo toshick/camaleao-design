@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade">
+  <transition :name="transition">
     <div v-if="visible" :class="myClass" data-e2e="ca-modal">
       <slot></slot>
     </div>
@@ -23,10 +23,21 @@ export default Vue.extend({
       type: Boolean,
       default: true,
     },
+    fixed: {
+      type: Boolean,
+      default: true,
+    },
+    transition: {
+      type: String,
+      default: 'fade',
+    },
   },
   computed: {
     myClass(): any {
       const klass: any = { 'ca-modal': true };
+      if (this.fixed) {
+        klass['-fixed'] = true;
+      }
       return klass;
     },
   },
@@ -96,6 +107,8 @@ export default Vue.extend({
   height: 100%;
 
   background-color: var(--modal-bg);
-  transition: var(--modal-transition);
+}
+.ca-modal.-fixed {
+  position: fixed;
 }
 </style>

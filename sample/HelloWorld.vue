@@ -3,6 +3,7 @@
     <section>
       <a class="icon icon-cross btn-close-top"></a>
       <article class="modal-user">
+        <CaButton @click="openModalView">openModalView</CaButton>
         <CaButton @click="openInput">openInput</CaButton>
         <CaButton @click="openConfirm">openDialog</CaButton>
         <CaButton @click="visibleModalValidation = true">モーダルバリデーション {{ visibleModalValidation }}</CaButton>
@@ -271,6 +272,26 @@ export default Vue.extend({
         }
       }, 3000);
     },
+    openModalView() {
+      const $t = document.querySelector('.previewblock') || null;
+      CaModalPG.openView({
+        modalTitle: 'モーダルのビューです',
+        confirmText: 'なんだかしらんけどよろしいですか？なんだかしらんけどよろしいですか？',
+        btnLabel: 'さくじょ',
+        type: 'danger',
+        onConfirm: () => {
+          console.log('いえす');
+        },
+        target: $t,
+        titleIcon: {
+          tag: 'ion-icon',
+          attrs: {
+            name: 'heart',
+          },
+        },
+        fixed: false,
+      });
+    },
     openInput() {
       const inputs: Input[] = [];
       inputs.push({
@@ -298,6 +319,7 @@ export default Vue.extend({
           },
         },
         inputs,
+        fixed: false,
       });
     },
     openConfirm() {
@@ -317,6 +339,7 @@ export default Vue.extend({
             name: 'heart',
           },
         },
+        fixed: false,
       });
     },
     openCustom() {
@@ -338,6 +361,7 @@ export default Vue.extend({
             name: 'heart',
           },
         },
+        fixed: false,
       });
     },
     ddd() {
@@ -361,13 +385,14 @@ ul {
 li {
   list-style: none;
 }
-
-article {
+.hello > section > article {
   padding: 10px 20px;
+
+  & > button {
+    margin-right: 20px;
+  }
 }
-article > button {
-  margin-right: 20px;
-}
+
 .btns > button {
   margin-bottom: 20px;
   margin-right: 20px;

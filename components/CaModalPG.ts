@@ -1,14 +1,17 @@
 import Vue from 'vue';
 import CaModal from './Ca-Modal.vue';
 import CaModalBody from './Ca-ModalBody.vue';
-import ModalConfirm from './modal/ModalConfirm.vue';
+import CaModalView from './Ca-ModalView.vue';
 import ModalInput from './modal/ModalInput.vue';
 import { CreateElement } from 'vue/types/umd';
 import { Input } from './type';
 
 export type OpenParams = {
+  parentComponent?: any;
   component?: any;
   easyClose?: boolean;
+  transition?: string;
+  fixed?: boolean;
   removeDuration?: number;
   modalTitle?: string;
   compoParams?: object;
@@ -24,13 +27,17 @@ export type OpenParams = {
 };
 
 export const open = (params: OpenParams) => {
-  const p = { ...params, easyClose: params.easyClose !== false, removeDuration: params.removeDuration || 200 };
+  const p = { ...params, easyClose: params.easyClose !== false, removeDuration: params.removeDuration || 200, fixed: params.fixed !== false };
   const $el = document.createElement('article');
   const $body = params.target ? params.target : document.body;
+  const modalCompo = params.parentComponent;
 
   if ($body) {
     $body.appendChild($el);
   }
+
+  // const modalCompo = CaModalBody;
+  // const modalCompo = CaModalView;
 
   function getRender(h: CreateElement) {
     const component = [p.component ? h(p.component, { props: { ...p.compoParams } }) : null];
@@ -63,11 +70,13 @@ export const open = (params: OpenParams) => {
       return h(CaModal, {
         props: {
           easyClose: p.easyClose,
+          fixed: p.fixed,
+          transition: p.transition,
         },
         scopedSlots: {
           default: () => {
             return h(
-              CaModalBody,
+              modalCompo,
               {
                 props: {
                   fit: true,
@@ -111,7 +120,7 @@ export type OpenParamsDialog = OpenParams & {
   inputs?: Input[];
 };
 
-export const openDialog = (params: OpenParamsDialog) => {
+const openWithView = (params: OpenParamsDialog) => {
   return open({
     compoParams: {
       confirmText: params.confirmText || '',
@@ -120,15 +129,28 @@ export const openDialog = (params: OpenParamsDialog) => {
       btnLabel: params.btnLabel,
       inputs: params.inputs,
     },
-    component: ModalInput,
+    component: params.component,
     modalTitle: params.modalTitle || '',
     target: params.target || null,
     titleIcon: params.titleIcon,
     easyClose: params.easyClose || false,
+    fixed: params.fixed || false,
+    transition: params.transition,
+    removeDuration: params.removeDuration,
+    parentComponent: params.parentComponent || CaModalBody,
   });
+};
+
+export const openDialog = (params: OpenParamsDialog) => {
+  return openWithView({ ...params, parentComponent: CaModalBody, component: ModalInput, transition: 'fade' });
+};
+
+export const openView = (params: OpenParamsDialog) => {
+  return openWithView({ ...params, parentComponent: CaModalView, transition: 'modal', removeDuration: 600 });
 };
 
 export default {
   open,
   openDialog,
+  openView,
 };
