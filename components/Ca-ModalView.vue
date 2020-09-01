@@ -1,11 +1,11 @@
 <template>
   <div :class="myClass" data-e2e="ca-modalview">
     <header>
-      <a class="btn-back" @click="onClickClose"><ion-icon name="chevron-down-outline" size="medium" /></a>
       <h1 v-if="title">
         <slot name="titleicon" class="titleicon"></slot>
         {{ title }}
       </h1>
+      <a class="btn-back" @click="onClickClose"><ion-icon name="chevron-down-outline" size="medium" /></a>
     </header>
     <div class="ca-modal-view-center">
       <slot></slot>
@@ -114,6 +114,6 @@ header ion-icon {
 .btn-back {
   display: block;
   height: min-content;
-  margin: 0 0.5em;
+  margin: 0 0.5em 0 auto;
 }
 </style>

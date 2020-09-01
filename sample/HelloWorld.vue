@@ -283,7 +283,9 @@ export default Vue.extend({
             name: 'airplane',
           },
         },
-        fixed: false,
+        component: {
+          template: `<div class="custommodal"><h1>あほおいえうりえ</h1><button @click="closeCustom">とじる</button></div>`,
+        },
       });
     },
     openInput() {
@@ -421,7 +423,6 @@ li {
   padding: 40px;
 }
 .custommodal {
-  border: solid 1px #ff0000;
   width: 500px;
   padding: 30px;
 }
@@ -431,5 +432,6 @@ li {
   box-shadow: 0 0 1px 1px rgba(#333, 0.2);
   width: 500px;
   height: 600px;
+  overflow: hidden;
 }
 </style>
