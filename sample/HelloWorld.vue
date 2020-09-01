@@ -276,17 +276,11 @@ export default Vue.extend({
       const $t = document.querySelector('.previewblock') || null;
       CaModalPG.openView({
         modalTitle: 'モーダルのビューです',
-        confirmText: 'なんだかしらんけどよろしいですか？なんだかしらんけどよろしいですか？',
-        btnLabel: 'さくじょ',
-        type: 'danger',
-        onConfirm: () => {
-          console.log('いえす');
-        },
         target: $t,
         titleIcon: {
           tag: 'ion-icon',
           attrs: {
-            name: 'heart',
+            name: 'airplane',
           },
         },
         fixed: false,

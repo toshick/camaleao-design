@@ -65,6 +65,9 @@ export default Vue.extend({
   },
 
   methods: {
+    close() {
+      this.onClose();
+    },
     onClose() {
       this.$emit('close');
     },

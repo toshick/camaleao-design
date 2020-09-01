@@ -48,7 +48,7 @@ export const open = (params: OpenParams) => {
     if (!params.titleIcon) return null;
     const { tag, attrs } = params.titleIcon;
     return h(tag, {
-      attrs: { ...attrs, class: 'ca-modal-body-titleicon' },
+      attrs: { ...attrs, class: 'ca-modal-titleicon' },
     });
   }
 

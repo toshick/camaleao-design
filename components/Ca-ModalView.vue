@@ -6,15 +6,10 @@
         <slot name="titleicon" class="titleicon"></slot>
         {{ title }}
       </h1>
-      <!-- <a class="icon icon-cross btn-close-header" @click="onClickClose"></a> -->
     </header>
     <div class="ca-modal-view-center">
       <slot></slot>
     </div>
-    <!-- <footer>
-      <CaButton width="S" @click="onClickClose" type="positive" :disabled="true">OK</CaButton>
-      <CaButton width="S" @click="onClickClose">キャンセル</CaButton>
-    </footer> -->
   </div>
 </template>
 <!------------------------------->
@@ -100,16 +95,19 @@ header {
   color: var(--modalview-header-color);
   line-height: 1;
 }
+
 header h1 {
   display: flex;
   align-items: center;
   font-size: var(--modalview-header-fontsize);
   font-weight: normal;
 }
+
 header ion-icon {
   color: inherit;
 }
-.ca-modal-view-titleicon {
+
+.ca-modal-titleicon {
   margin-right: 0.2em;
 }
 
@@ -117,17 +115,5 @@ header ion-icon {
   display: block;
   height: min-content;
   margin: 0 0.5em;
-}
-footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: var(--modalview-footer-padding);
-  background-color: var(--modalview-footer-bgcolor);
-  box-shadow: var(--modalview-footer-shadow);
-}
-footer button {
-  margin: 0 10px;
 }
 </style>

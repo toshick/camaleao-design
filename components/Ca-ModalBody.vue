@@ -126,7 +126,7 @@ header h1 {
 header h1 ion-icon {
   color: inherit;
 }
-.ca-modal-body-titleicon {
+.ca-modal-titleicon {
   margin-right: 0.2em;
 }
 
