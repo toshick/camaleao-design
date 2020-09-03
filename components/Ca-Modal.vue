@@ -31,12 +31,22 @@ export default Vue.extend({
       type: String,
       default: 'fade',
     },
+    klass: {
+      type: String || (Array as PropType<String[]>),
+      default: null,
+    },
   },
   computed: {
     myClass(): any {
-      const klass: any = { 'ca-modal': true, view: true };
+      const klass: any = { 'ca-modal': true };
       if (this.fixed) {
         klass['-fixed'] = true;
+      }
+      if (this.klass) {
+        const k = Array.isArray(this.klass) ? this.klass : [this.klass];
+        for (const key of k) {
+          klass[key] = true;
+        }
       }
       return klass;
     },

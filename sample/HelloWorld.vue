@@ -286,6 +286,7 @@ export default Vue.extend({
         component: {
           template: `<div class="custommodal"><h1>あほおいえうりえ</h1><button @click="closeCustom">とじる</button></div>`,
         },
+        klass: ['rrrr', 'sss'],
       });
     },
     openInput() {

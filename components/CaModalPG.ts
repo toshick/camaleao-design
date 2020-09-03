@@ -24,6 +24,7 @@ export type OpenParams = {
       class?: string;
     };
   };
+  klass?: string | string[];
 };
 
 export const open = (params: OpenParams) => {
@@ -72,6 +73,7 @@ export const open = (params: OpenParams) => {
           easyClose: p.easyClose,
           fixed: p.fixed,
           transition: p.transition,
+          klass: p.klass,
         },
         scopedSlots: {
           default: () => {
@@ -138,6 +140,7 @@ const openWithView = (params: OpenParamsDialog) => {
     transition: params.transition,
     removeDuration: params.removeDuration,
     parentComponent: params.parentComponent || CaModalBody,
+    klass: params.klass,
   });
 };
 
