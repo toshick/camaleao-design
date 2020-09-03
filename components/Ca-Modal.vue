@@ -34,7 +34,7 @@ export default Vue.extend({
   },
   computed: {
     myClass(): any {
-      const klass: any = { 'ca-modal': true };
+      const klass: any = { 'ca-modal': true, view: true };
       if (this.fixed) {
         klass['-fixed'] = true;
       }

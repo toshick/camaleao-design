@@ -280,7 +280,7 @@ export default Vue.extend({
         titleIcon: {
           tag: 'ion-icon',
           attrs: {
-            name: 'airplane',
+            name: 'moon',
           },
         },
         component: {
