@@ -70,6 +70,14 @@
       </article>
 
       <article>
+        <p class="heading">CaTextarea</p>
+
+        <div class="ca-inputline">
+          <CaTextarea name="kanso" title="感想を述べよ" rules="required" v-model="dummyValText" placeholder="帰ってきたジョバンニ"></CaTextarea>
+        </div>
+      </article>
+
+      <article>
         <p class="heading">CaInput</p>
 
         <div class="ca-inputline">
@@ -165,6 +173,7 @@ import { Input, FormReturn } from '../components/type';
 
 type State = {
   dummyVal: string;
+  dummyValText: string;
   dummyCheck01: boolean;
   dummyCheck02: boolean;
   dummyRadio01: string;
@@ -205,6 +214,7 @@ export default Vue.extend({
   data(): State {
     return {
       dummyVal: '',
+      dummyValText: '',
       dummyCheck01: false,
       dummyCheck02: false,
       dummyRadio01: '',

@@ -2,6 +2,7 @@ import Vue from 'vue';
 
 import CaButton from '../components/Ca-Button.vue';
 import CaInput from '../components/Ca-Input.vue';
+import CaTextarea from '../components/Ca-Textarea.vue';
 import CaInputButton from '../components/Ca-InputButton.vue';
 import CaTag from '../components/Ca-Tag.vue';
 import CaCheckBox from '../components/Ca-CheckBox.vue';
@@ -21,6 +22,7 @@ import CaSpinner from '../components/Ca-Spinner.vue';
 Vue.component('CaSpinner', CaSpinner);
 Vue.component('CaButton', CaButton);
 Vue.component('CaInput', CaInput);
+Vue.component('CaTextarea', CaTextarea);
 Vue.component('CaInputButton', CaInputButton);
 Vue.component('CaTag', CaTag);
 Vue.component('CaCheckBox', CaCheckBox);

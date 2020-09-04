@@ -40,6 +40,14 @@
   --form-input-width-large: 300px;
 
   /* ------------------ */
+  /* textarea */
+  /* ------------------ */
+  --form-textarea-width-small: 200px;
+  --form-textarea-width-normal: 400px;
+  --form-textarea-width-medium: 600px;
+  --form-textarea-width-large: 100%;
+
+  /* ------------------ */
   /* tag */
   /* ------------------ */
   --tag-padding-small: 4px 8px;
