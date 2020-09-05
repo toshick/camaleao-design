@@ -164,6 +164,7 @@
   --modalview-header-bgcolor: #ddd;
   --modalview-header-color: #fff;
   --modalview-header-fontsize: 16px;
+  --modalview-header-action-fontsize: 14px;
   --modalview-header-padding: 0 10px;
 
   --modalview-bg-color: #eee;

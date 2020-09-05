@@ -84,5 +84,6 @@ export default Vue.extend({
   display: block;
   height: min-content;
   margin-left: 1em;
+  font-size: var(--modalview-header-action-fontsize);
 }
 </style>
