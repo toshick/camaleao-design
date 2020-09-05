@@ -170,4 +170,6 @@
   --modalview-bg-color: #eee;
   --modalview-radius: 0;
   --modalview-border: none;
+
+  --modalview-body-padding: 20px;
 }
