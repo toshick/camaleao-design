@@ -1,6 +1,6 @@
 <template>
   <header :class="myClass">
-    <a class="btn-back" @click.stop.prevent="close"><ion-icon name="chevron-down-outline" size="medium" /></a>
+    <a class="btn-back" @click.stop.prevent="close"><ion-icon :name="backIcon" size="medium" /></a>
     <h1>
       {{ title }}
     </h1>
@@ -22,11 +22,21 @@ export default Vue.extend({
       type: String,
       default: '',
     },
+    drilldown: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     myClass(): any {
       const klass: any = { 'ca-modalview-header': true };
       return klass;
+    },
+    backIcon(): string {
+      if (this.drilldown) {
+        return 'chevron-back-outline';
+      }
+      return 'chevron-down-outline';
     },
   },
   data(): State {

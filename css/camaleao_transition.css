@@ -30,3 +30,20 @@
   transform: translateY(150px);
   transition: all 0.3s ease-in;
 }
+
+/* -------------------- 
+   drilldown
+  ---------------------*/
+.drilldown-enter-active,
+.drilldown-leave-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.4s ease;
+}
+
+.drilldown-enter,
+.drilldown-leave-to {
+  opacity: 0;
+  transform: translateX(150px);
+  transition: all 0.3s ease-in;
+}

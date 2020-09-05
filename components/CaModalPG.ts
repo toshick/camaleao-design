@@ -149,8 +149,13 @@ export const openView = (params: OpenParamsDialog) => {
   return openWithView({ ...params, parentComponent: CaModalView, transition: 'modal', removeDuration: 600 });
 };
 
+export const drillDown = (params: OpenParamsDialog) => {
+  return openWithView({ ...params, parentComponent: CaModalView, transition: 'drilldown', removeDuration: 600 });
+};
+
 export default {
   open,
   openDialog,
   openView,
+  drillDown,
 };

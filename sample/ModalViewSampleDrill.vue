@@ -1,7 +1,7 @@
 <template>
   <ValidationObserver v-slot="{ invalid }" class="form ca-modal-scroll-wrapper">
     <CaModalScroll>
-      <CaModalViewHeader title="タイトルである" @close="close">
+      <CaModalViewHeader title="ドリルダウンです" :drilldown="true" @close="close">
         <!-- icons -->
         <div class="ca-modalview-header-icons">
           <a class="btn-action" @click.stop.prevent="() => onClickIcon(i)" v-for="i in icons" :key="i"><ion-icon :name="i" size="medium" /></a>
@@ -35,7 +35,7 @@ type State = {
 };
 
 export default Vue.extend({
-  name: 'ModalViewSample',
+  name: 'ModalViewSampleDrill',
   components: { ValidationObserver },
   model: {
     prop: 'isOpen',

@@ -3,6 +3,7 @@
     <section>
       <a class="icon icon-cross btn-close-top"></a>
       <article class="modal-user">
+        <CaButton @click="drillDown">drillDown</CaButton>
         <CaButton @click="openModalView">openModalView</CaButton>
         <CaButton @click="openInput">openInput</CaButton>
         <CaButton @click="openConfirm">openDialog</CaButton>
@@ -170,6 +171,7 @@ import UserInfoForm from '../sample/UserInfoForm.vue';
 import ModalValidation from '../sample/ModalValidation.vue';
 import ModalContSample from '../sample/ModalContSample.vue';
 import ModalViewSample from '../sample/ModalViewSample.vue';
+import ModalViewSampleDrill from '../sample/ModalViewSampleDrill.vue';
 import { Input, FormReturn } from '../components/type';
 
 type State = {
@@ -282,6 +284,14 @@ export default Vue.extend({
           this.loading1 = false;
         }
       }, 3000);
+    },
+    drillDown() {
+      const $t = document.querySelector('.previewblock') || null;
+      CaModalPG.drillDown({
+        target: $t,
+        component: ModalViewSampleDrill,
+        klass: ['rrrr', 'sss'],
+      });
     },
     openModalView() {
       const $t = document.querySelector('.previewblock') || null;
