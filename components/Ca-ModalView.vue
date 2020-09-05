@@ -31,17 +31,14 @@ export default Vue.extend({
   },
   methods: {
     onClickClose() {
-      console.log('CaModalViewからのcloseイベント');
       this.$emit('close');
     },
     setupCloseEvent(flg: boolean) {
       this.$children.forEach((child: any) => {
-        if (child.onClickIcon) {
-          if (flg) {
-            child.$on('close', this.onClickClose);
-          } else {
-            child.$off('close', this.onClickClose);
-          }
+        if (flg) {
+          child.$on('close', this.onClickClose);
+        } else {
+          child.$off('close', this.onClickClose);
         }
       });
     },
