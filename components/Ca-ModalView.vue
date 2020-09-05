@@ -7,8 +7,8 @@
         {{ title }}
       </h1>
 
-      <div class="icons">
-        <a class="btn-action" @click.stop.prevent="() => onClickIcon(i)" v-for="i in icons" :key="i"><ion-icon :name="i" size="medium" /></a>
+      <div class="icons" v-if="myIcons.length > 0">
+        <a class="btn-action" @click.stop.prevent="() => onClickIcon(i)" v-for="i in myIcons" :key="i"><ion-icon :name="i" size="medium" /></a>
       </div>
     </header>
     <div class="ca-modal-view-center">
@@ -24,7 +24,7 @@ import Vue, { PropType } from 'vue';
 import CaButton from './Ca-Button.vue';
 
 type State = {
-  icons: string[];
+  iconsList: string[];
 };
 
 export default Vue.extend({
@@ -34,7 +34,7 @@ export default Vue.extend({
   },
   data(): State {
     return {
-      icons: ['nutrition-outline', 'mail-open-outline'],
+      iconsList: [],
     };
   },
   props: {
@@ -42,12 +42,21 @@ export default Vue.extend({
       default: '',
       type: String,
     },
+    icons: {
+      type: Array as PropType<string[]>,
+      default: () => [],
+    },
   },
   computed: {
     myClass(): any {
       const klass: any = { 'ca-modal-view': true };
-
       return klass;
+    },
+    myIcons(): string[] {
+      if (this.iconsList.length > 0) {
+        return this.iconsList;
+      }
+      return this.icons;
     },
   },
   mounted() {
@@ -55,8 +64,7 @@ export default Vue.extend({
   },
   methods: {
     setIcon(icons: string[]) {
-      console.log('setIcon', icons);
-      this.icons = icons;
+      this.iconsList = icons;
     },
     onClickClose() {
       this.$emit('close');
