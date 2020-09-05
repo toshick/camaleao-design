@@ -79,6 +79,7 @@ export default Vue.extend({
       this.onClose();
     },
     onClose() {
+      console.log('CaModalからのcloseイベント');
       this.$emit('close');
     },
     setCloseKeyListener(flg: boolean) {

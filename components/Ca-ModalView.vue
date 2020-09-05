@@ -1,8 +1,6 @@
 <template>
   <div :class="myClass" data-e2e="ca-modalview">
-    <div class="ca-modalview-center">
-      <slot></slot>
-    </div>
+    <slot></slot>
   </div>
 </template>
 <!------------------------------->
@@ -31,6 +29,7 @@ export default Vue.extend({
   },
   methods: {
     onClickClose() {
+      console.log('CaModalViewからのcloseイベント');
       this.$emit('close');
     },
     setupCloseEvent(flg: boolean) {
@@ -56,20 +55,12 @@ export default Vue.extend({
 <style scoped>
 .ca-modalview {
   position: relative;
-  display: grid;
-  grid-template-rows: min-content auto min-content;
-
-  box-shadow: var(--form-shadow);
-  overflow: hidden;
 
   width: 100%;
   height: 100%;
+
   background-color: var(--modalview-bg-color);
   border-radius: var(--modalview-radius);
   border: var(--modalview-border);
-}
-
-.ca-modalview-center {
-  overflow: scroll;
 }
 </style>

@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+/* -------------------- 
+ inputline
+ ---------------------*/
+.ca-inputline {
+  display: flex;
+  align-items: flex-start;
+  padding-bottom: 20px;
+}
+
+.ca-inputline:last-child {
+  padding-bottom: 0;
+}
+
+.ca-inputline>* {
+  margin-right: 14px;
+  margin-bottom: 10px;
+}

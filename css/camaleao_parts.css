@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+/* -------------------- 
+ textlink
+ ---------------------*/
+.textlink {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  font-size: var(--fontsize-medium);
+  line-height: 1;
+
+  /* color: var(--chat-color-dark);
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 6px 20px; */
+}
+
+.textlink ion-icon {
+  color: inherit;
+}

@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+
+/* -------------------- 
+ editablelabel
+ ---------------------*/
+.ca-input-editablelabel {
+  border: none;
+  color: var(--chat-color-dark);
+  background-color: transparent;
+}
+
+/* -------------------- 
+ required, passed
+ ---------------------*/
+.formmark-required {
+  font-size: 10px;
+  color: var(--danger);
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  text-align: right;
+}
+
+.formmark-required::after {
+  content: '＊';
+  display: block;
+
+  /* 日本語 */
+  /* content: '必須';
+  white-space: nowrap;
+  background-color: #ff4488;
+  color: #fff;
+  padding: 2px 4px;
+  font-size: 9px;
+  border-radius: 3px; */
+}
+
+.formmark-passed {
+  display: block;
+  transform: rotate(45deg);
+  height: 10px;
+  width: 5px;
+  border-bottom: 2px solid var(--ok);
+  border-right: 2px solid var(--ok);
+}
