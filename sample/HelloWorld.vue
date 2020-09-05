@@ -169,6 +169,7 @@ import CaModalPG from '../components/CaModalPG';
 import UserInfoForm from '../sample/UserInfoForm.vue';
 import ModalValidation from '../sample/ModalValidation.vue';
 import ModalContSample from '../sample/ModalContSample.vue';
+import ModalViewSample from '../sample/ModalViewSample.vue';
 import { Input, FormReturn } from '../components/type';
 
 type State = {
@@ -293,9 +294,7 @@ export default Vue.extend({
             name: 'moon',
           },
         },
-        component: {
-          template: `<div class="custommodal"><h1>あほおいえうりえ</h1><button @click="closeCustom">とじる</button></div>`,
-        },
+        component: ModalViewSample,
         klass: ['rrrr', 'sss'],
       });
     },
@@ -441,7 +440,7 @@ li {
   position: relative;
 
   box-shadow: 0 0 1px 1px rgba(#333, 0.2);
-  width: 500px;
+  width: 375px;
   height: 600px;
   overflow: hidden;
 }

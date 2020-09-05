@@ -24,7 +24,7 @@ export type OpenParams = {
       class?: string;
     };
   };
-  klass?: string | string[];
+  klass?: string[];
 };
 
 export const open = (params: OpenParams) => {
@@ -73,7 +73,7 @@ export const open = (params: OpenParams) => {
           easyClose: p.easyClose,
           fixed: p.fixed,
           transition: p.transition,
-          klass: p.klass,
+          additionalKlass: p.klass,
         },
         scopedSlots: {
           default: () => {

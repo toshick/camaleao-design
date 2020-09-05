@@ -31,9 +31,9 @@ export default Vue.extend({
       type: String,
       default: 'fade',
     },
-    klass: {
-      type: String || (Array as PropType<String[]>),
-      default: null,
+    additionalKlass: {
+      type: Array as PropType<string[]>,
+      default: () => [],
     },
   },
   computed: {
@@ -42,9 +42,9 @@ export default Vue.extend({
       if (this.fixed) {
         klass['-fixed'] = true;
       }
-      if (this.klass) {
-        const k = Array.isArray(this.klass) ? this.klass : [this.klass];
-        for (const key of k) {
+      if (this.additionalKlass) {
+        const ary: string[] = this.additionalKlass;
+        for (const key of ary) {
           klass[key] = true;
         }
       }
