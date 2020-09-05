@@ -1,17 +1,6 @@
 <template>
   <div :class="myClass" data-e2e="ca-modalview">
-    <header>
-      <a class="btn-back" @click.stop.prevent="onClickClose"><ion-icon name="chevron-down-outline" size="medium" /></a>
-      <h1 v-if="title">
-        <slot name="titleicon" class="titleicon"></slot>
-        {{ title }}
-      </h1>
-
-      <div class="icons" v-if="myIcons.length > 0">
-        <a class="btn-action" @click.stop.prevent="() => onClickIcon(i)" v-for="i in myIcons" :key="i"><ion-icon :name="i" size="medium" /></a>
-      </div>
-    </header>
-    <div class="ca-modal-view-center">
+    <div class="ca-modalview-center">
       <slot></slot>
     </div>
   </div>
@@ -21,82 +10,35 @@
 <!------------------------------->
 <script lang="ts">
 import Vue, { PropType } from 'vue';
-import CaButton from './Ca-Button.vue';
 
-type State = {
-  iconsList: string[];
-};
+type State = {};
 
 export default Vue.extend({
   name: 'CaModalView',
-  components: {
-    CaButton,
-  },
+  components: {},
   data(): State {
-    return {
-      iconsList: [],
-    };
+    return {};
   },
-  props: {
-    title: {
-      default: '',
-      type: String,
-    },
-    icons: {
-      type: Array as PropType<string[]>,
-      default: () => [],
-    },
-  },
+  props: {},
   computed: {
     myClass(): any {
-      const klass: any = { 'ca-modal-view': true };
+      const klass: any = { 'ca-modalview': true };
       return klass;
-    },
-    myIcons(): string[] {
-      if (this.iconsList.length > 0) {
-        return this.iconsList;
-      }
-      return this.icons;
     },
   },
   mounted() {
-    this.setupIconEvent(true);
+    this.setupCloseEvent(true);
   },
   methods: {
-    setIcon(icons: string[]) {
-      this.iconsList = icons;
-    },
     onClickClose() {
       this.$emit('close');
     },
-    onClickIcon(icon: string) {
-      this.$children.forEach((child: any) => {
-        if (child.onClickIcon) {
-          child.onClickIcon(icon);
-        }
-      });
-    },
-    setWindowClick(flg: boolean) {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('click', this.windowClick);
-        if (flg) {
-          window.addEventListener('click', this.windowClick);
-        }
-      }
-    },
-    windowClick(e: MouseEvent) {
-      if (!this.$el.contains(e.target as Element)) {
-        this.onClickClose();
-      }
-    },
-    setupIconEvent(flg: boolean) {
+    setupCloseEvent(flg: boolean) {
       this.$children.forEach((child: any) => {
         if (child.onClickIcon) {
           if (flg) {
-            child.$on('setIcon', this.setIcon);
             child.$on('close', this.onClickClose);
           } else {
-            child.$off('setIcon', this.setIcon);
             child.$off('close', this.onClickClose);
           }
         }
@@ -104,8 +46,7 @@ export default Vue.extend({
     },
   },
   beforeDestroy() {
-    this.setWindowClick(false);
-    this.setupIconEvent(false);
+    this.setupCloseEvent(false);
   },
 });
 </script>
@@ -113,7 +54,7 @@ export default Vue.extend({
 
 <!------------------------------->
 <style scoped>
-.ca-modal-view {
+.ca-modalview {
   position: relative;
   display: grid;
   grid-template-rows: min-content auto min-content;
@@ -128,48 +69,7 @@ export default Vue.extend({
   border: var(--modalview-border);
 }
 
-.ca-modal-view-center {
+.ca-modalview-center {
   overflow: scroll;
-}
-
-header {
-  display: flex;
-  align-items: center;
-  background-color: var(--modalview-header-bgcolor);
-  padding: var(--modalview-header-padding);
-  box-shadow: var(--modalview-header-shadow);
-  height: var(--modalview-header-height);
-  background-image: var(--modalview-header-bg-img);
-  color: var(--modalview-header-color);
-  line-height: 1;
-}
-
-header h1 {
-  display: flex;
-  align-items: center;
-  font-size: var(--modalview-header-fontsize);
-  font-weight: normal;
-}
-
-header ion-icon {
-  color: inherit;
-}
-
-.ca-modal-titleicon {
-  margin-right: 0.2em;
-}
-
-.btn-back {
-  margin: 0 0.5em 0 0;
-}
-.btn-action {
-  display: block;
-  height: min-content;
-  margin-left: 0.5em;
-}
-.icons {
-  display: inline-flex;
-  align-items: center;
-  margin-left: auto;
 }
 </style>
