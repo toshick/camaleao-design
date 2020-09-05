@@ -286,14 +286,7 @@ export default Vue.extend({
     openModalView() {
       const $t = document.querySelector('.previewblock') || null;
       CaModalPG.openView({
-        modalTitle: 'モーダルのビューです',
         target: $t,
-        titleIcon: {
-          tag: 'ion-icon',
-          attrs: {
-            name: 'moon',
-          },
-        },
         component: ModalViewSample,
         klass: ['rrrr', 'sss'],
       });

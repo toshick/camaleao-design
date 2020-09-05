@@ -25,7 +25,9 @@ export default Vue.extend({
     },
   },
   mounted() {
-    this.setupCloseEvent(true);
+    this.$nextTick(() => {
+      this.setupCloseEvent(true);
+    });
   },
   methods: {
     onClickClose() {
