@@ -72,4 +72,17 @@ export default Vue.extend({
 .btn-back {
   margin: 0 0.5em 0 0;
 }
+
+.ca-modalview-header-icons {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 0.5em;
+}
+
+.ca-modalview-header-icons a {
+  display: block;
+  height: min-content;
+  margin-left: 1em;
+}
 </style>

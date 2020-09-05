@@ -296,7 +296,6 @@ export default Vue.extend({
         },
         component: ModalViewSample,
         klass: ['rrrr', 'sss'],
-        headerIcons: ['shirt-outline'],
       });
     },
     openInput() {

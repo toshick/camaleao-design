@@ -69,17 +69,4 @@ export default Vue.extend({
 .btn-action[disabled] {
   opacity: 0.4;
 }
-
-.ca-modalview-header-icons {
-  display: inline-flex;
-  align-items: center;
-  margin-left: auto;
-  margin-right: 0.5em;
-}
-
-.ca-modalview-header-icons a {
-  display: block;
-  height: min-content;
-  margin-left: 1em;
-}
 </style>

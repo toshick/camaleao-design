@@ -25,7 +25,6 @@ export type OpenParams = {
     };
   };
   klass?: string[];
-  headerIcons?: string[];
 };
 
 export const open = (params: OpenParams) => {
@@ -33,7 +32,6 @@ export const open = (params: OpenParams) => {
   const $el = document.createElement('article');
   const $body = params.target ? params.target : document.body;
   const modalCompo = params.parentComponent;
-  const headerIcons = params.headerIcons || [];
 
   if ($body) {
     $body.appendChild($el);
@@ -82,7 +80,6 @@ export const open = (params: OpenParams) => {
                 props: {
                   fit: true,
                   title: p.modalTitle || '',
-                  icons: headerIcons,
                 },
                 scopedSlots: {
                   titleicon: () => getTitleIcon(h),
@@ -120,7 +117,6 @@ export type OpenParamsDialog = OpenParams & {
   btnLabel?: string;
   onConfirm?: () => void;
   inputs?: Input[];
-  headerIcons?: string[];
 };
 
 const openWithView = (params: OpenParamsDialog) => {
@@ -142,7 +138,6 @@ const openWithView = (params: OpenParamsDialog) => {
     removeDuration: params.removeDuration,
     parentComponent: params.parentComponent || CaModalBody,
     klass: params.klass,
-    headerIcons: params.headerIcons,
   });
 };
 
