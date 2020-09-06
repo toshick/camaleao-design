@@ -11,10 +11,16 @@ export type OpenParams = {
   component?: any;
   easyClose?: boolean;
   transition?: string;
-  fixed?: boolean;
+  // fixed?: boolean;
   removeDuration?: number;
   modalTitle?: string;
-  compoParams?: object;
+  compoParams?: {
+    confirmText?: string;
+    onConfirm?: (p: any) => void;
+    btnLabel?: string;
+    inputs?: Input[];
+    type?: 'danger' | string;
+  };
   target?: Element | null;
   titleIcon?: {
     tag: string;
@@ -28,9 +34,14 @@ export type OpenParams = {
 };
 
 export const open = (params: OpenParams) => {
-  const p = { ...params, easyClose: params.easyClose !== false, removeDuration: params.removeDuration || 200, fixed: params.fixed !== false };
+  const p = { ...params, easyClose: params.easyClose !== false, removeDuration: params.removeDuration || 200, fixed: true };
   const $el = document.createElement('article');
-  const $body = params.target ? params.target : document.body;
+  let $body: Element = document.body;
+  if (params.target) {
+    $body = params.target;
+    p.fixed = false;
+  }
+
   const modalCompo = params.parentComponent;
 
   if ($body) {
@@ -110,52 +121,16 @@ export const open = (params: OpenParams) => {
   return vm;
 };
 
-export type OpenParamsDialog = OpenParams & {
-  confirmText?: string;
-  component?: any;
-  type?: 'danger' | string;
-  btnLabel?: string;
-  onConfirm?: () => void;
-  inputs?: Input[];
+export const openDialog = (params: OpenParams) => {
+  return open({ ...params, parentComponent: CaModalBody, component: ModalInput, transition: 'fade' });
 };
 
-export type OpenParamsView = OpenParams & {
-  confirmText?: string;
-  component?: any;
-  onConfirm?: () => void;
+export const openView = (params: OpenParams) => {
+  return open({ ...params, parentComponent: CaModalView, transition: 'modal', removeDuration: 600 });
 };
 
-const openWithView = (params: OpenParamsDialog) => {
-  return open({
-    compoParams: {
-      confirmText: params.confirmText || '',
-      onConfirm: params.onConfirm || null,
-      btnLabel: params.btnLabel,
-      inputs: params.inputs,
-    },
-    component: params.component,
-    modalTitle: params.modalTitle || '',
-    target: params.target || null,
-    titleIcon: params.titleIcon,
-    easyClose: params.easyClose || false,
-    fixed: params.fixed || false,
-    transition: params.transition,
-    removeDuration: params.removeDuration,
-    parentComponent: params.parentComponent || CaModalBody,
-    klass: params.klass,
-  });
-};
-
-export const openDialog = (params: OpenParamsDialog) => {
-  return openWithView({ ...params, parentComponent: CaModalBody, component: ModalInput, transition: 'fade' });
-};
-
-export const openView = (params: OpenParamsView) => {
-  return openWithView({ ...params, parentComponent: CaModalView, transition: 'modal', removeDuration: 600 });
-};
-
-export const drillDown = (params: OpenParamsView) => {
-  return openWithView({ ...params, parentComponent: CaModalView, transition: 'drilldown', removeDuration: 600 });
+export const drillDown = (params: OpenParams) => {
+  return open({ ...params, parentComponent: CaModalView, transition: 'drilldown', removeDuration: 600 });
 };
 
 export default {

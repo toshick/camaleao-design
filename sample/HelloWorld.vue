@@ -317,22 +317,23 @@ export default Vue.extend({
     openInput() {
       const inputs: Input[] = [];
       inputs.push({
-        name: 'eventname',
-        value: '',
-        // title: 'イベント名',
+        name: 'eventname2',
+        value: 'いべ',
         placeholder: 'イベント名',
         width: 'M',
         rules: 'required',
+      });
+      inputs.push({
+        name: 'username',
+        value: 'ねむ',
+        placeholder: 'ユーザ名',
+        width: 'S',
+        rules: '',
       });
 
       const $t = document.querySelector('.previewblock') || null;
       CaModalPG.openDialog({
         modalTitle: 'なんか入力しよーネ',
-        confirmText: 'イベント名を決定しよう',
-        btnLabel: '確定',
-        onConfirm: (res: FormReturn[]) => {
-          console.log('いえす', res);
-        },
         target: $t,
         titleIcon: {
           tag: 'ion-icon',
@@ -340,20 +341,21 @@ export default Vue.extend({
             name: 'heart',
           },
         },
-        inputs,
         fixed: false,
+        compoParams: {
+          confirmText: 'イベント名を決定しよう',
+          onConfirm: (res: FormReturn[]) => {
+            console.log('いえす', res);
+          },
+          btnLabel: '確定',
+          inputs,
+        },
       });
     },
     openConfirm() {
       const $t = document.querySelector('.previewblock') || null;
       CaModalPG.openDialog({
         modalTitle: '確認しますヨ',
-        confirmText: 'なんだかしらんけどよろしいですか？なんだかしらんけどよろしいですか？',
-        btnLabel: 'さくじょ',
-        type: 'danger',
-        onConfirm: () => {
-          console.log('いえす');
-        },
         target: $t,
         titleIcon: {
           tag: 'ion-icon',
@@ -362,6 +364,14 @@ export default Vue.extend({
           },
         },
         fixed: false,
+        compoParams: {
+          confirmText: 'なんだかしらんけどよろしいですか？なんだかしらんけどよろしいですか？',
+          btnLabel: 'さくじょ',
+          onConfirm: () => {
+            console.log('いえす');
+          },
+          type: 'danger',
+        },
       });
     },
     openCustom() {

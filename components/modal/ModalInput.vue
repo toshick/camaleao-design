@@ -6,7 +6,7 @@
       <section v-if="inputs.length > 0">
         <ul>
           <li v-for="i in inputs" :key="i.name">
-            <CaInput :name="i.name" :title="i.title" :rules="i.rules" v-model="i.val" :placeholder="i.placeholder" :width="i.width" :size="i.size"></CaInput>
+            <CaInput :name="i.name" :title="i.title" :rules="i.rules" v-model="i.value" @input="(v) => onInput(i.name, v)" :placeholder="i.placeholder" :width="i.width" :size="i.size"></CaInput>
           </li>
         </ul>
       </section>
@@ -25,7 +25,7 @@ import { ValidationObserver } from 'vee-validate';
 import { Input, FormReturn } from '../type';
 
 type State = {
-  val: string;
+  formVal: { [key: string]: string };
 };
 
 export default Vue.extend({
@@ -67,10 +67,14 @@ export default Vue.extend({
   },
   data(): State {
     return {
-      val: '',
+      formVal: {},
     };
   },
-  mounted() {},
+  mounted() {
+    this.inputs.forEach((d: Input) => {
+      this.formVal[d.name] = d.value;
+    });
+  },
   methods: {
     close() {
       const p: any = this.$parent;
@@ -81,12 +85,13 @@ export default Vue.extend({
     },
     async submit() {
       if (this.onConfirm) {
-        const data: FormReturn[] = this.inputs.map((d: Input) => {
-          return { name: d.name, value: d.value };
-        });
-        this.onConfirm(data);
+        this.onConfirm({ ...this.formVal });
       }
       this.close();
+    },
+    onInput(name: string, val: string) {
+      console.log('onInput', name, val);
+      this.formVal[name] = val;
     },
   },
 });

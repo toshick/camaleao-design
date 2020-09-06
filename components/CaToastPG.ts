@@ -70,37 +70,6 @@ export const open = (params: OpenParamsToast) => {
   return vm;
 };
 
-// export type OpenParamsDialog = OpenParams & {
-//   confirmText?: string;
-//   component?: any;
-//   type?: 'danger' | string;
-//   btnLabel?: string;
-//   onConfirm?: () => void;
-//   inputs?: Input[];
-// };
-
-// const openWithView = (params: OpenParamsDialog) => {
-//   return open({
-//     compoParams: {
-//       confirmText: params.confirmText || '',
-//       onConfirm: params.onConfirm || null,
-//       type: params.type,
-//       btnLabel: params.btnLabel,
-//       inputs: params.inputs,
-//     },
-//     component: params.component,
-//     modalTitle: params.modalTitle || '',
-//     target: params.target || null,
-//     titleIcon: params.titleIcon,
-//     easyClose: params.easyClose || false,
-//     fixed: params.fixed || false,
-//     transition: params.transition,
-//     removeDuration: params.removeDuration,
-//     parentComponent: params.parentComponent || CaModalBody,
-//     klass: params.klass,
-//   });
-// };
-
 export default {
   open,
 };
