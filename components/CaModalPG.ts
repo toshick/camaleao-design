@@ -119,6 +119,12 @@ export type OpenParamsDialog = OpenParams & {
   inputs?: Input[];
 };
 
+export type OpenParamsView = OpenParams & {
+  confirmText?: string;
+  component?: any;
+  onConfirm?: () => void;
+};
+
 const openWithView = (params: OpenParamsDialog) => {
   return open({
     compoParams: {
@@ -145,11 +151,11 @@ export const openDialog = (params: OpenParamsDialog) => {
   return openWithView({ ...params, parentComponent: CaModalBody, component: ModalInput, transition: 'fade' });
 };
 
-export const openView = (params: OpenParamsDialog) => {
+export const openView = (params: OpenParamsView) => {
   return openWithView({ ...params, parentComponent: CaModalView, transition: 'modal', removeDuration: 600 });
 };
 
-export const drillDown = (params: OpenParamsDialog) => {
+export const drillDown = (params: OpenParamsView) => {
   return openWithView({ ...params, parentComponent: CaModalView, transition: 'drilldown', removeDuration: 600 });
 };
 

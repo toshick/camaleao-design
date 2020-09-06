@@ -119,7 +119,8 @@ export default Vue.extend({
   width: 100%;
   height: 100%;
 
-  background-color: var(--modal-bg);
+  background-color: var(--modal-bg-color);
+  background-image: var(--modal-bg-img);
 }
 .ca-modal.-fixed {
   position: fixed;

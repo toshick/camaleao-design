@@ -130,10 +130,11 @@
   --icon-size: 24px;
 
   /* ------------------ */
-  /* modal */
+  /* modal-bg */
   /* ------------------ */
-  --modal-bg: rgba(255, 255, 255, 0.9);
-  --modal-transition: all 0.2s ease 0s;
+  --modal-bg-color: rgba(255, 255, 255, 0.9);
+  --modal-bg-transition: all 0.2s ease 0s;
+  --modal-bg-img: url('../img/subtle-dark-vertical.png');
 
   /* ------------------ */
   /* modalbody */

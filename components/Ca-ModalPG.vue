@@ -95,7 +95,7 @@ export default Vue.extend({
   width: 100%;
   height: 100%;
 
-  background-color: var(--modal-bg);
-  transition: var(--modal-transition);
+  background-color: var(--modal-bg-color);
+  transition: var(--modal-bg-transition);
 }
 </style>
