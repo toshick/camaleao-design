@@ -130,7 +130,6 @@ const openWithView = (params: OpenParamsDialog) => {
     compoParams: {
       confirmText: params.confirmText || '',
       onConfirm: params.onConfirm || null,
-      type: params.type,
       btnLabel: params.btnLabel,
       inputs: params.inputs,
     },
