@@ -3,7 +3,7 @@ import CaToast from './Ca-Toast.vue';
 import { CreateElement } from 'vue/types/umd';
 import { Input } from './type';
 
-export type OpenParams = {
+export type OpenParamsToast = {
   text: string;
   icon?: string;
   duration?: number;
@@ -11,7 +11,7 @@ export type OpenParams = {
   klass?: string[];
 };
 
-export const open = (params: OpenParams) => {
+export const open = (params: OpenParamsToast) => {
   let $holder = document.querySelector('.toast-holder');
   if (!$holder) {
     $holder = document.createElement('div');
