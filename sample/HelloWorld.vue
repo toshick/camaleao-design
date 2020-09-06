@@ -3,6 +3,7 @@
     <section>
       <a class="icon icon-cross btn-close-top"></a>
       <article class="modal-user">
+        <CaButton @click="toast">toast</CaButton>
         <CaButton @click="drillDown">drillDown</CaButton>
         <CaButton @click="openModalView">openModalView</CaButton>
         <CaButton @click="openInput">openInput</CaButton>
@@ -166,6 +167,7 @@ import { CaPulldownItem } from '../components/Ca-Pulldown.vue';
 import { CaDrumrollItem } from '../components/Ca-Drumroll.vue';
 import CaButton from '../components/Ca-Button.vue';
 import CaModalPG from '../components/CaModalPG';
+import CaToastPG from '../components/CaToastPG';
 // sample
 import UserInfoForm from '../sample/UserInfoForm.vue';
 import ModalValidation from '../sample/ModalValidation.vue';
@@ -175,6 +177,7 @@ import ModalViewSampleDrill from '../sample/ModalViewSampleDrill.vue';
 import { Input, FormReturn } from '../components/type';
 
 type State = {
+  toastCount: number;
   dummyVal: string;
   dummyValText: string;
   dummyCheck01: boolean;
@@ -216,6 +219,7 @@ export default Vue.extend({
   },
   data(): State {
     return {
+      toastCount: 0,
       dummyVal: '',
       dummyValText: '',
       dummyCheck01: false,
@@ -284,6 +288,15 @@ export default Vue.extend({
           this.loading1 = false;
         }
       }, 3000);
+    },
+    toast() {
+      const $t = document.querySelector('.previewblock') || null;
+      CaToastPG.open({
+        target: $t,
+        klass: ['rrrr', 'sss'],
+        text: `トーストですトーストですトーストですトーストですトーストですトーストです${++this.toastCount}`,
+        // icon: 'skull',
+      });
     },
     drillDown() {
       const $t = document.querySelector('.previewblock') || null;

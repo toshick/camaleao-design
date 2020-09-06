@@ -21,6 +21,7 @@ import CaSwitch from '../components/Ca-Switch.vue';
 import CaDrumroll from '../components/Ca-Drumroll.vue';
 import CaBadge from '../components/Ca-Badge.vue';
 import CaSpinner from '../components/Ca-Spinner.vue';
+import CaToast from '../components/Ca-Toast.vue';
 
 Vue.component('CaSpinner', CaSpinner);
 Vue.component('CaButton', CaButton);
@@ -43,3 +44,4 @@ Vue.component('CaIcon', CaIcon);
 Vue.component('CaSwitch', CaSwitch);
 Vue.component('CaDrumroll', CaDrumroll);
 Vue.component('CaBadge', CaBadge);
+Vue.component('CaToast', CaToast);

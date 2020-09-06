@@ -8,17 +8,7 @@
 @import url("./camaleao_layout.css");
 @import url("./camaleao_parts.css");
 
-* {
-  box-sizing: border-box;
-}
 
-ul {
-  list-style: none;
-}
-
-a[disabled] {
-  pointer-events: none;
-}
 
 html.-clipped {
   overflow: hidden;

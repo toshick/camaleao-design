@@ -172,4 +172,15 @@
   --modalview-border: none;
 
   --modalview-body-padding: 20px;
+
+  /* ------------------ */
+  /* toast */
+  /* ------------------ */
+  --toast-radius: 16px;
+  --toast-bg-color: #999;
+  --toast-shadow: 0 0 2px 0px rgba(255, 255, 255, 0.9);
+  --toast-text-color: #eee;
+  --toast-padding: 6px 10px;
+  --toast-fontsize: 12px;
+  --toast-border: none;
 }

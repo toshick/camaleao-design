@@ -19,3 +19,14 @@
 .textlink ion-icon {
   color: inherit;
 }
+
+/* -------------------- 
+ toast
+ ---------------------*/
+.toast-holder {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  width: 100%;
+  z-index: 110;
+}

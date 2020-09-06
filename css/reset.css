@@ -58,10 +58,11 @@ picture {
 }
 
 /* Natural flow and rhythm in articles by default */
-article > * + * {
+/* article>*+* {
   margin-top: 1em;
 }
 
+*/
 /* Inherit fonts for inputs and buttons */
 input,
 button,
@@ -83,4 +84,14 @@ img:not([alt]) {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* toshick */
+
+ul {
+  list-style: none;
+}
+
+a[disabled] {
+  pointer-events: none;
 }
