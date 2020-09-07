@@ -72,13 +72,16 @@
   /* ------------------ */
   --button-padding: 0px 10px;
   --button-radius: 4px;
-  --button-border-color: solid 1px #ccc;
+  --button-border: solid 1px #ccc;
   --button-text-shadow: 0 0 1px rgba(30, 30, 30, 0.2);
   --button-bg-color: #fff;
   --button-label-color: #666;
   --button-letter-spacing: 0.05em;
   --button-hover-filter: brightness(96%);
   --button-active-filter: brightness(94%);
+
+  --button-border-positive: solid 1px #ccc;
+  --button-border-danger: solid 1px #ccc;
 
   /* button height */
   --button-height-small: 28px;

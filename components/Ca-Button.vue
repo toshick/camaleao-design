@@ -103,7 +103,7 @@ export default Vue.extend({
 .ca-button {
   position: relative;
   padding: var(--button-padding);
-  border: var(--button-border-color);
+  border: var(--button-border);
   border-radius: var(--button-radius);
   box-shadow: var(--form-shadow);
   font-size: var(--fontsize-medium);
@@ -153,6 +153,7 @@ export default Vue.extend({
   background-color: var(--positive);
   color: #796a1a;
   text-shadow: var(--button-text-shadow);
+  border: var(--button-border-positive);
 }
 
 /* danger */
@@ -160,6 +161,7 @@ export default Vue.extend({
   background-color: var(--danger);
   color: #640f0f;
   text-shadow: var(--button-text-shadow);
+  border: var(--button-border-danger);
 }
 
 /* loading */
