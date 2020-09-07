@@ -49,6 +49,23 @@
 }
 
 /* -------------------- 
+   drillup
+  ---------------------*/
+.drillup-enter-active,
+.drillup-leave-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.4s ease;
+}
+
+.drillup-enter,
+.drillup-leave-to {
+  opacity: 0;
+  transform: translateX(-150px);
+  transition: all 0.3s ease-in;
+}
+
+/* -------------------- 
    toast
   ---------------------*/
 .toast-enter-active,

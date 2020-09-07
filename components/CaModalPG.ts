@@ -2,6 +2,7 @@ import Vue from 'vue';
 import CaModal from './Ca-Modal.vue';
 import CaModalBody from './Ca-ModalBody.vue';
 import CaModalView from './Ca-ModalView.vue';
+import CaModalSideMenu from './Ca-ModalSideMenu.vue';
 import ModalInput from './modal/ModalInput.vue';
 import { CreateElement } from 'vue/types/umd';
 import { Input } from './type';
@@ -133,9 +134,14 @@ export const drillDown = (params: OpenParams) => {
   return open({ ...params, parentComponent: CaModalView, transition: 'drilldown', removeDuration: 600 });
 };
 
+export const modalMenu = (params: OpenParams) => {
+  return open({ ...params, parentComponent: CaModalSideMenu, transition: 'fade', removeDuration: 600 });
+};
+
 export default {
   open,
   openDialog,
   openView,
   drillDown,
+  modalMenu,
 };

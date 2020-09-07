@@ -126,3 +126,12 @@ export default Vue.extend({
   position: fixed;
 }
 </style>
+
+<style>
+.ca-modal.-sidemenu {
+  background-color: var(--modal-sidemenu-bg-color);
+}
+.ca-modal.-sidemenu .ca-modalview {
+  background-color: transparent;
+}
+</style>

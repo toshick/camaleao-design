@@ -16,7 +16,7 @@
           <CaButton @click="close">とじる</CaButton>
         </div>
         <ul>
-          <li v-for="i in 40" :key="i">キタキターヌ</li>
+          <li v-for="i in 40" :key="i">キタキタヌ</li>
         </ul>
       </CaModalViewBody>
     </CaModalScroll>

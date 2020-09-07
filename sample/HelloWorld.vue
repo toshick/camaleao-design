@@ -3,6 +3,7 @@
     <section>
       <a class="icon icon-cross btn-close-top"></a>
       <article class="modal-user">
+        <CaButton @click="modalMenu">modalMenu</CaButton>
         <CaButton @click="toast">toast</CaButton>
         <CaButton @click="drillDown">drillDown</CaButton>
         <CaButton @click="openModalView">openModalView</CaButton>
@@ -174,6 +175,7 @@ import ModalValidation from '../sample/ModalValidation.vue';
 import ModalContSample from '../sample/ModalContSample.vue';
 import ModalViewSample from '../sample/ModalViewSample.vue';
 import ModalViewSampleDrill from '../sample/ModalViewSampleDrill.vue';
+import ModalSideMenuSample from '../sample/ModalSideMenuSample.vue';
 import { Input, FormReturn } from '../components/type';
 
 type State = {
@@ -288,6 +290,14 @@ export default Vue.extend({
           this.loading1 = false;
         }
       }, 3000);
+    },
+    modalMenu() {
+      const $t = document.querySelector('.previewblock') || null;
+      CaModalPG.modalMenu({
+        target: $t,
+        component: ModalSideMenuSample,
+        klass: ['-sidemenu'],
+      });
     },
     toast() {
       const $t = document.querySelector('.previewblock') || null;

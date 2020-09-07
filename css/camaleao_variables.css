@@ -178,6 +178,11 @@
   --modalview-body-padding: 20px;
 
   /* ------------------ */
+  /* sidemenu */
+  /* ------------------ */
+  --modal-sidemenu-bg-color: rgba(21, 21, 21, 0.6);
+
+  /* ------------------ */
   /* toast */
   /* ------------------ */
   --toast-radius: 16px;
