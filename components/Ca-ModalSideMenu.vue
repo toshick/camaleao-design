@@ -86,8 +86,8 @@ export default Vue.extend({
   overflow: scroll;
 }
 .ca-modal-sidemenu-body {
-  width: 70%;
-  background-color: #fff;
-  padding: 20px;
+  width: var(--modal-sidemenu-width);
+  background-color: var(--modal-sidemenu-scroll-bg-color);
+  padding: var(--modal-sidemenu-padding);
 }
 </style>

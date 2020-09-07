@@ -181,6 +181,11 @@
   /* sidemenu */
   /* ------------------ */
   --modal-sidemenu-bg-color: rgba(21, 21, 21, 0.6);
+  --modal-sidemenu-width: 70%;
+  --modal-sidemenu-scroll-bg-color: #fff;
+  --modal-sidemenu-padding: 20px;
+
+
 
   /* ------------------ */
   /* toast */
