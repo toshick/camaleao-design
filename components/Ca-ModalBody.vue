@@ -37,12 +37,19 @@ export default Vue.extend({
       default: false,
       type: Boolean,
     },
+    klass: {
+      default: '',
+      type: String,
+    },
   },
   computed: {
     myClass(): any {
       const klass: any = { 'ca-modal-body': true };
       if (this.fit) {
         klass['-fit-content'] = true;
+      }
+      if (this.klass) {
+        klass[this.klass] = true;
       }
       return klass;
     },
