@@ -222,7 +222,7 @@ export default Vue.extend({
   border: var(--form-border-color);
   border-radius: var(--form-radius);
   box-shadow: var(--form-shadow);
-  font-size: var(--fontsize-normal);
+  font-size: var(--form-input-fontsize-normal);
   color: var(--dark);
 
   width: var(--form-input-width-normal);
@@ -240,7 +240,7 @@ export default Vue.extend({
 }
 .ca-input.-size-s > span > input {
   padding: 0 10px;
-  font-size: var(--fontsize-small);
+  /* font-size: var(--fontsize-small); */
   height: calc(var(--form-input-height-small));
 }
 .ca-input.-size-s .ca-input-text {
@@ -252,7 +252,7 @@ export default Vue.extend({
 
 .ca-input.-size-l > span > input {
   padding: 16px 120px;
-  font-size: 18px;
+  font-size: var(--form-input-fontsize-large);
 }
 
 /* width */

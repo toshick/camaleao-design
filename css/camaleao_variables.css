@@ -28,6 +28,12 @@
   /* form border color */
   --form-border-color: solid 1px #ccc;
 
+  /* ------------------ */
+  /* input */
+  /* ------------------ */
+  --form-input-fontsize-normal: 16px;
+  --form-input-fontsize-large: 18px;
+
   /* form height */
   --form-input-height: 38px;
   --form-input-height-small: 28px;
