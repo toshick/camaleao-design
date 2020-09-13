@@ -207,7 +207,7 @@ export default Vue.extend({
   border: var(--form-border-color);
   border-radius: var(--form-radius);
   box-shadow: var(--form-shadow);
-  font-size: var(--fontsize-normal);
+  font-size: var(--form-input-fontsize-normal);
   color: var(--dark);
 
   width: var(--form-textarea-width-normal);
@@ -221,14 +221,14 @@ export default Vue.extend({
 /* size */
 .ca-textarea.-size-s > span > textarea {
   padding: 10px;
-  font-size: var(--fontsize-small);
+  /* font-size: var(--fontsize-small); */
 }
 .ca-textarea.-size-s .ca-textarea-text {
   font-size: var(--fontsize-small);
 }
 
 .ca-textarea.-size-l > span > textarea {
-  font-size: 18px;
+  font-size: var(--form-input-fontsize-large);
 }
 
 /* -disabled */
