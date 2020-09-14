@@ -322,6 +322,7 @@ export default Vue.extend({
         target: $t,
         component: ModalViewSample,
         klass: ['rrrr', 'sss'],
+        transition: 'scalefade',
       });
     },
     openInput() {

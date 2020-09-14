@@ -127,7 +127,7 @@ export const openDialog = (params: OpenParams) => {
 };
 
 export const openView = (params: OpenParams) => {
-  return open({ ...params, parentComponent: CaModalView, transition: 'modal', removeDuration: 600 });
+  return open({ ...params, parentComponent: CaModalView, transition: params.transition || 'modal', removeDuration: 600 });
 };
 
 export const drillDown = (params: OpenParams) => {
