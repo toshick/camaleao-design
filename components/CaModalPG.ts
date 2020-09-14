@@ -35,7 +35,7 @@ export type OpenParams = {
 };
 
 export const open = (params: OpenParams) => {
-  const p = { ...params, easyClose: params.easyClose !== false, removeDuration: params.removeDuration || 200, fixed: true };
+  const p = { ...params, easyClose: params.easyClose !== false, removeDuration: params.removeDuration || 600, fixed: true };
   const $el = document.createElement('article');
   let $body: Element = document.body;
   if (params.target) {
@@ -123,19 +123,19 @@ export const open = (params: OpenParams) => {
 };
 
 export const openDialog = (params: OpenParams) => {
-  return open({ ...params, parentComponent: CaModalBody, component: ModalInput, transition: 'fade' });
+  return open({ ...params, parentComponent: CaModalBody, component: ModalInput, transition: params.transition || 'scalefade' });
 };
 
 export const openView = (params: OpenParams) => {
-  return open({ ...params, parentComponent: CaModalView, transition: params.transition || 'modal', removeDuration: 600 });
+  return open({ ...params, parentComponent: CaModalView, transition: params.transition || 'modal' });
 };
 
 export const drillDown = (params: OpenParams) => {
-  return open({ ...params, parentComponent: CaModalView, transition: 'drilldown', removeDuration: 600 });
+  return open({ ...params, parentComponent: CaModalView, transition: 'drilldown' });
 };
 
 export const modalMenu = (params: OpenParams) => {
-  return open({ ...params, parentComponent: CaModalSideMenu, transition: 'fade', removeDuration: 600 });
+  return open({ ...params, parentComponent: CaModalSideMenu, transition: 'fade' });
 };
 
 export default {
