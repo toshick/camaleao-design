@@ -69,6 +69,9 @@ button,
 textarea,
 select {
   font: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 /* Blur images when they have no alt attribute */
