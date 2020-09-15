@@ -1,6 +1,9 @@
 @charset "utf-8";
 
 :root {
+  /* ios */
+  -webkit-appearance: none;
+
   --positive: #ecde92;
   --positive-hover: #d9cb7e;
   --danger: #ecb092;
@@ -190,8 +193,6 @@
   --modal-sidemenu-width: 70%;
   --modal-sidemenu-scroll-bg-color: #fff;
   --modal-sidemenu-padding: 20px;
-
-
 
   /* ------------------ */
   /* toast */
