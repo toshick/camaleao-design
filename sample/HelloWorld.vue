@@ -76,7 +76,7 @@
         <p class="heading">CaTextarea</p>
 
         <div class="ca-inputline">
-          <CaTextarea name="kanso" title="感想を述べよ" rules="required" v-model="dummyValText" placeholder="帰ってきたジョバンニ"></CaTextarea>
+          <CaTextarea autorows autoWidth name="kanso" title="感想を述べよ" rules="required" v-model="dummyValText" placeholder="帰ってきたジョバンニ"></CaTextarea>
         </div>
       </article>
 

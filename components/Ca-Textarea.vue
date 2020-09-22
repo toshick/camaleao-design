@@ -8,7 +8,7 @@
         <p v-if="required && !passed && errors.length == 0" class="formmark-required"></p>
         <p v-if="myval.length > 0 && passed" class="formmark-passed"></p>
       </div>
-      <textarea :value="myval" @input="(e) => onChangeInput(e)" :placeholder="placeholder" />
+      <textarea :value="myval" @input="(e) => onChangeInput(e)" :placeholder="placeholder" :rows="rows" />
     </span>
     <div v-if="errors.length > 0" class="ca-textarea-errors">
       <p>{{ getErrMessage(errors) }}</p>
@@ -81,6 +81,14 @@ export default Vue.extend({
       default: false,
       type: Boolean,
     },
+    autorows: {
+      default: false,
+      type: Boolean,
+    },
+    autoWidth: {
+      default: false,
+      type: Boolean,
+    },
   },
   watch: {
     disabled(newval, oldval) {
@@ -130,6 +138,9 @@ export default Vue.extend({
       if (this.type) {
         klass[`-${this.type}`] = true;
       }
+      if (this.autoWidth) {
+        klass['-auto-width'] = true;
+      }
 
       return klass;
     },
@@ -143,6 +154,12 @@ export default Vue.extend({
     myrules(): string {
       if (this.disabled) return '';
       return this.rules;
+    },
+    rows(): number {
+      if (this.autorows) {
+        return this.myval.split('\n').length;
+      }
+      return 2;
     },
   },
   created() {
@@ -229,6 +246,13 @@ export default Vue.extend({
 
 .ca-textarea.-size-l > span > textarea {
   font-size: var(--form-input-fontsize-large);
+}
+
+.ca-textarea.-auto-width > span {
+  display: flex;
+}
+.ca-textarea.-auto-width > span > textarea {
+  width: 100%;
 }
 
 /* -disabled */

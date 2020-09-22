@@ -89,5 +89,7 @@ export default Vue.extend({
   width: var(--modal-sidemenu-width);
   background-color: var(--modal-sidemenu-scroll-bg-color);
   padding: var(--modal-sidemenu-padding);
+  height: min-content;
+  min-height: 100%;
 }
 </style>

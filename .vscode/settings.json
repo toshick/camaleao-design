@@ -2,6 +2,7 @@
   "editor.formatOnSave": true,
   "favorites.sortOrder": "ASC",
   "favorites.resources": [
-    "package.json"
+    "package.json",
+    "sample/HelloWorld.vue"
   ]
 }
