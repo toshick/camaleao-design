@@ -16,7 +16,7 @@ export const debounce = (fn: any, interval: number) => {
   let timer: NodeJS.Timer;
   return () => {
     clearTimeout(timer);
-    timer = setTimeout(function() {
+    timer = <any>setTimeout(function() {
       fn();
     }, interval);
   };
