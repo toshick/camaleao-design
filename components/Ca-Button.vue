@@ -105,7 +105,7 @@ export default Vue.extend({
   padding: var(--button-padding);
   border: var(--button-border);
   border-radius: var(--button-radius);
-  box-shadow: var(--form-shadow);
+  box-shadow: var(--button-shadow);
   font-size: var(--fontsize-medium);
   height: var(--button-height-normal);
   background-color: var(--button-bg-color);
@@ -186,7 +186,7 @@ export default Vue.extend({
 /* text */
 .ca-button.-submit {
   border: var(--form-border-color);
-  box-shadow: var(--form-shadow);
+  /* box-shadow: var(--button-shadow); */
   color: var(--dark);
   background-color: #eee;
 }
