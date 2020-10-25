@@ -5,7 +5,7 @@
 
     <footer>
       <CaButton width="S" :type="buttonType" @click="positive" :disabled="confirmed">{{ buttonLabel }}</CaButton>
-      <CaButton width="S" @click="cancel" :disabled="confirmed">キャンセル</CaButton>
+      <CaButton v-if="withCancel" width="S" @click="cancel" :disabled="confirmed">キャンセル</CaButton>
     </footer>
   </article>
 </template>
@@ -24,6 +24,10 @@ export default Vue.extend({
     onConfirm: Function,
     type: String,
     btnLabel: String,
+    withCancel: {
+      type: Boolean,
+      default: true,
+    },
   },
   computed: {
     myClass(): any {
@@ -31,7 +35,6 @@ export default Vue.extend({
       if (this.type) {
         klass[`-${this.type}`] = true;
       }
-
       return klass;
     },
     buttonType(): string {

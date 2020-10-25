@@ -5,15 +5,10 @@
         <slot name="titleicon" class="titleicon"></slot>
         {{ title }}
       </h1>
-      <!-- <a class="icon icon-cross btn-close-header" @click="onClickClose"></a> -->
     </header>
     <div class="ca-modal-body-center">
       <slot></slot>
     </div>
-    <!-- <footer>
-      <CaButton width="S" @click="onClickClose" type="positive" :disabled="true">OK</CaButton>
-      <CaButton width="S" @click="onClickClose">キャンセル</CaButton>
-    </footer> -->
   </div>
 </template>
 <!------------------------------->
@@ -121,6 +116,7 @@ header {
   box-shadow: var(--modalbody-header-shadow);
   height: var(--modalbody-header-height);
   background-image: var(--modalbody-header-bg-img);
+  border-bottom: dotted 1px #ccc;
 }
 header h1 {
   display: flex;

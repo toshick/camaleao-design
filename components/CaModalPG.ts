@@ -12,7 +12,6 @@ export type OpenParams = {
   component?: any;
   easyClose?: boolean;
   transition?: string;
-  // fixed?: boolean;
   removeDuration?: number;
   modalTitle?: string;
   compoParams?: {
@@ -21,6 +20,7 @@ export type OpenParams = {
     btnLabel?: string;
     inputs?: Input[];
     type?: 'danger' | string;
+    withCancel?: boolean;
   };
   target?: Element | null;
   titleIcon?: {

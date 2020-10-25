@@ -13,7 +13,7 @@
 
       <footer>
         <CaButton width="S" :type="buttonType" @click="handleSubmit(submit)" :disabled="invalid">{{ buttonLabel }}</CaButton>
-        <CaButton width="S" @click="cancel">キャンセル</CaButton>
+        <CaButton v-if="withCancel" width="S" @click="cancel">キャンセル</CaButton>
       </footer>
     </ValidationObserver>
   </article>
@@ -41,6 +41,10 @@ export default Vue.extend({
     inputs: {
       default: () => [],
       type: Array as PropType<Input[]>,
+    },
+    withCancel: {
+      type: Boolean,
+      default: true,
     },
   },
   computed: {

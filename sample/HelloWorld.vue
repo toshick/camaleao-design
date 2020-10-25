@@ -351,7 +351,6 @@ export default Vue.extend({
             name: 'heart',
           },
         },
-        fixed: false,
         compoParams: {
           confirmText: 'イベント名を決定しよう',
           onConfirm: (res: FormReturn[]) => {
@@ -373,7 +372,6 @@ export default Vue.extend({
             name: 'heart',
           },
         },
-        fixed: false,
         compoParams: {
           confirmText: 'なんだかしらんけどよろしいですか？なんだかしらんけどよろしいですか？',
           btnLabel: 'さくじょ',
@@ -381,6 +379,7 @@ export default Vue.extend({
             console.log('いえす');
           },
           type: 'danger',
+          withCancel: false,
         },
       });
     },
@@ -403,7 +402,6 @@ export default Vue.extend({
             name: 'heart',
           },
         },
-        fixed: false,
       });
     },
     ddd() {
