@@ -305,6 +305,7 @@ export default Vue.extend({
   color: #666;
   letter-spacing: 0.05em;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 /* heading */

@@ -196,6 +196,7 @@ export default Vue.extend({
 }
 
 .ca-radiolist-item label::before {
+  flex: 1 0 auto;
   position: relative;
   display: block;
   content: '';
@@ -203,7 +204,7 @@ export default Vue.extend({
   height: var(--form-radio-size);
   background-color: var(--white);
   border: var(--form-border-color);
-  border-radius: calc(var(--form-radio-size) / 2);
+  border-radius: 50%;
   margin-right: calc(var(--form-radio-size) / 3);
   box-shadow: var(--form-shadow);
 }
@@ -224,10 +225,6 @@ export default Vue.extend({
   border: var(--smallcircle-size) solid transparent;
   border-top: var(--smallcircle-size) solid var(--circle-color);
   border-right: var(--smallcircle-size) solid var(--circle-color);
-  /* border-bottom: var(--smallcircle-size) solid var(--circle-color); */
-
-  /* border-radius: calc(var(--form-radio-size) - 8px * 0.5); */
-  /* animation: radioanime 1.6s ease infinite; */
   border-radius: 100%;
   animation: ratate 2s linear infinite;
 }
