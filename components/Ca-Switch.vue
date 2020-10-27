@@ -44,6 +44,9 @@ export default Vue.extend({
       if (this.size && this.size === 'S') {
         size = '-size-s';
       }
+      if (this.size && this.size === 'L') {
+        size = '-size-l';
+      }
       klass[size] = true;
       if (this.myval) {
         klass['-checked'] = true;
@@ -81,7 +84,7 @@ export default Vue.extend({
   display: flex;
   align-items: center;
   cursor: pointer;
-  height: var(--form-input-height);
+  height: var(--switch-size-normal);
 }
 label {
   display: inline-block;
@@ -94,32 +97,31 @@ label {
   display: flex;
   align-items: center;
 
-  background-color: #ddd;
+  background-color: var(--switch-color-bg);
   border-radius: 20px;
   margin-right: 6px;
   padding: 0 4px;
-  width: 40px;
-  height: var(--switch-size-small);
+  width: calc(var(--switch-size-normal) * 2);
+  height: var(--switch-size-normal);
 }
 .ca-switch-icon::before {
   display: block;
   content: '';
-  width: calc(var(--switch-size-small) - 6px);
-  height: calc(var(--switch-size-small) - 6px);
+  width: calc(var(--switch-size-normal) - 6px);
+  height: calc(var(--switch-size-normal) - 6px);
   border-radius: 50%;
-  background-color: #fff;
+  background-color: var(--switch-color-circle);
 }
 .ca-switch-icon::after {
-  --circle-color: #d5d5d5;
-  --smallcircle-size: calc(var(--switch-size-small) / 2 - 3px);
+  --smallcircle-size: calc(var(--switch-size-normal) / 2 - 3px);
   display: none;
   content: '';
-  background-color: #fff;
+  background-color: var(--switch-color-circle2);
   width: 0px;
   height: 0px;
   border: var(--smallcircle-size) solid transparent;
-  border-top: var(--smallcircle-size) solid var(--circle-color);
-  border-right: var(--smallcircle-size) solid var(--circle-color);
+  border-top: var(--smallcircle-size) solid var(--switch-color-circle1);
+  border-right: var(--smallcircle-size) solid var(--switch-color-circle1);
   border-radius: 100%;
   animation: ratate 2s linear infinite;
 }
@@ -131,7 +133,7 @@ label {
 
 /* checked */
 .ca-switch.-checked .ca-switch-icon {
-  background-color: #888;
+  background-color: var(--switch-color-bg-checked);
 }
 .ca-switch.-checked .ca-switch-icon::before {
   display: none;
@@ -141,31 +143,52 @@ label {
   margin-left: auto;
 }
 
-/* size */
+/* size s */
 .ca-switch.-size-s .ca-switch-toggle {
-  height: var(--form-input-height-small);
+  height: var(--switch-size-small);
 }
-
 .ca-switch.-size-s .ca-switch-icon {
-  width: 40px;
-  height: 20px;
+  width: calc(var(--switch-size-small) * 2);
+  height: var(--switch-size-small);
 }
 .ca-switch.-size-s .ca-switch-icon::before {
   width: calc(var(--switch-size-small) - 6px);
   height: calc(var(--switch-size-small) - 6px);
 }
-
 .ca-switch.-size-s .ca-switch-icon::after {
-  --circle-color: #d5d5d5;
   --smallcircle-size: calc(var(--switch-size-small) / 2 - 3px);
   content: '';
-  background-color: #fff;
+  background-color: var(--switch-color-circle2);
   width: 0px;
   height: 0px;
   border: var(--smallcircle-size) solid transparent;
-  border-top: var(--smallcircle-size) solid var(--circle-color);
-  border-right: var(--smallcircle-size) solid var(--circle-color);
+  border-top: var(--smallcircle-size) solid var(--switch-color-circle1);
+  border-right: var(--smallcircle-size) solid var(--switch-color-circle1);
+  border-radius: 100%;
+  animation: ratate 2s linear infinite;
+}
 
+/* size l */
+.ca-switch.-size-l .ca-switch-toggle {
+  height: var(--switch-size-large);
+}
+.ca-switch.-size-l .ca-switch-icon {
+  width: calc(var(--switch-size-large) * 2);
+  height: var(--switch-size-large);
+}
+.ca-switch.-size-l .ca-switch-icon::before {
+  width: calc(var(--switch-size-large) - 6px);
+  height: calc(var(--switch-size-large) - 6px);
+}
+.ca-switch.-size-l .ca-switch-icon::after {
+  --smallcircle-size: calc(var(--switch-size-large) / 2 - 3px);
+  content: '';
+  background-color: var(--switch-color-circle2);
+  width: 0px;
+  height: 0px;
+  border: var(--smallcircle-size) solid transparent;
+  border-top: var(--smallcircle-size) solid var(--switch-color-circle1);
+  border-right: var(--smallcircle-size) solid var(--switch-color-circle1);
   border-radius: 100%;
   animation: ratate 2s linear infinite;
 }

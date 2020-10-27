@@ -120,8 +120,13 @@
   /* switch */
   /* ------------------ */
   --switch-size-small: 20px;
-  --switch-size-normal: 30px;
-  --switch-size-large: 44px;
+  --switch-size-normal: 24px;
+  --switch-size-large: 30px;
+  --switch-color-bg: #ddd;
+  --switch-color-bg-checked: #888;
+  --switch-color-circle: #fff;
+  --switch-color-circle1: #ddd;
+  --switch-color-circle2: #fff;
 
   /* ------------------ */
   /* badge */

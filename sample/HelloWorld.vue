@@ -68,7 +68,9 @@
       <article>
         <p class="heading">CaSwitch</p>
         <div class="ca-taglist">
+          <CaSwitch label="スイッチオン" size="S" />
           <CaSwitch label="スイッチオン" />
+          <CaSwitch label="スイッチオン" size="L" />
         </div>
       </article>
 
