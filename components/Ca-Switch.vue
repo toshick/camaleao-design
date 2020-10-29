@@ -1,25 +1,47 @@
 <template>
-  <span :class="myClass">
-    <input type="hidden" v-model="myval" />
-    <a class="ca-switch-toggle" @click.stop.prevent="onClick">
+  <ValidationProvider :class="myClass" :name="name" :rules="myrules" v-slot="{ errors, passed }" :data-e2e="e2eAttr" tag="span">
+    <label class="ca-switch-toggle">
       <i class="ca-switch-icon" />
-      <label>{{ label }}</label>
-    </a>
-  </span>
+      <p>{{ label }}</p>
+      <input :value="myval" @input="(e) => onChangeInput(e)" type="checkbox" />
+      <span v-if="required && !passed" class="formmark-required"></span>
+      <span v-if="errors.length > 0" class="ca-input-errors">
+        {{ getErrMessage(errors) }}
+      </span>
+    </label>
+  </ValidationProvider>
 </template>
 <!------------------------------->
 
 <!------------------------------->
 <script lang="ts">
 import Vue, { PropType } from 'vue';
+import { ValidationProvider } from 'vee-validate';
+import { getErrMessage } from './helper';
 
 type State = {
   myval: boolean;
+  getErrMessage: (errors: string[]) => string;
 };
 
 export default Vue.extend({
-  name: 'CaTag',
+  name: 'CaSwitch',
+  components: {
+    ValidationProvider,
+  },
   props: {
+    name: {
+      type: String,
+      default: '',
+    },
+    value: {
+      type: Boolean,
+      default: false,
+    },
+    required: {
+      default: false,
+      type: Boolean,
+    },
     type: {
       default: '',
       type: String,
@@ -56,16 +78,42 @@ export default Vue.extend({
       }
       return klass;
     },
+    myrules(): object {
+      let str: object = {};
+      if (this.required) {
+        str = { required: { allowFalse: false } };
+      }
+      return str;
+    },
+    e2eAttr(): string {
+      return `e2e-${this.name}`;
+    },
   },
   data(): State {
     return {
       myval: false,
+      getErrMessage,
     };
+  },
+  mounted() {
+    this.myval = this.value;
+    if (this.value) {
+      this.$emit('change', this.myval);
+    }
   },
   methods: {
     onClick() {
       this.myval = !this.myval;
-      this.$emit('input', this.myval);
+    },
+    /**
+     * onChangeInput
+     */
+    onChangeInput(e: Event) {
+      if (e.target instanceof HTMLInputElement) {
+        this.myval = Boolean(e.target.checked);
+        console.log('onChangeInput', this.myval);
+        this.$emit('input', this.myval);
+      }
     },
   },
 });
@@ -80,18 +128,22 @@ export default Vue.extend({
   font-size: var(--fontsize-normal);
   padding-right: 6px;
 }
+.ca-switch input {
+  display: none;
+}
 .ca-switch-toggle {
   display: flex;
   align-items: center;
   cursor: pointer;
   height: var(--switch-size-normal);
 }
-label {
+.ca-switch-toggle p {
   display: inline-block;
   white-space: nowrap;
   line-height: 1;
   cursor: pointer;
   color: var(--dark);
+  margin: 0;
 }
 .ca-switch-icon {
   display: flex;
@@ -196,5 +248,16 @@ label {
 /* heading-space */
 .ca-switch.-with-heading-space {
   padding-top: var(--form-heading-height);
+}
+
+.formmark-required {
+  margin-left: 0.5em;
+}
+.ca-input-errors {
+  font-size: var(--fontsize-small);
+  color: var(--danger);
+  white-space: nowrap;
+  padding: 0;
+  margin: 0px 0 0 0;
 }
 </style>

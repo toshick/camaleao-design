@@ -8,6 +8,7 @@
         <li v-for="(i, index) in itemsAry" :class="i.klass" :key="`${index}-${i.radio.value}`">
           <label>
             <input v-model="myval" type="radio" :value="i.radio.value" @input="(e) => onChangeInput(e)" />
+            <i></i>
             {{ i.radio.label }}
           </label>
         </li>
@@ -195,7 +196,7 @@ export default Vue.extend({
   opacity: 0.8;
 }
 
-.ca-radiolist-item label::before {
+.ca-radiolist-item label i {
   flex: 1 0 auto;
   position: relative;
   display: block;
@@ -208,15 +209,16 @@ export default Vue.extend({
   margin-right: calc(var(--form-radio-size) / 3);
   box-shadow: var(--form-shadow);
 }
-.ca-radiolist-item label::after {
+
+.ca-radiolist-item label i::after {
   --margin: 4px;
   --circle-color: #ddd;
   --smallcircle-size: calc(var(--form-radio-size) * 0.5 - var(--margin));
   display: none;
   content: '';
   position: absolute;
-  top: calc(var(--margin) + 0px);
-  left: calc(var(--margin) + 0px);
+  top: calc(var(--margin) - 1px);
+  left: calc(var(--margin) - 1px);
   background-color: #bbb;
 
   width: 0px;
@@ -253,7 +255,7 @@ export default Vue.extend({
   display: block;
 }
 
-.ca-radiolist-item.-checked > label::after {
+.ca-radiolist-item.-checked > label i::after {
   display: block;
 }
 

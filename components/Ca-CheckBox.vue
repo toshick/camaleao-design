@@ -80,8 +80,8 @@ export default Vue.extend({
     e2eAttr(): string {
       return `e2e-${this.name}`;
     },
-    rules(): any {
-      let str: any = null;
+    rules(): object {
+      let str: object = {};
       if (this.required) {
         str = { required: { allowFalse: false } };
       }

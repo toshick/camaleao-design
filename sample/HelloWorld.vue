@@ -67,10 +67,10 @@
 
       <article>
         <p class="heading">CaSwitch</p>
-        <div class="ca-taglist">
-          <CaSwitch label="スイッチオン" size="S" />
-          <CaSwitch label="スイッチオン" />
-          <CaSwitch label="スイッチオン" size="L" />
+        <div class="ca-switchlist">
+          <p><CaSwitch v-model="switch1" name="switch1" required label="スイッチオン" size="S" /></p>
+          <p><CaSwitch v-model="switch2" name="switch2" label="スイッチオン" /></p>
+          <p><CaSwitch v-model="switch3" name="switch3" required label="スイッチオン" size="L" /></p>
         </div>
       </article>
 
@@ -208,6 +208,10 @@ type State = {
   birthYear2: string;
   birthMonth2: string;
   birthDate2: string;
+
+  switch1: boolean;
+  switch2: boolean;
+  switch3: boolean;
 };
 
 export default Vue.extend({
@@ -275,6 +279,10 @@ export default Vue.extend({
       birthYear2: '',
       birthMonth2: '',
       birthDate2: '',
+
+      switch1: false,
+      switch2: false,
+      switch3: false,
     };
   },
   mounted() {},
@@ -479,5 +487,11 @@ li {
   width: 375px;
   height: 600px;
   overflow: hidden;
+}
+
+.ca-switchlist {
+  p {
+    margin-bottom: 10px;
+  }
 }
 </style>
