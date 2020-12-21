@@ -1,14 +1,29 @@
 <template>
-  <ValidationProvider :class="myClass" :name="name" :rules="myrules" v-slot="{ errors, valid, invalid, validated, passed }" :data-e2e="e2eAttr" tag="div">
+  <ValidationProvider
+    :class="myClass"
+    :name="name"
+    :rules="myrules"
+    v-slot="{ errors, valid, invalid, validated, passed }"
+    :data-e2e="e2eAttr"
+    tag="div"
+  >
     <div v-if="titleStr.length > 0" class="ca-input-heading">
       <p v-html="titleStr"></p>
     </div>
     <span :class="setValidateClass(validated, valid, invalid)">
       <div class="ca-input-status">
-        <p v-if="required && !passed && errors.length == 0" class="formmark-required"></p>
+        <p
+          v-if="required && !passed && errors.length == 0"
+          class="formmark-required"
+        ></p>
         <p v-if="myval.length > 0 && passed" class="formmark-passed"></p>
       </div>
-      <input type="text" :value="myval" @input="(e) => onChangeInput(e)" :placeholder="placeholder" />
+      <input
+        :type="myType"
+        :value="myval"
+        @input="(e) => onChangeInput(e)"
+        :placeholder="placeholder"
+      />
     </span>
     <span v-if="textRight" class="ca-input-text -right">{{ textRight }}</span>
     <div v-if="errors.length > 0" class="ca-input-errors">
@@ -158,6 +173,9 @@ export default Vue.extend({
     myrules(): string {
       if (this.disabled) return '';
       return this.rules;
+    },
+    myType(): string {
+      return this.type || 'text';
     },
   },
   created() {

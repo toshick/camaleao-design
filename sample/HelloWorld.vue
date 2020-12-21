@@ -9,26 +9,70 @@
         <CaButton @click="openModalView">openModalView</CaButton>
         <CaButton @click="openInput">openInput</CaButton>
         <CaButton @click="openConfirm">openDialog</CaButton>
-        <CaButton @click="visibleModalValidation = true">モーダルバリデーション {{ visibleModalValidation }}</CaButton>
-        <CaButton @click="visibleModalUser = true">ユーザ情報入力のモーダルがでます</CaButton>
+        <CaButton @click="visibleModalValidation = true"
+          >モーダルバリデーション {{ visibleModalValidation }}</CaButton
+        >
+        <CaButton @click="visibleModalUser = true"
+          >ユーザ情報入力のモーダルがでます</CaButton
+        >
       </article>
       <article class="previewblock"></article>
       <article>
         <p class="heading">CaDrumroll</p>
         <div class="ca-inputline">
           <CaFloat>誕生日を選択してください</CaFloat>
-          <CaDrumroll width="S" :items="drumrollItemsYear" required placeholder="年" v-model="birthYear"></CaDrumroll>
-          <CaDrumroll width="S" :items="drumrollItemsMonth" required placeholder="月" v-model="birthMonth"></CaDrumroll>
-          <CaDrumroll width="S" :items="drumrollItemsDate" required placeholder="日" v-model="birthDate"></CaDrumroll>
+          <CaDrumroll
+            width="S"
+            :items="drumrollItemsYear"
+            required
+            placeholder="年"
+            v-model="birthYear"
+          ></CaDrumroll>
+          <CaDrumroll
+            width="S"
+            :items="drumrollItemsMonth"
+            required
+            placeholder="月"
+            v-model="birthMonth"
+          ></CaDrumroll>
+          <CaDrumroll
+            width="S"
+            :items="drumrollItemsDate"
+            required
+            placeholder="日"
+            v-model="birthDate"
+          ></CaDrumroll>
           <CaFloat>
-            <p class="shell">誕生日: {{ birthYear }}/{{ birthMonth }}/{{ birthDate }}</p>
+            <p class="shell">
+              誕生日: {{ birthYear }}/{{ birthMonth }}/{{ birthDate }}
+            </p>
           </CaFloat>
         </div>
 
         <div class="ca-inputline">
-          <CaDrumroll width="S" size="S" :items="drumrollItemsYear" required title="あなたが最初にカメレオンを見た日をおしえてくださいカマ" v-model="birthYear2"></CaDrumroll>
-          <CaDrumroll width="M" size="S" :items="drumrollItemsMonth" required withHeadingSpace v-model="birthMonth2"></CaDrumroll>
-          <CaDrumroll size="S" :items="drumrollItemsDate" required withHeadingSpace v-model="birthDate2"></CaDrumroll>
+          <CaDrumroll
+            width="S"
+            size="S"
+            :items="drumrollItemsYear"
+            required
+            title="あなたが最初にカメレオンを見た日をおしえてくださいカマ"
+            v-model="birthYear2"
+          ></CaDrumroll>
+          <CaDrumroll
+            width="M"
+            size="S"
+            :items="drumrollItemsMonth"
+            required
+            withHeadingSpace
+            v-model="birthMonth2"
+          ></CaDrumroll>
+          <CaDrumroll
+            size="S"
+            :items="drumrollItemsDate"
+            required
+            withHeadingSpace
+            v-model="birthDate2"
+          ></CaDrumroll>
         </div>
       </article>
       <article>
@@ -36,7 +80,9 @@
         <div class="btns">
           <CaButton size="S">スモールボタン</CaButton>
           <CaButton>通常ボタン</CaButton>
-          <CaButton size="L" @click="visibleModal = true">ラージボタン</CaButton>
+          <CaButton size="L" @click="visibleModal = true"
+            >ラージボタン</CaButton
+          >
           <CaButton size="S" loading>モーダル開く</CaButton>
         </div>
         <div class="btns">
@@ -68,9 +114,27 @@
       <article>
         <p class="heading">CaSwitch</p>
         <div class="ca-switchlist">
-          <p><CaSwitch v-model="switch1" name="switch1" required label="スイッチオン" size="S" /></p>
-          <p><CaSwitch v-model="switch2" name="switch2" label="スイッチオン" /></p>
-          <p><CaSwitch v-model="switch3" name="switch3" required label="スイッチオン" size="L" /></p>
+          <p>
+            <CaSwitch
+              v-model="switch1"
+              name="switch1"
+              required
+              label="スイッチオン"
+              size="S"
+            />
+          </p>
+          <p>
+            <CaSwitch v-model="switch2" name="switch2" label="スイッチオン" />
+          </p>
+          <p>
+            <CaSwitch
+              v-model="switch3"
+              name="switch3"
+              required
+              label="スイッチオン"
+              size="L"
+            />
+          </p>
         </div>
       </article>
 
@@ -78,7 +142,15 @@
         <p class="heading">CaTextarea</p>
 
         <div class="ca-inputline">
-          <CaTextarea autorows autoWidth name="kanso" title="感想を述べよ" rules="required" v-model="dummyValText" placeholder="帰ってきたジョバンニ"></CaTextarea>
+          <CaTextarea
+            autorows
+            autoWidth
+            name="kanso"
+            title="感想を述べよ"
+            rules="required"
+            v-model="dummyValText"
+            placeholder="帰ってきたジョバンニ"
+          ></CaTextarea>
         </div>
       </article>
 
@@ -86,26 +158,89 @@
         <p class="heading">CaInput</p>
 
         <div class="ca-inputline">
-          <CaInput name="mail1" title="ユーザのメールアドレス及び担当者のメールアドレス" rules="required|max:2" v-model="dummyVal" placeholder="ユーザのメールアドレス"></CaInput>
-          <CaInput name="mail2" title="" rules="required|max:2" v-model="dummyVal" placeholder="担当者のメールアドレス"></CaInput>
+          <CaInput
+            name="mail1"
+            title="ユーザのメールアドレス及び担当者のメールアドレス"
+            rules="required|max:2"
+            v-model="dummyVal"
+            placeholder="ユーザのメールアドレス"
+          ></CaInput>
+          <CaInput
+            name="mail2"
+            title=""
+            rules="required|max:2"
+            v-model="dummyVal"
+            placeholder="担当者のメールアドレス"
+          ></CaInput>
           <CaInputButton withHeadingSpace>アドレスを送信</CaInputButton>
           <CaInputButton withHeadingSpace loading>アドレスを送信</CaInputButton>
         </div>
         <div class="ca-inputline">
-          <CaInput width="L" name="tanto_tel" title="担当者の電話番号" rules="required|max:2" v-model="dummyVal" placeholder="メールアドレス"></CaInput>
-          <CaInput name="tanto_contact" title="担当者の連絡先" rules="" v-model="dummyVal" placeholder="メールアドレス"></CaInput>
-          <CaInput width="S" name="tanto_age" title="担当者の年齢" textRight="歳" rules="" v-model="dummyVal" placeholder="年齢"></CaInput>
-          <CaInput width="S" name="tanto_year" title="年度" textRight="年" rules="numeric" v-model="dummyVal" placeholder="年度"></CaInput>
+          <CaInput
+            width="L"
+            name="tanto_tel"
+            title="担当者の電話番号"
+            rules="required|max:2"
+            v-model="dummyVal"
+            placeholder="メールアドレス"
+          ></CaInput>
+          <CaInput
+            name="tanto_contact"
+            title="担当者の連絡先"
+            rules=""
+            v-model="dummyVal"
+            placeholder="メールアドレス"
+          ></CaInput>
+          <CaInput
+            width="S"
+            name="tanto_age"
+            title="担当者の年齢"
+            textRight="歳"
+            rules=""
+            v-model="dummyVal"
+            placeholder="年齢"
+          ></CaInput>
+          <CaInput
+            width="S"
+            name="tanto_year"
+            title="年度"
+            textRight="年"
+            rules="numeric"
+            v-model="dummyVal"
+            placeholder="年度"
+          ></CaInput>
         </div>
 
         <div class="ca-inputline">
-          <CaInput name="mail3" size="S" rules="required|max:2" v-model="dummyVal" placeholder="メールアドレス small"></CaInput>
+          <CaInput
+            name="mail3"
+            size="S"
+            rules="required|max:2"
+            v-model="dummyVal"
+            placeholder="メールアドレス small"
+            type="password"
+          ></CaInput>
           <CaInputButton size="S">送信</CaInputButton>
           <CaSwitch label="スイッチオン" size="S" />
-          <CaInput width="S" size="S" name="tanto_year" textRight="年" rules="numeric" v-model="dummyVal" placeholder="年度"></CaInput>
+          <CaInput
+            width="S"
+            size="S"
+            name="tanto_year"
+            textRight="年"
+            rules="numeric"
+            v-model="dummyVal"
+            placeholder="年度"
+          ></CaInput>
         </div>
         <div class="ca-inputline">
-          <CaInput title="スモールタイトル付き" name="mail3" size="S" rules="required|max:2" v-model="dummyVal" placeholder="メールアドレス small"></CaInput>
+          <CaInput
+            title="スモールタイトル付き"
+            name="mail3"
+            size="S"
+            rules="required|max:2"
+            v-model="dummyVal"
+            placeholder="メールアドレス small"
+          ></CaInput>
           <CaInputButton size="S" withHeadingSpace loading>送信</CaInputButton>
         </div>
       </article>
@@ -114,16 +249,34 @@
         <p class="heading">CaCheckBox</p>
 
         <CaCheckBoxList title="チェックボックス">
-          <CaCheckBox name="check01" label="チェックボックス01" v-model="dummyCheck01"></CaCheckBox>
-          <CaCheckBox name="check02" label="チェックボックス02" required v-model="dummyCheck02"></CaCheckBox>
+          <CaCheckBox
+            name="check01"
+            label="チェックボックス01"
+            v-model="dummyCheck01"
+          ></CaCheckBox>
+          <CaCheckBox
+            name="check02"
+            label="チェックボックス02"
+            required
+            v-model="dummyCheck02"
+          ></CaCheckBox>
         </CaCheckBoxList>
-        <p class="shell">チェックボックス check01（{{ dummyCheck01 }}） check02（{{ dummyCheck02 }}）</p>
+        <p class="shell">
+          チェックボックス check01（{{ dummyCheck01 }}） check02（{{
+            dummyCheck02
+          }}）
+        </p>
       </article>
 
       <article>
         <p class="heading">CaRadioList</p>
 
-        <CaRadioList title="ラジオのリスト" name="radio01" v-model="dummyRadio01" :items="radioItems"></CaRadioList>
+        <CaRadioList
+          title="ラジオのリスト"
+          name="radio01"
+          v-model="dummyRadio01"
+          :items="radioItems"
+        ></CaRadioList>
 
         <p class="shell">ラジオ {{ dummyRadio01 }}</p>
       </article>
@@ -132,11 +285,28 @@
         <p class="heading">CaPulldown</p>
 
         <div class="ca-inputline">
-          <CaPulldown rules="required" title="プルダウン" name="pull01" size="S" v-model="dummyPulldown01" :items="pulldownItems"></CaPulldown>
-          <CaPulldown rules="required" withHeadingSpace name="pull02" v-model="dummyPulldown02" :items="pulldownItems"></CaPulldown>
+          <CaPulldown
+            rules="required"
+            title="プルダウン"
+            name="pull01"
+            size="S"
+            v-model="dummyPulldown01"
+            :items="pulldownItems"
+          ></CaPulldown>
+          <CaPulldown
+            rules="required"
+            withHeadingSpace
+            name="pull02"
+            v-model="dummyPulldown02"
+            :items="pulldownItems"
+          ></CaPulldown>
 
           <CaFloat withHeadingSpace>
-            <p class="shell">プルダウン1（{{ dummyPulldown01 }}）　プルダウン2（{{ dummyPulldown02 }}）</p>
+            <p class="shell">
+              プルダウン1（{{ dummyPulldown01 }}）　プルダウン2（{{
+                dummyPulldown02
+              }}）
+            </p>
           </CaFloat>
         </div>
       </article>
@@ -160,25 +330,25 @@
 
 <!------------------------------->
 <script lang="ts">
-import Vue from 'vue';
-import CaSpinner from '../components/Ca-Spinner.vue';
-Vue.component('CaSpinner', CaSpinner);
+import Vue from "vue";
+import CaSpinner from "../components/Ca-Spinner.vue";
+Vue.component("CaSpinner", CaSpinner);
 
-import { ValidationObserver } from 'vee-validate';
+import { ValidationObserver } from "vee-validate";
 
-import { CaPulldownItem } from '../components/Ca-Pulldown.vue';
-import { CaDrumrollItem } from '../components/Ca-Drumroll.vue';
-import CaButton from '../components/Ca-Button.vue';
-import CaModalPG from '../components/CaModalPG';
-import CaToastPG from '../components/CaToastPG';
+import { CaPulldownItem } from "../components/Ca-Pulldown.vue";
+import { CaDrumrollItem } from "../components/Ca-Drumroll.vue";
+import CaButton from "../components/Ca-Button.vue";
+import CaModalPG from "../components/CaModalPG";
+import CaToastPG from "../components/CaToastPG";
 // sample
-import UserInfoForm from '../sample/UserInfoForm.vue';
-import ModalValidation from '../sample/ModalValidation.vue';
-import ModalContSample from '../sample/ModalContSample.vue';
-import ModalViewSample from '../sample/ModalViewSample.vue';
-import ModalViewSampleDrill from '../sample/ModalViewSampleDrill.vue';
-import ModalSideMenuSample from '../sample/ModalSideMenuSample.vue';
-import { Input, FormReturn } from '../components/type';
+import UserInfoForm from "../sample/UserInfoForm.vue";
+import ModalValidation from "../sample/ModalValidation.vue";
+import ModalContSample from "../sample/ModalContSample.vue";
+import ModalViewSample from "../sample/ModalViewSample.vue";
+import ModalViewSampleDrill from "../sample/ModalViewSampleDrill.vue";
+import ModalSideMenuSample from "../sample/ModalSideMenuSample.vue";
+import { Input, FormReturn } from "../components/type";
 
 type State = {
   toastCount: number;
@@ -215,28 +385,28 @@ type State = {
 };
 
 export default Vue.extend({
-  name: 'HelloWorld',
+  name: "HelloWorld",
   props: {
-    msg: String,
+    msg: String
   },
   components: {
     ValidationObserver,
     // sample
     UserInfoForm,
-    ModalValidation,
+    ModalValidation
   },
   data(): State {
     return {
       toastCount: 0,
-      dummyVal: '',
-      dummyValText: '',
+      dummyVal: "",
+      dummyValText: "",
       dummyCheck01: false,
       dummyCheck02: false,
-      dummyRadio01: '',
+      dummyRadio01: "",
       radioItems: [
-        { label: 'アンドロイドは電気羊の夢を見るか', value: '001' },
-        { label: 'いいにおいのおならをうるおとこ', value: '002' },
-        { label: 'カモメに飛ぶことを教えた猫', value: '003' },
+        { label: "アンドロイドは電気羊の夢を見るか", value: "001" },
+        { label: "いいにおいのおならをうるおとこ", value: "002" },
+        { label: "カモメに飛ぶことを教えた猫", value: "003" }
       ],
 
       visibleModal: false,
@@ -244,14 +414,14 @@ export default Vue.extend({
       visibleModalValidation: false,
       loading1: false,
       pulldownItems: [
-        { value: 'キック1', label: 'ケイシャーダ' },
-        { value: 'キック2', label: 'アルマーダ' },
-        { value: 'キック3', label: 'コンパッソ' },
+        { value: "キック1", label: "ケイシャーダ" },
+        { value: "キック2", label: "アルマーダ" },
+        { value: "キック3", label: "コンパッソ" }
       ],
       pulldownItemsPlan: [
-        { value: 'plan01', label: 'ビギナーズプラン' },
-        { value: 'plan02', label: 'スダンダードプラン' },
-        { value: 'plan03', label: 'コンテンポラリープラン' },
+        { value: "plan01", label: "ビギナーズプラン" },
+        { value: "plan02", label: "スダンダードプラン" },
+        { value: "plan03", label: "コンテンポラリープラン" }
       ],
       drumrollItems: Array.from(Array(20)).map((_, idx: number) => {
         return { value: `plan${idx}`, label: `カメレオン${idx}` };
@@ -269,26 +439,26 @@ export default Vue.extend({
         return { value: `${val}`, label: `${val}日` };
       }),
 
-      dummyPulldown01: '',
-      dummyPulldown02: '',
+      dummyPulldown01: "",
+      dummyPulldown02: "",
 
-      birthYear: '1999',
-      birthMonth: '3',
-      birthDate: '30',
+      birthYear: "1999",
+      birthMonth: "3",
+      birthDate: "30",
 
-      birthYear2: '',
-      birthMonth2: '',
-      birthDate2: '',
+      birthYear2: "",
+      birthMonth2: "",
+      birthDate2: "",
 
       switch1: false,
       switch2: false,
-      switch3: false,
+      switch3: false
     };
   },
   mounted() {},
   methods: {
     dummyCall() {
-      console.log('dummyCall');
+      console.log("dummyCall");
     },
     sendDummy(num: number) {
       if (num === 1) {
@@ -302,95 +472,97 @@ export default Vue.extend({
       }, 3000);
     },
     modalMenu() {
-      const $t = document.querySelector('.previewblock') || null;
+      const $t = document.querySelector(".previewblock") || null;
       CaModalPG.modalMenu({
         target: $t,
         component: ModalSideMenuSample,
-        klass: ['-sidemenu'],
+        klass: ["-sidemenu"]
       });
     },
     toast() {
-      const $t = document.querySelector('.previewblock') || null;
+      const $t = document.querySelector(".previewblock") || null;
       CaToastPG.open({
         target: $t,
-        klass: ['rrrr', 'sss'],
-        text: `トーストですトーストですトーストですトーストですトーストですトーストです${++this.toastCount}`,
+        klass: ["rrrr", "sss"],
+        text: `トーストですトーストですトーストですトーストですトーストですトーストです${++this
+          .toastCount}`
         // icon: 'skull',
       });
     },
     drillDown() {
-      const $t = document.querySelector('.previewblock') || null;
+      const $t = document.querySelector(".previewblock") || null;
       CaModalPG.drillDown({
         target: $t,
         component: ModalViewSampleDrill,
-        klass: ['rrrr', 'sss'],
+        klass: ["rrrr", "sss"]
       });
     },
     openModalView() {
-      const $t = document.querySelector('.previewblock') || null;
+      const $t = document.querySelector(".previewblock") || null;
       CaModalPG.openView({
         target: $t,
         component: ModalViewSample,
-        klass: ['rrrr', 'sss'],
+        klass: ["rrrr", "sss"]
       });
     },
     openInput() {
       const inputs: Input[] = [];
       inputs.push({
-        name: 'eventname2',
-        value: 'いべ',
-        placeholder: 'イベント名',
-        width: 'M',
-        rules: 'required',
+        name: "eventname2",
+        value: "いべ",
+        placeholder: "イベント名",
+        width: "M",
+        rules: "required"
       });
       inputs.push({
-        name: 'username',
-        value: 'ねむ',
-        placeholder: 'ユーザ名',
-        width: 'S',
-        rules: '',
+        name: "username",
+        value: "ねむ",
+        placeholder: "ユーザ名",
+        width: "S",
+        rules: ""
       });
 
-      const $t = document.querySelector('.previewblock') || null;
+      const $t = document.querySelector(".previewblock") || null;
       CaModalPG.openDialog({
-        modalTitle: 'なんか入力しよーネ',
+        modalTitle: "なんか入力しよーネ",
         target: $t,
         titleIcon: {
-          tag: 'ion-icon',
+          tag: "ion-icon",
           attrs: {
-            name: 'heart',
-          },
+            name: "heart"
+          }
         },
         compoParams: {
-          confirmText: 'イベント名を決定しよう',
+          confirmText: "イベント名を決定しよう",
           onConfirm: (res: FormReturn[]) => {
-            console.log('いえす', res);
+            console.log("いえす", res);
           },
-          btnLabel: '確定',
-          inputs,
-        },
+          btnLabel: "確定",
+          inputs
+        }
       });
     },
     openConfirm() {
-      const $t = document.querySelector('.previewblock') || null;
+      const $t = document.querySelector(".previewblock") || null;
       CaModalPG.openDialog({
-        modalTitle: '確認しますヨ',
+        modalTitle: "確認しますヨ",
         target: $t,
         titleIcon: {
-          tag: 'ion-icon',
+          tag: "ion-icon",
           attrs: {
-            name: 'heart',
-          },
+            name: "heart"
+          }
         },
         compoParams: {
-          confirmText: 'なんだかしらんけどよろしいですか？なんだかしらんけどよろしいですか？',
-          btnLabel: 'さくじょ',
+          confirmText:
+            "なんだかしらんけどよろしいですか？なんだかしらんけどよろしいですか？",
+          btnLabel: "さくじょ",
           onConfirm: () => {
-            console.log('いえす');
+            console.log("いえす");
           },
-          type: 'danger',
-          withCancel: false,
-        },
+          type: "danger",
+          withCancel: false
+        }
       });
     },
     openCustom() {
@@ -400,24 +572,24 @@ export default Vue.extend({
         methods: {
           closeCustom() {
             self.ddd();
-          },
-        },
+          }
+        }
       };
       CaModalPG.open({
         component: Sample,
-        modalTitle: 'ほーほけきょ',
+        modalTitle: "ほーほけきょ",
         titleIcon: {
-          tag: 'ion-icon',
+          tag: "ion-icon",
           attrs: {
-            name: 'heart',
-          },
-        },
+            name: "heart"
+          }
+        }
       });
     },
     ddd() {
-      console.log('ddd');
-    },
-  },
+      console.log("ddd");
+    }
+  }
 });
 </script>
 <!------------------------------->
@@ -425,7 +597,8 @@ export default Vue.extend({
 <!------------------------------->
 <style lang="scss">
 html {
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", Meiryo, sans-serif;
 }
 
 ul {
