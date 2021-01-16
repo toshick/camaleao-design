@@ -178,7 +178,6 @@
             v-model="dummyVal"
             placeholder="width100"
             width="100"
-            hasRemoveBtn
           ></CaInput>
         </div>
         <div class="ca-inputline">
@@ -196,7 +195,6 @@
             rules=""
             v-model="dummyVal"
             placeholder="メールアドレス"
-            hasRemoveBtn
           ></CaInput>
           <CaInput
             width="S"

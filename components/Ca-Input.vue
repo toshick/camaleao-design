@@ -24,7 +24,7 @@
         @input="(e) => onChangeInput(e)"
         :placeholder="placeholder"
       />
-      <a class="btn-remove-cross" @click="resetText" />
+      <a v-show="myval" class="btn-remove-cross" @click="resetText" />
     </span>
     <span v-if="textRight" class="ca-input-text -right">{{ textRight }}</span>
     <div v-if="errors.length > 0" class="ca-input-errors">
@@ -103,7 +103,7 @@ export default Vue.extend({
       type: Boolean,
     },
     hasRemoveBtn: {
-      default: false,
+      default: true,
       type: Boolean,
     },
   },
