@@ -24,6 +24,7 @@
         @input="(e) => onChangeInput(e)"
         :placeholder="placeholder"
       />
+      <a class="btn-remove-cross" @click="resetText" />
     </span>
     <span v-if="textRight" class="ca-input-text -right">{{ textRight }}</span>
     <div v-if="errors.length > 0" class="ca-input-errors">
@@ -101,6 +102,10 @@ export default Vue.extend({
       default: false,
       type: Boolean,
     },
+    hasRemoveBtn: {
+      default: false,
+      type: Boolean,
+    },
   },
   watch: {
     disabled(newval, oldval) {
@@ -147,6 +152,8 @@ export default Vue.extend({
         width = '-width-m';
       } else if (this.width && this.width === 'L') {
         width = '-width-l';
+      } else if (this.width && this.width === '100') {
+        width = '-width-100';
       }
       klass[width] = true;
 
@@ -159,6 +166,10 @@ export default Vue.extend({
 
       if (this.type) {
         klass[`-${this.type}`] = true;
+      }
+
+      if (this.hasRemoveBtn) {
+        klass['-has-remove-btn'] = true;
       }
 
       return klass;
@@ -216,6 +227,10 @@ export default Vue.extend({
         klass['-has-ok'] = true;
       }
       return klass;
+    },
+    resetText() {
+      this.myval = '';
+      this.$emit('input', this.myval);
     },
   },
 });
@@ -283,6 +298,23 @@ export default Vue.extend({
 }
 .ca-input.-width-l > span > input {
   width: var(--form-input-width-large);
+}
+.ca-input.-width-100 > span {
+  display: block;
+}
+.ca-input.-width-100 > span > input {
+  width: 100%;
+}
+
+/* btn-remove-cross */
+.btn-remove-cross {
+  display: none;
+}
+.ca-input.-has-remove-btn > span > input {
+  padding-right: 36px;
+}
+.ca-input.-has-remove-btn .btn-remove-cross {
+  display: block;
 }
 
 /* -disabled */

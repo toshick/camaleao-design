@@ -74,8 +74,7 @@
             v-model="birthDate2"
           ></CaDrumroll>
         </div>
-      </article>
-      <article>
+
         <p class="heading">CaButton | size</p>
         <div class="btns">
           <CaButton size="S">スモールボタン</CaButton>
@@ -89,14 +88,10 @@
           <CaButton size="M" width="S">width S</CaButton>
           <CaButton size="M" width="L">width L</CaButton>
         </div>
-      </article>
-      <article>
-        <p class="heading">CaButton | positive</p>
+
         <CaButton type="positive">編集する</CaButton>
         <CaButton type="positive" width="L">決定する</CaButton>
-      </article>
-      <article>
-        <p class="heading">CaButton | danger</p>
+
         <CaButton type="danger">削除する</CaButton>
         <CaButton type="danger">削除して閉じる</CaButton>
       </article>
@@ -175,6 +170,17 @@
           <CaInputButton withHeadingSpace>アドレスを送信</CaInputButton>
           <CaInputButton withHeadingSpace loading>アドレスを送信</CaInputButton>
         </div>
+        <div class="ca-inputblock">
+          <CaInput
+            name="tanto_tel"
+            title="width100"
+            rules="required|max:2"
+            v-model="dummyVal"
+            placeholder="width100"
+            width="100"
+            hasRemoveBtn
+          ></CaInput>
+        </div>
         <div class="ca-inputline">
           <CaInput
             width="L"
@@ -190,6 +196,7 @@
             rules=""
             v-model="dummyVal"
             placeholder="メールアドレス"
+            hasRemoveBtn
           ></CaInput>
           <CaInput
             width="S"
@@ -330,25 +337,26 @@
 
 <!------------------------------->
 <script lang="ts">
-import Vue from "vue";
-import CaSpinner from "../components/Ca-Spinner.vue";
-Vue.component("CaSpinner", CaSpinner);
+import Vue from 'vue';
+import CaSpinner from '../components/Ca-Spinner.vue';
+Vue.component('CaSpinner', CaSpinner);
 
-import { ValidationObserver } from "vee-validate";
+import { ValidationObserver } from 'vee-validate';
 
-import { CaPulldownItem } from "../components/Ca-Pulldown.vue";
-import { CaDrumrollItem } from "../components/Ca-Drumroll.vue";
-import CaButton from "../components/Ca-Button.vue";
-import CaModalPG from "../components/CaModalPG";
-import CaToastPG from "../components/CaToastPG";
+import { CaPulldownItem } from '../components/Ca-Pulldown.vue';
+import { CaDrumrollItem } from '../components/Ca-Drumroll.vue';
+import CaRadio from '../components/Ca-Radio.vue';
+import CaButton from '../components/Ca-Button.vue';
+import CaModalPG from '../components/CaModalPG';
+import CaToastPG from '../components/CaToastPG';
 // sample
-import UserInfoForm from "../sample/UserInfoForm.vue";
-import ModalValidation from "../sample/ModalValidation.vue";
-import ModalContSample from "../sample/ModalContSample.vue";
-import ModalViewSample from "../sample/ModalViewSample.vue";
-import ModalViewSampleDrill from "../sample/ModalViewSampleDrill.vue";
-import ModalSideMenuSample from "../sample/ModalSideMenuSample.vue";
-import { Input, FormReturn } from "../components/type";
+import UserInfoForm from '../sample/UserInfoForm.vue';
+import ModalValidation from '../sample/ModalValidation.vue';
+import ModalContSample from '../sample/ModalContSample.vue';
+import ModalViewSample from '../sample/ModalViewSample.vue';
+import ModalViewSampleDrill from '../sample/ModalViewSampleDrill.vue';
+import ModalSideMenuSample from '../sample/ModalSideMenuSample.vue';
+import { Input, FormReturn } from '../components/type';
 
 type State = {
   toastCount: number;
@@ -385,28 +393,28 @@ type State = {
 };
 
 export default Vue.extend({
-  name: "HelloWorld",
+  name: 'HelloWorld',
   props: {
-    msg: String
+    msg: String,
   },
   components: {
     ValidationObserver,
     // sample
     UserInfoForm,
-    ModalValidation
+    ModalValidation,
   },
   data(): State {
     return {
       toastCount: 0,
-      dummyVal: "",
-      dummyValText: "",
+      dummyVal: '',
+      dummyValText: '',
       dummyCheck01: false,
       dummyCheck02: false,
-      dummyRadio01: "",
+      dummyRadio01: '',
       radioItems: [
-        { label: "アンドロイドは電気羊の夢を見るか", value: "001" },
-        { label: "いいにおいのおならをうるおとこ", value: "002" },
-        { label: "カモメに飛ぶことを教えた猫", value: "003" }
+        { label: 'アンドロイドは電気羊の夢を見るか', value: '001' },
+        { label: 'いいにおいのおならをうるおとこ', value: '002' },
+        { label: 'カモメに飛ぶことを教えた猫', value: '003' },
       ],
 
       visibleModal: false,
@@ -414,14 +422,14 @@ export default Vue.extend({
       visibleModalValidation: false,
       loading1: false,
       pulldownItems: [
-        { value: "キック1", label: "ケイシャーダ" },
-        { value: "キック2", label: "アルマーダ" },
-        { value: "キック3", label: "コンパッソ" }
+        { value: 'キック1', label: 'ケイシャーダ' },
+        { value: 'キック2', label: 'アルマーダ' },
+        { value: 'キック3', label: 'コンパッソ' },
       ],
       pulldownItemsPlan: [
-        { value: "plan01", label: "ビギナーズプラン" },
-        { value: "plan02", label: "スダンダードプラン" },
-        { value: "plan03", label: "コンテンポラリープラン" }
+        { value: 'plan01', label: 'ビギナーズプラン' },
+        { value: 'plan02', label: 'スダンダードプラン' },
+        { value: 'plan03', label: 'コンテンポラリープラン' },
       ],
       drumrollItems: Array.from(Array(20)).map((_, idx: number) => {
         return { value: `plan${idx}`, label: `カメレオン${idx}` };
@@ -439,26 +447,26 @@ export default Vue.extend({
         return { value: `${val}`, label: `${val}日` };
       }),
 
-      dummyPulldown01: "",
-      dummyPulldown02: "",
+      dummyPulldown01: '',
+      dummyPulldown02: '',
 
-      birthYear: "1999",
-      birthMonth: "3",
-      birthDate: "30",
+      birthYear: '1999',
+      birthMonth: '3',
+      birthDate: '30',
 
-      birthYear2: "",
-      birthMonth2: "",
-      birthDate2: "",
+      birthYear2: '',
+      birthMonth2: '',
+      birthDate2: '',
 
       switch1: false,
       switch2: false,
-      switch3: false
+      switch3: false,
     };
   },
   mounted() {},
   methods: {
     dummyCall() {
-      console.log("dummyCall");
+      console.log('dummyCall');
     },
     sendDummy(num: number) {
       if (num === 1) {
@@ -472,97 +480,97 @@ export default Vue.extend({
       }, 3000);
     },
     modalMenu() {
-      const $t = document.querySelector(".previewblock") || null;
+      const $t = document.querySelector('.previewblock') || null;
       CaModalPG.modalMenu({
         target: $t,
         component: ModalSideMenuSample,
-        klass: ["-sidemenu"]
+        klass: ['-sidemenu'],
       });
     },
     toast() {
-      const $t = document.querySelector(".previewblock") || null;
+      const $t = document.querySelector('.previewblock') || null;
       CaToastPG.open({
         target: $t,
-        klass: ["rrrr", "sss"],
+        klass: ['rrrr', 'sss'],
         text: `トーストですトーストですトーストですトーストですトーストですトーストです${++this
-          .toastCount}`
+          .toastCount}`,
         // icon: 'skull',
       });
     },
     drillDown() {
-      const $t = document.querySelector(".previewblock") || null;
+      const $t = document.querySelector('.previewblock') || null;
       CaModalPG.drillDown({
         target: $t,
         component: ModalViewSampleDrill,
-        klass: ["rrrr", "sss"]
+        klass: ['rrrr', 'sss'],
       });
     },
     openModalView() {
-      const $t = document.querySelector(".previewblock") || null;
+      const $t = document.querySelector('.previewblock') || null;
       CaModalPG.openView({
         target: $t,
         component: ModalViewSample,
-        klass: ["rrrr", "sss"]
+        klass: ['rrrr', 'sss'],
       });
     },
     openInput() {
       const inputs: Input[] = [];
       inputs.push({
-        name: "eventname2",
-        value: "いべ",
-        placeholder: "イベント名",
-        width: "M",
-        rules: "required"
+        name: 'eventname2',
+        value: 'いべ',
+        placeholder: 'イベント名',
+        width: 'M',
+        rules: 'required',
       });
       inputs.push({
-        name: "username",
-        value: "ねむ",
-        placeholder: "ユーザ名",
-        width: "S",
-        rules: ""
+        name: 'username',
+        value: 'ねむ',
+        placeholder: 'ユーザ名',
+        width: 'S',
+        rules: '',
       });
 
-      const $t = document.querySelector(".previewblock") || null;
+      const $t = document.querySelector('.previewblock') || null;
       CaModalPG.openDialog({
-        modalTitle: "なんか入力しよーネ",
+        modalTitle: 'なんか入力しよーネ',
         target: $t,
         titleIcon: {
-          tag: "ion-icon",
+          tag: 'ion-icon',
           attrs: {
-            name: "heart"
-          }
+            name: 'heart',
+          },
         },
         compoParams: {
-          confirmText: "イベント名を決定しよう",
+          confirmText: 'イベント名を決定しよう',
           onConfirm: (res: FormReturn[]) => {
-            console.log("いえす", res);
+            console.log('いえす', res);
           },
-          btnLabel: "確定",
-          inputs
-        }
+          btnLabel: '確定',
+          inputs,
+        },
       });
     },
     openConfirm() {
-      const $t = document.querySelector(".previewblock") || null;
+      const $t = document.querySelector('.previewblock') || null;
       CaModalPG.openDialog({
-        modalTitle: "確認しますヨ",
+        modalTitle: '確認しますヨ',
         target: $t,
         titleIcon: {
-          tag: "ion-icon",
+          tag: 'ion-icon',
           attrs: {
-            name: "heart"
-          }
+            name: 'heart',
+          },
         },
         compoParams: {
           confirmText:
-            "なんだかしらんけどよろしいですか？なんだかしらんけどよろしいですか？",
-          btnLabel: "さくじょ",
+            'なんだかしらんけどよろしいですか？なんだかしらんけどよろしいですか？',
+          btnLabel: 'さくじょ',
           onConfirm: () => {
-            console.log("いえす");
+            console.log('いえす');
           },
-          type: "danger",
-          withCancel: false
-        }
+          type: 'danger',
+          withCancel: false,
+        },
       });
     },
     openCustom() {
@@ -572,24 +580,24 @@ export default Vue.extend({
         methods: {
           closeCustom() {
             self.ddd();
-          }
-        }
+          },
+        },
       };
       CaModalPG.open({
         component: Sample,
-        modalTitle: "ほーほけきょ",
+        modalTitle: 'ほーほけきょ',
         titleIcon: {
-          tag: "ion-icon",
+          tag: 'ion-icon',
           attrs: {
-            name: "heart"
-          }
-        }
+            name: 'heart',
+          },
+        },
       });
     },
     ddd() {
-      console.log("ddd");
-    }
-  }
+      console.log('ddd');
+    },
+  },
 });
 </script>
 <!------------------------------->
@@ -597,8 +605,8 @@ export default Vue.extend({
 <!------------------------------->
 <style lang="scss">
 html {
-  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans", Meiryo, sans-serif;
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN',
+    'Hiragino Sans', Meiryo, sans-serif;
 }
 
 ul {
@@ -666,5 +674,8 @@ li {
   p {
     margin-bottom: 10px;
   }
+}
+.ca-inputblock {
+  padding-bottom: 20px;
 }
 </style>

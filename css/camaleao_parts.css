@@ -30,3 +30,41 @@
   width: 100%;
   z-index: 110;
 }
+
+/* -------------------- 
+ btn-remove-cross
+ ---------------------*/
+.btn-remove-cross{
+  display: inline-block;
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ccc;
+  /* box-shadow: 0 0 1px 1px rgba(#000, 0.2); */
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+  right: 10px;
+}
+
+.btn-remove-cross::after{
+  display: block;
+  content: "";
+  width: 10px;
+  border-top: solid 2px #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateZ(45deg);
+}
+.btn-remove-cross::before{
+  display: block;
+  content: "";
+  width: 10px;
+  border-top: solid 2px #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateZ(-45deg);
+}
