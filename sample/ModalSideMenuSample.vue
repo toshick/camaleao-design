@@ -6,7 +6,7 @@
     </h1>
     <ul>
       <li v-for="i in 40" :key="i">
-        <a href="">
+        <a @click="() => onSelect(i)">
           <ion-icon name="notifications-outline" />
           キタキタヌ
         </a>
@@ -40,6 +40,9 @@ export default Vue.extend({
     },
     onClickIcon(icon: string) {
       console.log('コール', icon);
+    },
+    onSelect(idx: number) {
+      this.$emit('select', idx);
     },
   },
 });

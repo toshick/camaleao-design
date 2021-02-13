@@ -483,6 +483,11 @@ export default Vue.extend({
         target: $t,
         component: ModalSideMenuSample,
         klass: ['-sidemenu'],
+        // on: {
+        //   select(idx: number) {
+        //     console.log('セレクトした', idx);
+        //   },
+        // },
       });
     },
     toast() {
