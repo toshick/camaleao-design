@@ -36,6 +36,9 @@ export type OpenParams = {
 };
 
 export const open = (params: OpenParams) => {
+  const ret: any = {
+    close: null,
+  };
   const p = {
     ...params,
     easyClose: params.easyClose !== false,
@@ -92,7 +95,7 @@ export const open = (params: OpenParams) => {
     },
     render(h: CreateElement) {
       const self: any = this;
-      return h(CaModal, {
+      const modal = h(CaModal, {
         props: {
           easyClose: p.easyClose,
           fixed: p.fixed,
@@ -131,10 +134,14 @@ export const open = (params: OpenParams) => {
           },
         ],
       });
+      ret.close = () => {
+        modal.componentInstance?.$emit('close');
+      };
+      return modal;
     },
   });
 
-  return vm;
+  return ret;
 };
 
 export const openDialog = (params: OpenParams) => {

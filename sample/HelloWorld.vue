@@ -479,15 +479,16 @@ export default Vue.extend({
     },
     modalMenu() {
       const $t = document.querySelector('.previewblock') || null;
-      CaModalPG.modalMenu({
+      const modalRet = CaModalPG.modalMenu({
         target: $t,
         component: ModalSideMenuSample,
         klass: ['-sidemenu'],
-        // on: {
-        //   select(idx: number) {
-        //     console.log('セレクトした', idx);
-        //   },
-        // },
+        on: {
+          select(idx: number) {
+            console.log('セレクトした', idx, modalRet);
+            modalRet.close();
+          },
+        },
       });
     },
     toast() {
